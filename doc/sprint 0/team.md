@@ -6,4 +6,4 @@
 * Anthony Gruskovnjak
 * Anmol Joshi
 * Iqbal Khan
-* Jessica Ly  lyjessi2
+* Jessica Ly lyjessi2
