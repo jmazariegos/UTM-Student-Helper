@@ -3,7 +3,7 @@
 
 **Team Members**:
 * Amy Chung
-* Anthony Gruskovnjak
+* Anthony Gruskovnjak gruskov2
 * Anmol Joshi
 * Iqbal Khan
 * Jessica Ly lyjessi2
