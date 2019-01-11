@@ -7,4 +7,5 @@
 * Anmol Joshi
 * Iqbal Khan
 * Jessica Ly lyjessi2
-* James Khan
+* Joshua Mazariegos
+* Ibrahim Totten
