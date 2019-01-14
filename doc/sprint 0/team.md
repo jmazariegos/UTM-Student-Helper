@@ -4,8 +4,8 @@
 **Team Members**:
 * Amy Chung (chungfuk)
 * Anthony Gruskovnjak (gruskov2)
-* Anmol Joshi
+* Anmol Joshi (joshianm)
 * Iqbal Khan
 * Jessica Ly (lyjessi2)
-* Joshua Mazariegos
-* Ibrahim Totten
+* Joshua Mazariegos (mazarie4)
+* Ibrahim Totten (tottenib)
