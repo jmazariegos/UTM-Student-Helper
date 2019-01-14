@@ -5,7 +5,7 @@
 * Amy Chung (chungfuk)
 * Anthony Gruskovnjak (gruskov2)
 * Anmol Joshi (joshianm)
-* Iqbal Khan
+* Iqbal Khan (khanagh2)
 * Jessica Ly (lyjessi2)
 * Joshua Mazariegos (mazarie4)
 * Ibrahim Totten (tottenib)
