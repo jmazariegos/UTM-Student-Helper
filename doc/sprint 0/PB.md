@@ -1,6 +1,6 @@
 We will be using powers of 2 to estimate user stories.
 
-Total User Stories: 
+Total User Stories: 24
 
 # 1-Top Priority
 ______________________________________
