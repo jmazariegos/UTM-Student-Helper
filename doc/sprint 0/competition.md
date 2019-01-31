@@ -25,7 +25,7 @@ These are official timetables developed and maintained by UofT, and so are usual
 ### How is your product different?
 The competition for scheduling only takes into consideration the specific courses which are being searched, and not helping the student find which courses they can/cannot take. Our product is different because it will allow for timetable planning with program and completed courses in mind, allow for clear note collaboration and tracking of lectures, and be targeted to a niche group of students. Our product will also enable clearer note taking with integration into the rest of the product (such as integration with your timetable). We will also integrate a course/prof rating scheme scrapped from RateMyProf, which is not something that most of the competitors have done. 
 
-## Who are the users and/or what are the scenarios?
+### Who are the users and/or what are the scenarios?
 Users are specifically students at the UTM campus. They may want a timetable generator, be looking for a specific type of course, or just want to be more organized.
 
 *Timetable 1*: Tom, Melinda, and Brandon have already chosen their courses and want to be able to organise times when they can hang out. They currently do so by asking in their group chat when the others are available e.g. "who else is free at 1 on Mondays".
