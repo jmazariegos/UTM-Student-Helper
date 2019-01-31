@@ -51,6 +51,7 @@ Roles that Members have Self Assigned:
   - Amy (2)
 
 1 = primary role
+
 2 = secondary role, will help if needed or if primary role has no tasks to complete
 
 
