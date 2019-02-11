@@ -60,7 +60,7 @@ ______________________________________
 **Estimate (hours)**: 1-2
 ______________________________________
 
-### **Rate My Prof/Class**
+### **Calendar**
 **Task**:
 - Retrieve calendar information from database
 - Display calendar information
