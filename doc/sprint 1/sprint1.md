@@ -1,12 +1,12 @@
 ## Participants:
 
-Jessica
-Amy
-Joshua
-Ibrahim
-Iqbal
-Anmol
-Anthony
+- Jessica
+- Amy
+- Joshua
+- Ibrahim
+- Iqbal
+- Anmol
+- Anthony
 
 ## Sprint Backlog:
 
