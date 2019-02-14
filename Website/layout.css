@@ -1,0 +1,37 @@
+.heart{
+	overflow: hidden;
+}
+
+.course-list{
+	float:left; 
+	display: inline-block;
+}
+
+h2, th{
+	text-align: center;
+}
+th{
+	border: 1px solid white;	
+	padding: 10px 40px 10px 40px;
+	background-color: lightblue;
+}
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+td{
+	border: 1px solid white;
+	text-align: left;
+	font-size: 20px;
+	margin: 10px;
+	background-color: lightgray;
+	height: 50px;
+}
+
+#buttons{
+	vertical-align:top;
+	display: inline-block;
+	float: left;
+
+}
