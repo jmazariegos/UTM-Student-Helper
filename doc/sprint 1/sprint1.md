@@ -42,8 +42,8 @@ ______________________________________
 
 ### **Main Page**
 **Task**:
-- Retrieve course times from timetable
-- Display course times in calendar
+- Create display for homepage
+- Create a navigation to the features
 
 **Members**: Anthony
 
