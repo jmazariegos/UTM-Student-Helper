@@ -8,6 +8,8 @@
 - Anmol
 - Anthony
 
+Note: All of the stories were started and attempted, however not all were fully completed. This was due to architecture, weather, and assignment/midterm conflicts. The architecture and stack we would be using were generally laid out in the beginning, however the technical issues for the components to work together were raised late into the sprint. There were a few campus closures which resulted in the reschedule of in person meetings to online ones. Everyone had other assessments for other courses, which affected how much time was available for us to work.
+
 ## Sprint Backlog:
 
 ### **View Timetable (Courses)**
