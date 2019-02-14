@@ -35,7 +35,7 @@ ______________________________________
 - Add ability to create a new date event
 - Add ability to store date events as JSON in database
 
-**Members**: Ibrahim
+**Members**: Ibrahim, Iqbal
 
 **Estimate (hours)**: 1-2
 ______________________________________
