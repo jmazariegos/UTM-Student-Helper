@@ -1,0 +1,37 @@
+
+body{
+	/*background :#f5f3f5;*/
+}
+
+/*table Layout*/
+h2, th{
+	text-align: center;
+}
+th{
+	border: 1px solid white;	
+	padding: 5px 20px 5px 20px;
+	background-color: #0fa3b1;
+}
+
+table{
+
+}
+
+td{
+	border: 1px solid white;
+	text-align: left;
+	font-size: 20px;
+	margin: 10px;
+	background-color: #eeeeee;
+	height: 50px;
+}
+
+#main{
+	padding-top: 18px;
+}
+.navbar{
+	padding-top: 18px;
+}
+#buttons{
+	float:left;
+}
