@@ -40,12 +40,12 @@ ______________________________________
 **Estimate (hours)**: 1-2
 ______________________________________
 
-### **Course Dates/Timings in Calendar**
+### **Main Page**
 **Task**:
 - Retrieve course times from timetable
 - Display course times in calendar
 
-**Members**: Iqbal
+**Members**: Anthony
 
 **Estimate (hours)**: 2-4
 ______________________________________
