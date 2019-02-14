@@ -1,6 +1,6 @@
 
 body{
-	background :"#f5f3f5"
+	/*background :#f5f3f5;*/
 }
 
 /*table Layout*/
@@ -10,8 +10,9 @@ h2, th{
 th{
 	border: 1px solid white;	
 	padding: 5px 20px 5px 20px;
-	background-color: lightblue;
+	background-color: #0fa3b1;
 }
+
 table{
 /*	margin-left: auto;
 	margin-right: auto;*/
@@ -22,7 +23,7 @@ td{
 	text-align: left;
 	font-size: 20px;
 	margin: 10px;
-	background-color: lightgray;
+	background-color: #eeeeee;
 	height: 50px;
 }
 
@@ -31,4 +32,7 @@ td{
 }
 .navbar{
 	padding-top: 30px;
+}
+#buttons{
+	float:left;
 }
