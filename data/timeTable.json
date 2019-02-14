@@ -1,0 +1,31 @@
+{
+    "courses": [
+		{"code": "CSC108",
+		"session": "f",
+		"name": "Introduction to Computer",
+		"description": "How to compute good.",
+		"lectures": [
+			{
+				"section": "0101",
+				"timings": [
+					{
+						"day": "Monday",
+						"startTime": "10:00",
+						"endTime": "11:00"
+					},
+					{
+						"day": "Wednesday",
+						"startTime": "10:00",
+						"endTime": "11:00"
+					},
+					{
+						"day": "Friday",
+						"startTime": "10:00",
+						"endTime": "11:00"
+					}
+				]
+			}
+		]
+	  }	
+	  ]	
+}
