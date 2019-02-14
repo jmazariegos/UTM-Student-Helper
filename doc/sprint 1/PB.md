@@ -8,6 +8,8 @@ ______________________________________
 
 **Priority:** Top
 
+**Points Value:** 2
+
 **As** Brandon Lang (program changing student)
 
 **I want** to have a timetable on this app that doesn’t necessarily have to be linked to my current schedule / timetable
@@ -18,25 +20,19 @@ ______________________________________
 
 **Priority:** Top
 
+**Points Value:** 2
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to have a calendar I can refer to in the app
 
 **So** that I don’t have to have everything separated in different places
-_____________________________________
-**User story:** Add Course to Timetable
-
-**Priority:** Top
-
-**As** Brandon Lang (program changing student)
-
-**I want** to be able to see courses based on my search criteria
-
-**So that** I can see which courses I can choose to add to the timetable
 ______________________________________
 **User story:** Add Course to Timetable
 
 **Priority:** Top
+
+**Points Value:** 4
 
 **As** Brandon Lang (program changing student)
 
@@ -47,6 +43,8 @@ ______________________________________
 **User story:** Note-Taking
 
 **Priority:** Top
+
+**Points Value:** 8
 
 **As** Tom Muhammad (disorganized student)
 
@@ -60,6 +58,8 @@ ______________________________________
 
 **Priority:** High
 
+**Points Value:** 2
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to see a visual for the site
@@ -72,6 +72,8 @@ ______________________________________
 
 **Priority:** High
 
+**Points Value:** 4
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to create an account
@@ -82,6 +84,8 @@ ______________________________________
 
 **Priority:** High
 
+**Points Value:** 4
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to log into an account
@@ -91,6 +95,8 @@ ______________________________________
 **User story:** Note-linking
 
 **Priority:** High
+
+**Points Value:** 4
  
 **As** Tom Muhammad (disorganized student)
 
@@ -102,6 +108,8 @@ ______________________________________
 
 **Priority:** High
 
+**Points Value:** 2
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to create dates in my calendar
@@ -112,6 +120,8 @@ ______________________________________
 
 **Priority:** High
 
+**Points Value:** 4
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to have all my course times on the calendar automatically from my timetable
@@ -121,6 +131,8 @@ ______________________________________
 **User story:** Timetable Generator (picks timings)
 
 **Priority:** High
+
+**Points Value:** 4
 
 **As** Melinda Hoff (course finding student)
 
@@ -134,6 +146,8 @@ ______________________________________
 
 **Priority:** Middle
 
+**Points Value:** 2
+
 **As** Brandon Lang (program changing student)
 
 **I want** to able to find my friend’s accounts
@@ -143,6 +157,8 @@ ______________________________________
 **User story:** Notification
 
 **Priority:** Middle
+
+**Points Value:** 4
 
 **As** Tom Muhammad (disorganized student)
 
@@ -154,6 +170,8 @@ ______________________________________
 
 **Priority:** Middle
 
+**Points Value:** 4
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to share notes with other classmates and vice versa
@@ -163,6 +181,8 @@ ______________________________________
 **User story:** Note-Taken Dates
 
 **Priority:** Middle
+
+**Points Value:** 4
 
 **As** Tom Muhammad (disorganized student)
 
@@ -174,6 +194,8 @@ ______________________________________
 
 **Priority:** Middle
 
+**Points Value:** 4
+
 **As** Brandon Lang (program changing student)
 
 **I want** to be able to share or compare my timetable with my friends
@@ -184,6 +206,8 @@ ______________________________________
 
 **Priority:** Middle
 
+**Points Value:** 4
+
 **As** Melinda Hoff (course finding student)
 
 **I want** to make a timetable based on criteria I give it like early classes, fridays off, etc.
@@ -193,6 +217,8 @@ ______________________________________
 **User story:** Course Suggester (filter out courses you can’t take)
 
 **Priority:** Middle
+
+**Points Value:** 4
 
 **As** Melinda Hoff (course finding student)
 
@@ -206,6 +232,8 @@ ______________________________________
 
 **Priority:** Low
 
+**Points Value:** 4
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to verify account
@@ -215,6 +243,8 @@ ______________________________________
 **User story:** Password Reset
 
 **Priority:** Low
+
+**Points Value:** 4
 
 **As** Tom Muhammad (disorganized student)
 
@@ -226,6 +256,8 @@ ______________________________________
 
 **Priority:** Low
 
+**Points Value:** 2
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to track all the grades for my courses
@@ -236,6 +268,8 @@ ______________________________________
 
 **Priority:** Low
 
+**Points Value:** 8
+
 **As** Tom Muhammad (disorganized student)
 
 **I want** to be able to work on notes or any documents with my friends or partners
@@ -245,6 +279,8 @@ ______________________________________
 **User story:** Map
 
 **Priority:** Low
+
+**Points Value:** 8
 
 **As** Brandon Lang (program changing student)
 
@@ -258,6 +294,8 @@ ______________________________________
 
 **Priority:** Bottom
 
+**Points Value:** 4
+
 **As** Brandon Lang (program changing student)
 
 **I want** to know where I can get food on campus and what they serve and their prices
@@ -267,6 +305,8 @@ ______________________________________
 **User story:** Rate My Prof / Class
 
 **Priority:** Bottom
+
+**Points Value:** 2
 
 **As** Melinda Hoff (course finding student)
 
