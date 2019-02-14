@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+	<head>
+		
+		<!--<link rel="stylesheet" type="text/css" href="./bootstrap-4.0.0-dist/css/bootstrap.css">-->
+		<style>
+			h2, th{
+				text-align: center;
+			}
+			th{
+			  border: 1px solid white;	
+			  padding: 10px 40px 10px 40px;
+			  background-color: lightblue;
+			}
+			table{
+			  margin-left: auto;
+			  margin-right: auto;
+			}
+			td{
+			  border: 1px solid white;
+			  text-align: left;
+			  font-size: 20px;
+			  margin: 10px;
+			  background-color: lightgray;
+			  height: 50px;
+			}
+		</style>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+	</head>
+
+	<body>
+
+		<nav>
+			<ul>
+				<li> Home </li>
+			</ul>
+		</nav>
+		
+		<h2>Time Table</h2>
+		
+		<table>
+
+		<script> 
+		//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
+		// xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
+		
+		var url = "data/timeTable.json";
+		
+		$.getJSON(url, function(data) {
+			console.log(data); //this writes to the console, and I think we need this request to access data
+			$courses = data['courses'][0]; //index 0 because courses is a list and we have 1 course in the list
+			$code = $courses.code; //access value of 'code'
+			$days = $courses.timings;
+			
+			for (i=; i < $days.length; i++){
+				//for each row
+				// get index/day, and add the section that is on that day
+			}
+			
+			//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
+			
+		});
+		</script>
+		<div id="course-list"></div>
+		<tr>
+				<th>Sunday</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Saturday</th>
+			</tr>
+		
+		<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+		  <td></td>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+		
+		<tr>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+		  <td>7</td>
+				<td>8</td>
+				<td>9</td>
+			</tr>
+		
+		<tr>
+				<td>10</td>
+				<td>11</td>
+				<td>12</td>
+				<td>13</td>
+		  <td>14</td>
+				<td>15</td>
+				<td>16</td>
+			</tr>
+		
+		<tr>
+				<td>17</td>
+				<td>18</td>
+				<td>19</td>
+				<td>20</td>
+		  <td>21</td>
+				<td>22</td>
+				<td>23</td>
+			</tr>
+		
+		<tr>
+				<td>24</td>
+				<td>25</td>
+				<td>26</td>
+				<td>27</td>
+		  <td>28</td>
+				<td></td>
+				<td></td>
+			</tr>
+		
+		</table>
+		
+	</body>
+
+</html>
