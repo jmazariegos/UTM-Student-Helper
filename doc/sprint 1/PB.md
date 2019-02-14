@@ -51,6 +51,17 @@ ______________________________________
 **I want** to be able to take notes
 
 **So** that I can refer to them later
+______________________________________
+
+**User story:** Search Courses
+
+**Priority:** Top
+
+**Point Value:** 4
+
+**As** Brandon Lang (program changing student)
+**I want** to be able to see courses based on my search criteria
+**So that** I can see which courses I can choose to add to the timetable
 
 # 2-High Priority
 ______________________________________
@@ -96,7 +107,7 @@ ______________________________________
 
 **Priority:** High
 
-**Points Value:** 4
+**Points Value:** 8
  
 **As** Tom Muhammad (disorganized student)
 
@@ -104,7 +115,7 @@ ______________________________________
 
 **So** that I won’t have to switch to other note-taking apps, and so that I can see them all in one place.
 ______________________________________
-**User story:** Events / Due Dates
+**User story:** Add Events / Due Dates to Calendar
 
 **Priority:** High
 
@@ -116,7 +127,7 @@ ______________________________________
 
 **So** that I can use the calendar to keep track of things I need to do
 ______________________________________
-**User story:** Course Dates / Timings
+**User story:** Course Dates / Timings in Calendar
 
 **Priority:** High
 
