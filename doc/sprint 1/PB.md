@@ -23,6 +23,16 @@ ______________________________________
 **I want** to have a calendar I can refer to in the app
 
 **So** that I don’t have to have everything separated in different places
+_____________________________________
+**User story:** Add Course to Timetable
+
+**Priority:** Top
+
+**As** Brandon Lang (program changing student)
+
+**I want** to be able to see courses based on my search criteria
+
+**So that** I can see which courses I can choose to add to the timetable
 ______________________________________
 **User story:** Add Course to Timetable
 
