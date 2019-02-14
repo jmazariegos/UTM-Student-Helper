@@ -14,9 +14,9 @@
 - Rough architecture of website
 - Ability to use timetable and calendar
   - User stories:
-    - Search Courses
-    - Course Dates/Timings in Calendar
     - View Timetable (Courses)
+    - Search Courses
+    - Add Events / Due Dates to Calendar
     - Calendar
     - Main Page
 - Ability to see Rate My Prof ratings
