@@ -15,7 +15,6 @@
 - Ability to use timetable and calendar
   - User stories:
     - Search Courses
-    - Add Events / Due Dates to Calendar
     - Course Dates/Timings in Calendar
     - View Timetable (Courses)
     - Calendar
