@@ -10,12 +10,12 @@
 
 ## Sprint Backlog:
 
-### **Rate My Prof/Class**
+### **View Timetable (Courses)**
 **Task**:
-- Scrape RateMyProf information. 
-- Display information when user hovers over course
+- Retrieve timetable information
+- Display timetable information  
 
-**Members**: Amy
+**Members**: Joshua, Jessica
 
 **Estimate (hours)**: 1-2
 ______________________________________
@@ -40,6 +40,16 @@ ______________________________________
 **Estimate (hours)**: 1-2
 ______________________________________
 
+### **Calendar**
+**Task**:
+- Retrieve calendar information from database
+- Display calendar information
+
+**Members**: Anmol, Jessica
+
+**Estimate (hours)**: 1-2
+______________________________________
+
 ### **Main Page**
 **Task**:
 - Create display for homepage
@@ -50,21 +60,11 @@ ______________________________________
 **Estimate (hours)**: 2-4
 ______________________________________
 
-### **View Timetable (Courses)**
+### **Rate My Prof/Class**
 **Task**:
-- Retrieve timetable information
-- Display timetable information  
+- Scrape RateMyProf information. 
+- Display information when user hovers over course
 
-**Members**: Joshua, Jessica
-
-**Estimate (hours)**: 1-2
-______________________________________
-
-### **Calendar**
-**Task**:
-- Retrieve calendar information from database
-- Display calendar information
-
-**Members**: Anmol, Jessica
+**Members**: Amy
 
 **Estimate (hours)**: 1-2
