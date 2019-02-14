@@ -1,11 +1,9 @@
-.heart{
-	overflow: hidden;
-}
 
-.course-list{
+
+/*.course-list{
 	float:left; 
 	display: inline-block;
-}
+}*/
 
 h2, th{
 	text-align: center;
@@ -31,7 +29,6 @@ td{
 
 #buttons{
 	vertical-align:top;
-	display: inline-block;
+	/*display: inline-block;*/
 	float: left;
-
 }

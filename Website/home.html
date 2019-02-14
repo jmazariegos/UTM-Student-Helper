@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- Might have to change to a php(let's hope not!) -->
 <!-- Probably going need javascript -->
-
 <html>
 <head>
 	<title>Welcome Home</title>
@@ -15,117 +14,117 @@
 	<!-- Navbar? -->
 	<!-- Very top -->
 	<div class="container">
-		<nav class="navbar fixed-top navbar-expand-xl navbar-light bg-light">
-			<!-- Light for now, Pict -->
-			<!-- <a class="navbar-brand" href="#">Navbar</a> -->
-			<img src ="logo.jpeg" float:right></img>
+		<div class="navbar">
+
+		<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light"> 
+			<!-- <img src ="logo.jpeg" ></img> -->
 		</nav>
-
 	</div>
-	<!-- Header -->
-	<div>
-		<H1> Welcome Home!<h1>
-		</div>
 		<!-- Burger -->
-		<div>
-			<ul>
-				<li>Logged in as ______</li>
-				<li>Map</li>
-				<li>Calendar</li>
-				<li>Notes</li>
-				<li>Timetable</li>
-				<li>Settings</li>
-				<li>Logout</li>
-			</ul>
-		</div>
-		<!-- Calender Body -->
-		<div class="heart">
-			<table>
-				<script> 
-					var url = "data/timeTable.json";
-					
-					$.getJSON(url, function(data) {
-						console.log(data);
-						$courses = data['courses'];
-						document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
-					});
+			<div class="row py-3">
+				<div class="col-sm-3 px-1 bg-light">
+					<div class="py-2 sticky-top flex-grow-1">
+						<div class="nav flex-sm-column">
+							<a href="" class="nav-link d-none d-sm-inline">Map</a>
+							<a href="" class="nav-link">Link</a>
+							<a href="" class="nav-link">Link</a>
+							<a href="" class="nav-link">Link</a>
+							<a href="" class="nav-link">Link</a>
+							<a href="" class="nav-link">Link</a>
+						</div>
+					</div>
+				</div>
 
-				</script>
-				<div id="course-list"></div>
-				<tr>
-					<th>Sunday</th>
-					<th>Monday</th>
-					<th>Tuesday</th>
-					<th>Wednesday</th>
-					<th>Thursday</th>
-					<th>Friday</th>
-					<th>Saturday</th>
-				</tr>
+				<!-- Calender Body -->
+				<div class="col offset-3" id="main">
+					<H1> Welcome Home!<h1>
+<!-- 						<table>
+							<script> 
+								var url = "data/timeTable.json";
 
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>1</td>
-					<td>2</td>
-				</tr>
+								$.getJSON(url, function(data) {
+									console.log(data);
+									$courses = data['courses'];
+									document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
+								});
 
-				<tr>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-				</tr>
+							</script>
+							<div id="course-list"></div>
+							<tr>
+								<th>Sunday</th>
+								<th>Monday</th>
+								<th>Tuesday</th>
+								<th>Wednesday</th>
+								<th>Thursday</th>
+								<th>Friday</th>
+								<th>Saturday</th>
+							</tr>
 
-				<tr>
-					<td>10</td>
-					<td>11</td>
-					<td>12</td>
-					<td>13</td>
-					<td>14</td>
-					<td>15</td>
-					<td>16</td>
-				</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>1</td>
+								<td>2</td>
+							</tr>
 
-				<tr>
-					<td>17</td>
-					<td>18</td>
-					<td>19</td>
-					<td>20</td>
-					<td>21</td>
-					<td>22</td>
-					<td>23</td>
-				</tr>
-				<tr>
-					<td>24</td>
-					<td>25</td>
-					<td>26</td>
-					<td>27</td>
-					<td>28</td>
-					<td></td>
-					<td></td>
-				</tr>
+							<tr>
+								<td>3</td>
+								<td>4</td>
+								<td>5</td>
+								<td>6</td>
+								<td>7</td>
+								<td>8</td>
+								<td>9</td>
+							</tr>
 
-			</table>
-		</div >
-		<!-- Side Buttons -->
-		<div class="container" id="buttons">
+							<tr>
+								<td>10</td>
+								<td>11</td>
+								<td>12</td>
+								<td>13</td>
+								<td>14</td>
+								<td>15</td>
+								<td>16</td>
+							</tr>
 
-			<button>New Note +</button>
+							<tr>
+								<td>17</td>
+								<td>18</td>
+								<td>19</td>
+								<td>20</td>
+								<td>21</td>
+								<td>22</td>
+								<td>23</td>
+							</tr>
+							<tr>
+								<td>24</td>
+								<td>25</td>
+								<td>26</td>
+								<td>27</td>
+								<td>28</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table> -->
+					</div >
+					<!-- Side Buttons -->
+					<div id="buttons">
 
-			<div id = "CurrentNote">
+						<button>New Note +</button>
 
+						<div id = "CurrentNote">
+
+						</div>
+						<div id="buttonholder">
+							<button>Add<br>Event</button>
+							<button>Plan<br>Timetable</button>
+						</div>
+					</div>
+			
 			</div>
-			<div id="buttonholder">
-				<button>Add<br>Event</button>
-				<button>Plan<br>Timetable</button>
-			</div>
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>
