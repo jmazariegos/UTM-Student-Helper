@@ -6,7 +6,7 @@ from selenium.common.exceptions import TimeoutException
 import time as t
 import json
 
-current_folder = 'C:\\Users\\Joshua\\chromedriver' #must be changed to path of chromedriver.exe
+current_folder = '$PWD\\chromedriver' #must be changed to path of chromedriver.exe
 
 def scrape_courses(criteria, session):
     if(session.lower().startswith('fall') or session.lower().startswith('winter')):
