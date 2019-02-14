@@ -19,12 +19,13 @@
     - Course Dates/Timings in Calendar
     - View Timetable (Courses)
     - Calendar
+    - Main Page
 - Ability to see Rate My Prof ratings
   - User stories:
     - Rate My Prof/Class
 
 **Notes**:
-- Velocity: 12-15
+- Velocity: we will try to stay between 10-14
 - Focus on timetable aspect
-- Will need to finalize remote database soon, but for a now a local file as a database will suffice
+- Will need to finalize remote database soon, but for a now a local JSON file as a database will suffice
 - Finish up scrum poker
