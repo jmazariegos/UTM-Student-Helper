@@ -14,8 +14,7 @@ th{
 }
 
 table{
-/*	margin-left: auto;
-	margin-right: auto;*/
+
 }
 
 td{
@@ -28,10 +27,10 @@ td{
 }
 
 #main{
-	padding-top: 30px;
+	padding-top: 18px;
 }
 .navbar{
-	padding-top: 30px;
+	padding-top: 18px;
 }
 #buttons{
 	float:left;
