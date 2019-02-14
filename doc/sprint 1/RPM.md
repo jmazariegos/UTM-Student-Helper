@@ -14,7 +14,7 @@
 - Rough architecture of website
 - Ability to use timetable and calendar
   - User stories:
-    - Add Course to Timetable
+    - Search Courses
     - Add Events / Due Dates to Calendar
     - Course Dates/Timings in Calendar
     - View Timetable (Courses)
