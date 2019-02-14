@@ -20,7 +20,7 @@
 **Estimate (hours)**: 1-2
 ______________________________________
 
-### **Add Course to Timetable**
+### **Search Courses**
 **Task**:
 - Scrape general course info to store in JSON so that the user can search for a course 
 - Create a JSON to store selected course info in database. 
