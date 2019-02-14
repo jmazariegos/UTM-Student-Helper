@@ -6,7 +6,9 @@ from selenium.common.exceptions import TimeoutException
 import time as t
 import json
 
-current_folder = '$PWD\\chromedriver' #must be changed to path of chromedriver.exe
+bypass = False
+current_folder = 'chromedriver' #must be changed to path of chromedriver.exe
+JSONname = 'courses.json'
 
 def scrape_courses(criteria, session):
     if(session.lower().startswith('fall') or session.lower().startswith('winter')):
@@ -23,7 +25,7 @@ def scrape_courses(criteria, session):
     options.add_argument("--window-size=%s" % '1920,1080')
     browser = webdriver.Chrome(executable_path=current_folder, chrome_options=options)
     browser.get('https://student.utm.utoronto.ca/timetable/index.php?session='+session+'&course='+criteria)
-    t.sleep(3) #waits for page to load, theres a wait until func but the page will load different elements depending on if the criteria exists or not and i am too
+    t.sleep(5) #waits for page to load, theres a wait until func but the page will load different elements depending on if the criteria exists or not and i am too
     #lazy to figure a way for that right now
 
     #in case criteria meets nothing
@@ -34,7 +36,9 @@ def scrape_courses(criteria, session):
 
     courses = browser.find_elements_by_xpath('//div[contains(@id, \''+criteria.upper()+'\')]/span') #find div id that contains the criteria
     course_descs = browser.find_elements_by_xpath('//div[@class=\'alert alert-info infoCourseDetails infoCourse\']') #gives the descs
-    course_database = {}
+    JSONfile = open(JSONname, 'r')
+    course_database = json.loads(JSONfile.read())
+    JSONfile.close()
 
     for course, desc in zip(courses,course_descs): #each title and desc is obtained in the same order
         if course.text[:6] in course_database.keys():
@@ -70,26 +74,15 @@ def scrape_courses(criteria, session):
                 course_dict['practicals'].append(section)
         course_database[course_dict['code'] + course_dict['semester'] + course_dict['session'][0]] = course_dict
     browser.quit() #:)
-    return json.dumps(course_database)
+    JSONfile = open(JSONname, 'w')
+    JSONfile.write(json.dumps(course_database))
+    JSONfile.close()
 
-def print_json(json):
-    tab_count = 0
-    ignore = True
-    for i in range(len(json)):
-        if json[i] == '\"':
-            ignore = not ignore
-        if ignore and (json[i] == '{' or json[i] == '['):
-            tab_count += 1
-            print(json[i] + '\n' + tab_count*'\t', end='')
-        elif ignore and (json[i] == ']' or json[i] == '}'):
-            tab_count -= 1
-            print('\n' + tab_count*'\t' + json[i] + '\n' + tab_count*'\t', end='')
-        elif ignore and json[i] == ',':
-            print(json[i] + '\n' + tab_count*'\t', end='')
-        else:
-            print(json[i], end='')
 
 def list_courses(criteria, session, semester):
+    JSONfile = open(JSONname, 'r')
+    course_database = json.loads(JSONfile.read())
+    JSONfile.close()
     semester = semester.upper()
     session = session.lower()
     criteria = criteria[:6].upper()
@@ -99,7 +92,8 @@ def list_courses(criteria, session, semester):
             if (details['semester'] == semester or details['semester'] == 'Y') and session in details['session']:
                 print(details['code'] + ' - ' + details['name'] + '\n' + details['description'] + '\n')
 
-##programs = ['ANT', 'AST', 'BIO', 'HSC', 'CHM', 'CIN', 'CLA', 'CCT', 'CSC', 'CTE', 'DTS', 'DRE', 'ERS', 'ECO', 'EDS', 'ENG', 'ENV', 'ERI', 'FAH', 'VST', 'FAS', 'FSC', 'PSY', 'FSL', 'FRE', 'LTL', 'GGR', 'HHS', 'JEG', 'JGE', 'HIS', 'RLG', 'IMI', 'ITA', 'GER', 'LAT', 'SPA', 'CHI', 'FGI', 'PRS', 'ARA', 'HIN', 'URD', 'SAN', 'LIN', 'JAL', 'MGM', 'MAT', 'MGT', 'PHL', 'PHY', 'JCP', 'JCB', 'POL', 'JPE', 'JEP', 'WRI', 'SOC', 'STA', 'UTM', 'VCC', 'WGS']
-##for program in programs:
-##    scrape_courses(program, 'fall')
-##    scrape_courses(program, 'summer')
+if bypass:
+    programs = ['ANT', 'AST', 'BIO', 'HSC', 'CHM', 'CIN', 'CLA', 'CCT', 'CSC', 'CTE', 'DTS', 'DRE', 'ERS', 'ECO', 'EDS', 'ENG', 'ENV', 'ERI', 'FAH', 'VST', 'FAS', 'FSC', 'PSY', 'FSL', 'FRE', 'LTL', 'GGR', 'HHS', 'JEG', 'JGE', 'HIS', 'RLG', 'IMI', 'ITA', 'GER', 'LAT', 'SPA', 'CHI', 'FGI', 'PRS', 'ARA', 'HIN', 'URD', 'SAN', 'LIN', 'JAL', 'MGM', 'MAT', 'MGT', 'PHL', 'PHY', 'JCP', 'JCB', 'POL', 'JPE', 'JEP', 'WRI', 'SOC', 'STA', 'UTM', 'VCC', 'WGS']
+    for program in programs:
+        scrape_courses(program, 'fall')
+        scrape_courses(program, 'summer')
