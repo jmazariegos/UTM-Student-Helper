@@ -10,7 +10,7 @@
 - Iqbal
 - Amy
 
-## unfinished tasks and group them into stories; add them to SR1.md in the form of new user stories
+## Unfinished tasks/stories
 
 - The tasks that were unfinished are already represented in their own user stories in our sprint/pb mbs
 - These are:
