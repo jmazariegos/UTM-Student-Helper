@@ -16,8 +16,8 @@
 - These are:
 	- View Timetable (Courses)
 	- Add Events / Due Dates to Calendar
-- Calendar
-- Rate My prof/Class
+	- Calendar
+	- Rate My prof/Class
 
 ## What are practices that we should continue during next sprint
 
