@@ -8,7 +8,7 @@ import json
 
 bypass = False
 current_folder = 'chromedriver' #must be changed to path of chromedriver.exe
-JSONname = 'courses.json'
+JSONname = '../../data/courses.json'
 
 def scrape_courses(criteria, session):
     if(session.lower().startswith('fall') or session.lower().startswith('winter')):
