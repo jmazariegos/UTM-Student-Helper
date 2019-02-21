@@ -8,8 +8,8 @@ import java.io.PrintWriter;
 import java.util.Collection;
 
 //import org.json.*;
-import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.*;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 
@@ -33,7 +33,7 @@ public class AddEvent {
 		
 		event.put("endTime", endTime);
 
-		addToDatabase(event ,"eventsDB.json");	
+		addToDatabase(event ,"data/eventsDB.json");	
 		
 		/*{
 		    "eventName": "A1",
@@ -70,9 +70,9 @@ public class AddEvent {
 		
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException//, ParseException
+	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException
 	{
 		System.out.println("no");
-		//AddEvent ae = new AddEvent("Csc301 Meeting","Meeting about 301", "20190212", "1900","20190212", "2359");
+		AddEvent ae = new AddEvent("Csc301 Meeting","Meeting about 301", "20190212", "1900","20190212", "2359");
 	}
 }
