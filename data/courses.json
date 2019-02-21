@@ -3,7 +3,7 @@
         "code": "CSC108H5",
         "session": "fall/winter",
         "semester": "F",
-        "name": "Introduction to Computer Programming ",
+        "name": "Introduction to Computer Programming",
         "description": "Structure of computers; the computing environment. Programming in a language such as Python. Program structure: elementary data types, statements, control flow, functions, classes, objects, methods, fields. List: searching, sorting and complexity. [36L, 24P]",
         "lectures": [
             {
@@ -319,7 +319,7 @@
         "code": "CSC108H5",
         "session": "fall/winter",
         "semester": "S",
-        "name": "Introduction to Computer Programming ",
+        "name": "Introduction to Computer Programming",
         "description": "Structure of computers; the computing environment. Programming in a language such as Python. Program structure: elementary data types, statements, control flow, functions, classes, objects, methods, fields. List: searching, sorting and complexity. [36L, 24P]",
         "lectures": [
             {
@@ -522,5 +522,2723 @@
                 ]
             }
         ]
+    },
+    "CSC148H5Sf": {
+        "code": "CSC148H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Introduction to Computer Science",
+        "description": "Abstract data types and data structures for implementing them. Linked data structures. Encapsulation and information-hiding. Object-oriented programming. Specifications. Analyzing the efficiency of programs. Recursion. This course assumes programming experience in a language such as Python, C++, or Java, as provided by CSC108H5. Students who already have this background may consult the Computer Science faculty advisor for advice about skipping CSC108H5. [36L, 24P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Simion, B.",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "10:00"
+                    ],
+                    [
+                        "WE",
+                        "09:00",
+                        "10:00"
+                    ],
+                    [
+                        "FR",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Simion, B.",
+                "timings": [
+                    [
+                        "MO",
+                        "10:00",
+                        "11:00"
+                    ],
+                    [
+                        "WE",
+                        "10:00",
+                        "11:00"
+                    ],
+                    [
+                        "FR",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "Sharmin, S.",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "14:00"
+                    ],
+                    [
+                        "WE",
+                        "13:00",
+                        "14:00"
+                    ],
+                    [
+                        "FR",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "Liut, M.",
+                "timings": [
+                    [
+                        "MO",
+                        "18:00",
+                        "19:00"
+                    ],
+                    [
+                        "WE",
+                        "18:00",
+                        "19:00"
+                    ],
+                    [
+                        "FR",
+                        "18:00",
+                        "19:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "Simion, B.",
+                "timings": [
+                    [
+                        "MO",
+                        "12:00",
+                        "13:00"
+                    ],
+                    [
+                        "WE",
+                        "13:00",
+                        "14:00"
+                    ],
+                    [
+                        "FR",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0106",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0107",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0108",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0109",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0110",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0111",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0112",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0113",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0114",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0115",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0116",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0117",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0118",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0119",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0120",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0121",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0122",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0123",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0124",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0125",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "17:00",
+                        "19:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC207H5Ff": {
+        "code": "CSC207H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Software Design",
+        "description": "An introduction to software design and development concepts, methods, and tools using a statically-typed object-oriented programming language such as Java. Topics from: version control, build management, unit testing, refactoring, object-oriented design and development, design patterns, advanced IDE usage, regular expressions, and reflection. Representation of floating-point numbers and introduction to numerical computation. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Rosenbloom, A.",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Alaca, F.",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "Zhang, Y.",
+                "timings": [
+                    [
+                        "TU",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "Zhang, Y.",
+                "timings": [
+                    [
+                        "TU",
+                        "18:00",
+                        "20:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0106",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0107",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0108",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0109",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0110",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "15:00",
+                        "16:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0111",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0112",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC209H5Sf": {
+        "code": "CSC209H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Software Tools and Systems Programming",
+        "description": "Software tools and development in a Unix/Linux environment, using a machine-oriented programming language (typically C). Core topics: software tools (shell utilities and make), processes and program execution, the memory model, system calls, file processing, interprocess communication (pipes and signals), and an introduction to concurrency, including multithreading. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Alaca, F.",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Vrbik, P.",
+                "timings": [
+                    [
+                        "TU",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "Alaca, F.",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "Vrbik, P.",
+                "timings": [
+                    [
+                        "TU",
+                        "17:00",
+                        "19:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0106",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0107",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0108",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0109",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "15:00",
+                        "16:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0110",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0111",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0112",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0113",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "18:00",
+                        "19:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC236H5Ff": {
+        "code": "CSC236H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Introduction to the Theory of Computation",
+        "description": "Mathematical induction; correctness proofs for iterative and recursive algorithms; recurrence equations and their solutions (including the \"Master Theorem\"); introduction to automata and formal languages. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Dema, I.",
+                "timings": [
+                    [
+                        "WE",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Dema, I.",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "Zhang, Y.",
+                "timings": [
+                    [
+                        "WE",
+                        "18:00",
+                        "20:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "Sharmin, S.",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "18:00",
+                        "19:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0106",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0107",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0108",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0109",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0110",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "18:00",
+                        "19:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0111",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0112",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC258H5Sf": {
+        "code": "CSC258H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Computer Organization",
+        "description": "An introduction to computer organization and architecture, using a common CPU architecture (typically MIPS). Core topics: boolean expressions and logic gates, numerical representations, design and analysis of combinational and sequential circuits, the control unit and datapath, the memory hierarchy, instruction set architectures, and assembly programming. Students will design circuits and program using assembly. [24L, 24P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zhang, Y.",
+                "timings": [
+                    [
+                        "MO",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Zhang, Y.",
+                "timings": [
+                    [
+                        "TU",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "17:00",
+                        "19:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "19:00",
+                        "21:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "19:00",
+                        "21:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0106",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0107",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "17:00",
+                        "19:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0108",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "19:00",
+                        "21:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0109",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "19:00",
+                        "21:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0110",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC263H5Sf": {
+        "code": "CSC263H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Data Structures and Analysis",
+        "description": "Algorithm analysis: worst-case, average-case, and amortized complexity. Standard abstract data types, such as graphs, dictionaries, priority queues and disjoint sets. A variety of data structures for implementing these abstract data types, such as balanced search trees, hashing, heaps and disjoint forests. Design, implementation and comparison of data structures. Introduction to lower bounds. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zingaro, D.",
+                "timings": [
+                    [
+                        "FR",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Sachdeva, S.",
+                "timings": [
+                    [
+                        "WE",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "Zingaro, D.",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0106",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0107",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0108",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0109",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0110",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC290H5Ff": {
+        "code": "CSC290H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Communication Skills for Computer Scientists",
+        "description": "Targeted instruction and significant practice in the communications required for careers in computer science. The curriculum covers written, oral and interpersonal communication. Students will hand in short pieces of writing each week, will make oral presentations several times in the semester, and will work together in simulated project meetings and other realistic scenarios of pair and small group interaction. This can be used to satisfy the writing requirement in CSC programs. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zhang, L.",
+                "timings": [
+                    [
+                        "MO",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Zhang, L.",
+                "timings": [
+                    [
+                        "MO",
+                        "17:00",
+                        "19:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC290H5Sf": {
+        "code": "CSC290H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Communication Skills for Computer Scientists",
+        "description": "Targeted instruction and significant practice in the communications required for careers in computer science. The curriculum covers written, oral and interpersonal communication. Students will hand in short pieces of writing each week, will make oral presentations several times in the semester, and will work together in simulated project meetings and other realistic scenarios of pair and small group interaction. This can be used to satisfy the writing requirement in CSC programs. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zhang, L.",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC301H5Sf": {
+        "code": "CSC301H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Introduction to Software Engineering",
+        "description": "An introduction to agile development methods appropriate for medium-sized teams and rapidly-moving projects. Basic software development infrastructure; requirements elicitation and tracking; estimation and prioritization; teamwork skills; basic UML; design patterns and refactoring; security. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Dema, I.",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Dema, I.",
+                "timings": [
+                    [
+                        "FR",
+                        "10:00",
+                        "12:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC309H5Sf": {
+        "code": "CSC309H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Programming on the Web",
+        "description": "An introduction to software development on the web. Concepts underlying the development of programs that operate on the web; survey of technological alternatives; greater depth on some technologies. Operational concepts of the internet and the web, static client content, dynamic client content, dynamically served content, n-tiered architectures, web development processes, and security on the web. Assignments involve increasingly more complex web-based programs. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Rosenbloom, A.",
+                "timings": [
+                    [
+                        "TU",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Rosenbloom, A.",
+                "timings": [
+                    [
+                        "FR",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "18:00",
+                        "19:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "18:00",
+                        "19:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC318H5Ff": {
+        "code": "CSC318H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "The Design of Interactive Computational Media",
+        "description": "User-centered design of interactive systems. Methodologies, principles, metaphors, task analysis, and other topics. Interdisciplinary design; the role of industrial design and the behavioural sciences. Interactive hardware and software; concepts from computer graphics. Classes of direct manipulation systems, extensible systems, rapid prototyping tools. Additional topics in interactive computational media. Students work on projects in interdisciplinary teams. Enrolment limited, but non-computer scientists welcome.[24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Wigdor, D.",
+                "timings": [
+                    [
+                        "TH",
+                        "10:00",
+                        "12:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC324H5Ff": {
+        "code": "CSC324H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Principles of Programming Languages",
+        "description": "Major topics in the development of modern programming languages. Syntax specification, type systems, type inference, exception handling, information hiding, structural recursion, run-time storage management, and programming paradigms. Two non-procedural programming paradigms: functional programming (illustrated by languages such as Lisp, Scheme, ML or Haskell) and logic programming (illustrated by languages such as Prolog, XSB or Coral). [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zingaro, D.",
+                "timings": [
+                    [
+                        "WE",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Zhang, L.",
+                "timings": [
+                    [
+                        "WE",
+                        "17:00",
+                        "19:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC333H5Ff": {
+        "code": "CSC333H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Forensic Computing",
+        "description": "Introduction to the tools and techniques of the digital detective. Electronic discovery of digital data, including field investigation methods of the computer crime scene. Focus on the computer science behind computer forensics, network forensics and data forensics. Forensic topics include: computer structure, data acquisition from storage media, file system analysis, network intrusion detection, electronic evidence, Canadian computer crime case law. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Duquette, R.",
+                "timings": [
+                    [
+                        "MO",
+                        "18:00",
+                        "20:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "20:00",
+                        "21:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC338H5Sf": {
+        "code": "CSC338H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Numerical Methods",
+        "description": "Computational methods for solving numerical problems in science, engineering and business. Linear and non-linear equations, approximation, optimization, interpolation,integration and differentiation. The aim is to give students a basic understanding of floating-point arithmetic and the implementation of algorithms used to solve numericalproblems, as well as a familiarity with current numerical computing environments.Course concepts are crucial to a wide range of practical applications such as computational finance and portfolio management, graphics and special effects, data mining and machine learning, as well as robotics, bioinformatics, medical imaging and others. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zhang, L.",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC343H5Ff": {
+        "code": "CSC343H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Introduction to Databases",
+        "description": "Introduction to database management systems. The relational data model. Relational algebra. Querying and updating databases: the query language SQL. Application programming with SQL. Integrity constraints, normal forms, and database design. Elements of database system technology: query processing, transaction management. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Liut, M.",
+                "timings": [
+                    [
+                        "WE",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "15:00",
+                        "16:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC343H5Sf": {
+        "code": "CSC343H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Introduction to Databases",
+        "description": "Introduction to database management systems. The relational data model. Relational algebra. Querying and updating databases: the query language SQL. Application programming with SQL. Integrity constraints, normal forms, and database design. Elements of database system technology: query processing, transaction management. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Liut, M.",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC347H5Ff": {
+        "code": "CSC347H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Introduction to Information Security",
+        "description": "An investigation of many aspects of modern information security. Major topics cover: Techniques to identify and avoid common software development flaws which leave software vulnerable to crackers. Utilizing modern operating systems security features to deploy software in a protected environment. Common threats to networks and networked computers and tools to deal with them. Cryptography and the role it plays in software development, systems security and network security. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Alaca, F.",
+                "timings": [
+                    [
+                        "FR",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "16:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC358H5Sf": {
+        "code": "CSC358H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Principles of Computer Networks",
+        "description": "Introduction to computer networks and systems programming of networks. Basic understanding of computer networks and network protocols. Network hardware and software, routing, addressing, congestion control, reliable data transfer, and socket programming. [24L,12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Zhang, Y.",
+                "timings": [
+                    [
+                        "TH",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC363H5Sf": {
+        "code": "CSC363H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Computational Complexity and Computability",
+        "description": "Introduction to the theory of computability: Turing machines, Church's thesis, computable and non-computable functions, recursive and recursively enumerable sets, reducibility. Introduction to complexity theory: models of computation, P, NP, polynomial time reducibility, NP-completeness, further topics in complexity theory. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Maccio, V.",
+                "timings": [
+                    [
+                        "MO",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Maccio, V.",
+                "timings": [
+                    [
+                        "TH",
+                        "18:00",
+                        "20:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0105",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "19:00",
+                        "20:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC369H5Ff": {
+        "code": "CSC369H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Operating Systems",
+        "description": "Principles of operating systems. The operating system as a control program and as a resource allocator. Core topics: processes and threads, concurrency (synchronization, mutual exclusion, deadlock), processor, scheduling, memory management, file systems, and protection. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Simion, B.",
+                "timings": [
+                    [
+                        "MO",
+                        "09:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Simion, B.",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "09:00",
+                        "10:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "10:00",
+                        "11:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC373H5Ff": {
+        "code": "CSC373H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Algorithm Design and Analysis",
+        "description": "Standard algorithm design techniques: divide-and-conquer, greedy strategies, dynamic programming, linear programming, randomization, network flows, approximation algorithms and others (if time permits). Students will be expected to show good design principles and adequate skills at reasoning about the correctness and complexity of algorithms. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Maccio, V.",
+                "timings": [
+                    [
+                        "MO",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "Maccio, V.",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0104",
+                "instructor": "",
+                "timings": [
+                    [
+                        "FR",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC384H5Sf": {
+        "code": "CSC384H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Introduction to Artificial Intelligence",
+        "description": "A broad introduction to the sub-disciplines of AI. Core topics: search methods, game playing and rule-based systems. Overview of: natural language understanding, knowledge representation, reasoning, planning, vision, robotics, learning and neural networks. Assignments provide practical experience, both theory and programming, of the core topics. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Dema, I.",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC398H5Ff": {
+        "code": "CSC398H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Topics in Computer Science",
+        "description": "Introduction to a topic of current interest in computer science intended for CSC majors and specialists. Content will vary from year to year.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Simion, B.",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "15:00",
+                        "16:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC398H5Sf": {
+        "code": "CSC398H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Topics in Computer Science",
+        "description": "Introduction to a topic of current interest in computer science intended for CSC majors and specialists. Content will vary from year to year.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
+    },
+    "CSC409H5Ff": {
+        "code": "CSC409H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Scalable Computing",
+        "description": "We investigate computation in the large -- utilizing many CPUs with large amounts of memory, large storage and massive connectivity -- to solve computationally complex problems involving big data, serving large collections of users, in high availability, global settings. Our investigation covers both theoretical techniques and current, applied tools used to scale applications on the desktop and in the cloud. Topics include caching, load balancing, parallel computing and models of computation, redundancy, failover strategies, use of GPUs, and noSQL databases. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Rosenbloom, A.",
+                "timings": [
+                    [
+                        "TH",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "15:00",
+                        "16:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC411H5Ff": {
+        "code": "CSC411H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Machine Learning and Data Mining",
+        "description": "An introduction to methods for automated learning of relationships on the basis of empirical data. Classification and regression using nearest neighbour methods, decision trees, linear models, and neural networks. Clustering algorithms. Problems of overfitting and of assessing accuracy. Problems with handling large databases. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Bonner, A.",
+                "timings": [
+                    [
+                        "WE",
+                        "15:00",
+                        "17:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "11:00",
+                        "12:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "12:00",
+                        "13:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0103",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TH",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC420H5Sf": {
+        "code": "CSC420H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Introduction to Image Understanding",
+        "description": "This class is an introduction to fundamental concepts in image understanding, the sub-discipline of artificial intelligence that tries to make the computers \"see\". It will survey a variety of interesting vision problems and techniques. Specifically, the course will cover image formation, features, object and scene recognition and learning, multi-view geometry and video processing. It will also feature recognition with RGB-D data. The goal of the class will be to grasp a number of computer vision problems and understand basic approaches to tackle them for real-world applications. [24L, 12T]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Fidler, S.",
+                "timings": [
+                    [
+                        "MO",
+                        "13:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "16:00",
+                        "17:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "MO",
+                        "17:00",
+                        "18:00"
+                    ]
+                ]
+            }
+        ],
+        "practicals": []
+    },
+    "CSC427H5Sf": {
+        "code": "CSC427H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Computer Security",
+        "description": "Network attacks and defenses, operating system vulnerabilities, application security (e-mail, Web, databases), viruses, spyware, social engineering attacks, privacy and digital rights management. The course will cover both attack techniques and defense mechanisms. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Rosenbloom, A.",
+                "timings": [
+                    [
+                        "TU",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            },
+            {
+                "section": "0102",
+                "instructor": "",
+                "timings": [
+                    [
+                        "TU",
+                        "14:00",
+                        "15:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC490H5Sf": {
+        "code": "CSC490H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Capstone Design Course",
+        "description": "This course gives students experience solving a substantial problem that may span several areas of Computer Science. Students will define the scope of the problem, develop a solution plan, produce a working implementation, and present their work using written, oral and (if suitable) video reports. Class time will focus on the project, but may include some lectures. The class will be small and highly interactive. Topics, themes and required preparation will vary by instructor. [24L, 12P]",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "Alaca, F.",
+                "timings": [
+                    [
+                        "WE",
+                        "11:00",
+                        "13:00"
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "WE",
+                        "13:00",
+                        "14:00"
+                    ]
+                ]
+            }
+        ]
+    },
+    "CSC492H5Ff": {
+        "code": "CSC492H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Computer Science Implementation Project",
+        "description": "This course involves a significant implementation project in any area of Computer Science. The project may be undertaken individually or in small groups. The project is offered by arrangement with a Computer Science faculty member.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
+    },
+    "CSC492H5Sf": {
+        "code": "CSC492H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Computer Science Implementation Project",
+        "description": "This course involves a significant implementation project in any area of Computer Science. The project may be undertaken individually or in small groups. The project is offered by arrangement with a Computer Science faculty member.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
+    },
+    "CSC493H5Ff": {
+        "code": "CSC493H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Computer Science Expository Work",
+        "description": "This course involves a significant literature search and expository work in any area of Computer Science. This work must be undertaken individually. It is offered by arrangement with a Computer Science faculty member.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
+    },
+    "CSC493H5Sf": {
+        "code": "CSC493H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Computer Science Expository Work",
+        "description": "This course involves a significant literature search and expository work in any area of Computer Science. This work must be undertaken individually. It is offered by arrangement with a Computer Science faculty member.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
+    },
+    "CSC498H5Ff": {
+        "code": "CSC498H5",
+        "session": "fall/winter",
+        "semester": "F",
+        "name": "Topics in Computer Science",
+        "description": "Introduction to a topic of current interest in computer science intended for CSC majors and specialists. Content will vary from year to year.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
+    },
+    "CSC498H5Sf": {
+        "code": "CSC498H5",
+        "session": "fall/winter",
+        "semester": "S",
+        "name": "Topics in Computer Science",
+        "description": "Introduction to a topic of current interest in computer science intended for CSC majors and specialists. Content will vary from year to year.",
+        "lectures": [
+            {
+                "section": "0101",
+                "instructor": "",
+                "timings": [
+                    [
+                        "",
+                        "",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "tutorials": [],
+        "practicals": []
     }
 }

@@ -51,7 +51,8 @@ def scrape_courses(criteria, session):
         course_dict['code'] = course.text[:8]
         course_dict['session'] = 'fall/winter' if session == '20189' else 'summer'
         course_dict['semester'] = course.text[8]
-        course_dict['name'] = course.text[12:course.text.find('(')]
+        bracket = course.text.find('(')
+        course_dict['name'] = course.text[12:bracket-1 if bracket != -1 else 0]
         course_dict['description'] = desc.text[:desc.text.find('\n')]
         course_dict['lectures'] = []
         course_dict['tutorials'] = []
