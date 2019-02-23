@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+	<head>
+		
+		<!--<link rel="stylesheet" type="text/css" href="./bootstrap-4.0.0-dist/css/bootstrap.css">-->
+		<meta charset="UTF-8"> 
+		<style>
+			h2, th{
+				text-align: center;
+			}
+			th{
+			  border: 1px solid white;	
+			  padding: 10px 40px 10px 40px;
+			  background-color: lightblue;
+			}
+			table{
+			  margin-left: auto;
+			  margin-right: auto;
+			}
+			td{
+			  border: 1px solid white;
+			  text-align: left;
+			  font-size: 20px;
+			  margin: 10px;
+			  background-color: lightgray;
+			  height: 50px;
+			  width: 10%;
+			}
+			.class {
+				background-color: lightgreen;
+				opacity: 10%;
+				font-size: 14px;
+				border: 0.5px solid gray;
+			}
+			.classinfo{
+				display: none;
+				background-color: lightblue;
+				border-radius: 1px;
+				box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);  
+				opacity: 10%;
+				font-size: 14px;
+				position: absolute;
+			}
+			.class:hover .classinfo{
+				display: block;
+			}
+		</style> 
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		
+	</head>
+
+	<body>
+
+		<nav>
+			<ul>
+				<li> Home </li>
+			</ul>
+		</nav>
+		
+		<h2>Calendar</h2>
+		
+		<table id="calendar">
+
+		<script> 
+		//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/calendar.json', true);
+		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
+		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
+
+		
+		var url = "./data/calendar.json";
+			
+		$.getJSON(url, function(data) {
+			console.log(data); //this writes to the console, and I think we need this request to access data
+			
+			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
+			var calendar = document.getElementById("calendar");
+			
+			var courses = data['courses']; //get value of this key
+			var course_list_len = courses.length;
+			
+			for (i=0; i < course_list_len; i++){ //go through each course
+			
+				var code = courses[i].code;
+				var ses = courses[i].session;
+				var name = courses[i].name;
+				var description = courses[i].description;
+				
+				var lec = courses[i].lectures[0]; //0 since we only have once tuple in the list of lectures
+				var section = lec.section;
+				var time = lec.timings;
+
+				for(j=0; j < time.length; j++) { //go through each lecture
+					var d = time[j][0];
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
+					}
+				}
+				
+				var tutorials = courses[i].tutorials[0];
+				time = tutorials.timings;
+				section = tutorials.section;
+				
+				for(j=0; j < time.length; j++) { //go through each tutorial
+					var d = time[j][0]; 
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
+					}
+				}
+				
+				var practicals = courses[i].practicals[0];
+				time = practicals.timings;
+				section = practicals.section;
+				
+				for(j=0; j < time.length; j++) { //go through each practical
+					var d = time[j][0]; 
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
+					}
+				}
+				
+			}			
+		});
+		</script>
+		<tr>
+			<th>Sunday</th>
+			<th>Monday</th>
+			<th>Tuesday</th>
+			<th>Wednesday</th>
+			<th>Thursday</th>
+			<th>Friday</th>
+			<th>Saturday</th>
+		</tr>
+		
+		<tr>
+			<td>27</td>
+			<td>28</td>
+			<td>29</td>
+			<td>30</td>
+			<td>31</td>
+			<td>1</td>
+			<td>2</td>
+		</tr>
+		
+		<tr>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+		</tr>
+		
+		<tr>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+			<td>13</td>
+			<td>14</td>
+			<td>15</td>
+			<td>16</td>
+		</tr>
+		
+		<tr>
+			<td>17</td>
+			<td>18</td>
+			<td>19</td>
+			<td>20</td>
+			<td>21</td>
+			<td>22</td>
+			<td>23</td>
+		</tr>
+		
+		<tr>
+			<td>24</td>
+			<td>25</td>
+			<td>26</td>
+			<td>27</td>
+			<td>28</td>
+			<td>1</td>
+			<td>2</td>
+		</tr>
+		
+		</table>
+		
+	</body>
+
+</html>
