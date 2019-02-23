@@ -1,0 +1,56 @@
+{
+	"courses": [
+		{"code": "CSC108",
+		"session": "fall/winter",
+		"semester": "f",
+		"name": "Introduction to Computer",
+		"description": "How to compute good.",
+		"lectures": [
+			{
+				"section": "0101",
+				"timings": [
+					[
+						"MO",
+						"10:00",
+						"11:00"
+					],
+					[
+						"WE",
+						"10:00",
+						"11:00"
+					],
+					[
+						"FR",
+						"10:00",
+						"11:00"
+					]
+				]
+			}
+		],
+		"tutorials": [
+			{
+				"section": "0101",
+				"timings": [
+					[
+						"TH",
+						"10:00",
+						"11:00"
+					]
+				]
+			}
+		],
+		"practicals": [
+			{
+				"section": "0101",
+				"timings": [
+					[
+						"WE",
+						"17:00",
+						"19:00"
+					]
+				]
+			}
+		]
+		}
+	]	
+}
