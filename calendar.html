@@ -32,7 +32,19 @@
 				font-size: 14px;
 				border: 0.5px solid gray;
 			}
-			.classinfo{
+			.events {
+				background-color: orchid;
+				opacity: 10%;
+				font-size: 14px;
+				border: 0.5px solid gray;
+			}
+			.dueDates {
+				background-color: LightSalmon;
+				opacity: 10%;
+				font-size: 14px;
+				border: 0.5px solid gray;
+			}
+			.classinfo, .eventsinfo, .dueDateinfo{
 				display: none;
 				background-color: lightblue;
 				border-radius: 1px;
@@ -41,7 +53,7 @@
 				font-size: 14px;
 				position: absolute;
 			}
-			.class:hover .classinfo{
+			.class:hover .classinfo, .events:hover .eventsinfo, .dueDates:hober .dueDateinfo,{
 				display: block;
 			}
 		</style> 
@@ -66,7 +78,7 @@
 		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
 		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
 
-		
+		<!--parse timeTable-->
 		var url = "./data/timeTable.json";
 			
 		$.getJSON(url, function(data) {
@@ -95,7 +107,7 @@
 					var start = time[j][1];
 					var end = time[j][2];
 					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
+						for (var m = 1, col; col = row.cells[m]; m++) { //1 because no classes on sunday
 							if (m == day_index){						 								   
 								var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
 								col.insertAdjacentHTML('beforeend', new_node);								
@@ -133,7 +145,7 @@
 					var start = time[j][1];
 					var end = time[j][2];
 					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
+						for (var m = 0, col; col = row.cells[m]; m++) {
 							if (m == day_index){						 								   
 								var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
 								col.insertAdjacentHTML('beforeend', new_node);								
@@ -144,6 +156,81 @@
 				
 			}			
 		});
+		
+		<!--parse events-->
+		var url = "./data/events.json";
+			
+		$.getJSON(url, function(data) {
+			console.log(data); //this writes to the console, and I think we need this request to access data
+			
+			var calendar = document.getElementById("calendar");
+			
+			var events = data['events'];
+			var events_list_len = events.length;			
+			var dueDates = data['dueDates'];
+			var dueDates_list_len = dueDates.length;
+			
+			<!--parse events' events-->
+			for (i=0; i < events_list_len; i++){
+				var eventName = events[i].eventName;
+				var description = events[i].description; //
+				var startDate = events[i].startDate;
+				var startTime = events[i].startTime;
+				var endDate = events[i].endDate;
+				var endTime = events[i].endTime;
+				
+				//here we will add ":"
+				//note to do am/pm stuff it would be startTime = (parseInt(startTime)-1200).toString(); etc
+				startTime = startTime.slice(0,2)+":"+startTime.slice(2); //because of our time format, it will always be 4 digits
+				endTime = endTime.slice(0,2)+":"+endTime.slice(2); 
+				
+				//warning: hardcoding it to work for february only. for multi months, needs more check.
+				var startDateNum = startDate.substring(6, 8);
+				var endDateNum = endDate.substring(6, 8);
+				
+				for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
+					for (var m = 0, col; col = row.cells[m]; m++) {
+						var td_value = col.innerHTML.substring(0, 2);
+						if (td_value.substring(1,2) == "<" || td_value.length == 1) { //the single digit dates with stuff happening gave me a "<"
+							td_value = "0"+td_value.substring(0,1);
+						}
+						var td_value_int = parseInt(td_value);
+						var startDateNum_Int = parseInt(startDateNum);
+						var endDateNum_Int = parseInt(endDateNum);
+						if (td_value_int >= startDateNum_Int && td_value_int <= endDateNum_Int){						 								   
+							var new_node = "<div class=\"events\"><b>Event: </b>"+eventName+"<br/>"+startTime+"-"+endTime+"<\div><br/><div class=\"eventsinfo\"><b>Date</b>: "+startDate+"-"+endDate+"<br/><b>Info</b>: "+description+"<\div>";
+							col.insertAdjacentHTML('beforeend', new_node);								
+						}
+					}  
+				}
+			}
+			
+			<!--parse events' dueDates-->
+			for (i=0; i < dueDates_list_len; i++){
+				var code = dueDates[i].code;
+				var assignmentName = dueDates[i].assignmentName;
+				var description = dueDates[i].description;
+				var dueDate = dueDates[i].dueDate;
+				var dueTime = dueDates[i].dueTime;
+				
+				dueTime = dueTime.slice(0,2)+":"+dueTime.slice(2);
+				var dueDateNum = dueDate.substring(6, 8);
+				
+				for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
+					for (var m = 0, col; col = row.cells[m]; m++) {
+						var td_value = col.innerHTML.substring(0, 2);
+						if (td_value.substring(1,2) == "<" || td_value.length == 1) { //the single digit dates with stuff happening gave me a "<"
+							td_value = "0"+td_value.substring(0,1);
+						}
+						if (td_value == dueDate){						 								   
+							var new_node = "<div class=\"dueDates\"><b>Code: </b>"+code+"<br/>"+dueTime+"<\div><br/><div class=\"dueDateinfo\"><b>Date</b>: "+dueDate+"<br/><b>Assignment</b>: "+assignmentName+"<b>Info</b>: "+description+"<\div>";
+							col.insertAdjacentHTML('beforeend', new_node);								
+						}
+					}  
+				}
+			}		
+		});
+		
 		</script>
 		<tr>
 			<th>Sunday</th>

@@ -12,9 +12,9 @@
     "dueDates": [
 		{"code": "CSC301",
 		"assignmentName": "A1",
-		"description": "",
-		"dueDate": "YYYYMMDD",
-		"dueTime": "HHMM"
+		"description": "help",
+		"dueDate": "20190228",
+		"dueTime": "2359"
 		}
     ]
 }
