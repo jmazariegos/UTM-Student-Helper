@@ -1,9 +1,20 @@
 {
     "events": [
-        
-    ],
+		{"eventName":"Csc301 Meeting",
+		"description":"Meeting about 301",
+		"startDate":"20190212",
+		"startTime":"1900",
+		"endDate":"20190212",
+		"endTime":"2359"
+		}
+	],
 
     "dueDates": [
-
+		{"code": "CSC301",
+		"assignmentName": "A1",
+		"description": "",
+		"dueDate": "YYYYMMDD",
+		"dueTime": "HHMM"
+		}
     ]
 }
