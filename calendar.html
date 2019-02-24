@@ -53,7 +53,7 @@
 				font-size: 14px;
 				position: absolute;
 			}
-			.class:hover .classinfo, .events:hover .eventsinfo, .dueDates:hober .dueDateinfo,{
+			.class:hover .classinfo, .events:hover .eventsinfo, .dueDates:hover .dueDateinfo{
 				display: block;
 			}
 		</style> 
@@ -197,7 +197,9 @@
 						var td_value_int = parseInt(td_value);
 						var startDateNum_Int = parseInt(startDateNum);
 						var endDateNum_Int = parseInt(endDateNum);
-						if (td_value_int >= startDateNum_Int && td_value_int <= endDateNum_Int){						 								   
+						if (td_value_int >= startDateNum_Int && td_value_int <= endDateNum_Int){ //in case an event is longer than a day	
+							startDate = startDate.substring(0,4)+"/"+startDate.substring(4,6)+"/"+startDate.substring(6, 8);
+							endDate = endDate.substring(0,4)+"/"+endDate.substring(4,6)+"/"+endDate.substring(6, 8);
 							var new_node = "<div class=\"events\"><b>Event: </b>"+eventName+"<br/>"+startTime+"-"+endTime+"<\div><br/><div class=\"eventsinfo\"><b>Date</b>: "+startDate+"-"+endDate+"<br/><b>Info</b>: "+description+"<\div>";
 							col.insertAdjacentHTML('beforeend', new_node);								
 						}
@@ -222,13 +224,14 @@
 						if (td_value.substring(1,2) == "<" || td_value.length == 1) { //the single digit dates with stuff happening gave me a "<"
 							td_value = "0"+td_value.substring(0,1);
 						}
-						if (td_value == dueDate){						 								   
-							var new_node = "<div class=\"dueDates\"><b>Code: </b>"+code+"<br/>"+dueTime+"<\div><br/><div class=\"dueDateinfo\"><b>Date</b>: "+dueDate+"<br/><b>Assignment</b>: "+assignmentName+"<b>Info</b>: "+description+"<\div>";
+						if (td_value == dueDateNum){
+							dueDate = dueDate.substring(0,4)+"/"+dueDate.substring(4,6)+"/"+dueDate.substring(6, 8);
+							var new_node = "<div class=\"dueDates\"><b>Course: </b>"+code+"<br/> <b>Deadline</b>: "+dueTime+"<\div><br/><div class=\"dueDateinfo\"><b>Date</b>: "+dueDate+"<br/><b>Assignment</b>: "+assignmentName+"<br/><b>Info</b>: "+description+"<\div>";
 							col.insertAdjacentHTML('beforeend', new_node);								
 						}
 					}  
 				}
-			}		
+			}	
 		});
 		
 		</script>
