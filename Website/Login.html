@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Our UTM</title>
+	<script src="jquery-2.1.0.js"></script>
+    <script src="guessGameClient.js"></script>
+    <link rel="stylesheet" type="text/css" href="layout.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+	<div class="navbar">
+		<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light"> 
+			<img src="logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+			<!-- <img src = ></img> -->
+		</nav>
+	</div>
+
+
+	<form id="loginForm">
+		<br>
+		<!-- these are temp till I fully css this page -->
+		<br>
+		User Name:
+		<input name="userid" id="userid" required><br>
+		Password:
+		<input name="pass" id="pass" required><br>
+		<button id="loginButton" type="submit"><br>Login<br></button>
+	</form>
 
 </body>
 </html>
