@@ -16,14 +16,13 @@ public class Text {
 		currPath = "file.txt";
 	}
 	
-	private void makeFile() throws FileNotFoundException
+	//for changing the file
+	public void setPath(String path) 
 	{
-		try (PrintWriter out = new PrintWriter("hahayes.txt"))
-		{
-			out.println("kachigga");
-		}
+		currPath = path;
 	}
 	
+	//overwrites a file with a line
 	public void writeToFile(String line) throws IOException 
 	{
 		FileWriter write = new FileWriter( currPath , false);
@@ -32,15 +31,16 @@ public class Text {
 		print.close();
 	}
 	
+	//reads all contents of file
 	public void readFromFile() throws IOException
 	{
 		FileReader file = new FileReader(currPath);
 		BufferedReader br = new BufferedReader(file);
+		
 		String s;
 		while((s = br.readLine()) != null)
 		{
 			System.out.println(s);
-			
 		}
 		
 		
