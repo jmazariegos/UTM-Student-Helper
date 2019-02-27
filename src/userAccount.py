@@ -15,7 +15,7 @@ def createUser(username, password, email):
     email = email.lower()
     # sensitize data. return (-1 for non unique email)
     if emailInDB(email):
-        print("An account has already been created with this email address. Try log in.")
+        print("An account has already been created with this email address. Try logging in.")
         msg = "Email exists"
         return False
     # else, create new user.
@@ -33,6 +33,7 @@ def createUser(username, password, email):
     # print(cur.fetchall())
     if ret == 1:
         print("User successfully added to the table. Congratulations!")
+        sendConfirmationEmail(username, email)
         msg = "Success"
     else:
         print("For some reason the user could not be added to the table. Check database manually.")
@@ -61,6 +62,52 @@ def emailInDB(email):
     if ret == 1:
         return True
     return False
+
+
+def sendConfirmationEmail(username, email):
+    recipient = email
+    subject = "OurUTM Account Account Created"
+    body_text = (
+            "OurUTM Account Account Confirmation\r\nHey " + username + "! It seems like your OurUTM account was created successfully.\r\nYou can use this email address and your chosen password to log in to your new account")
+    body_html = "<html><head></head><body><h1>OurUTM Account Account Confirmation</h1><p>Hey " + username + "! It seems like your OurUTM account was created successfully.<br>You can use this email address and your chosen password to log in to your new account.</p></body></html>"
+
+    client = boto3.client('ses', region_name=AWS_REGION)
+    # Try to send the email.
+    try:
+        # Provide the contents of the email.
+        response = client.send_email(
+            Destination={
+                'ToAddresses': [
+                    recipient,
+                ],
+            },
+            Message={
+                'Body': {
+                    'Html': {
+                        'Charset': CHARSET,
+                        'Data': body_html,
+                    },
+                    'Text': {
+                        'Charset': CHARSET,
+                        'Data': body_text,
+                    },
+                },
+                'Subject': {
+                    'Charset': CHARSET,
+                    'Data': subject,
+                },
+            },
+            Source=SENDER,
+            # If you are not using a configuration set, comment or delete the
+            # following line
+            # ConfigurationSetName=CONFIGURATION_SET,
+        )
+    # Display an error if something goes wrong.
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        print("Email sent! Message ID:"),
+        print(response['MessageId'])
 
 
 def hashSHA256(password):
@@ -115,8 +162,8 @@ def sendPasswordResetEmail(username, email, password):
     recipient = email
     subject = "OurUTM Account Password Reset"
     body_text = (
-                "OurUTM Account Password Reset\r\nHey " + username + "!. It seems like you requested a password reset for your OurUTM account. The password has been temporarily set to " + password + ". \r\nYou can use this email address and the given password to log in to your account, and from there you can change your password.")
-    body_html = "<html><head></head><body><h1>OurUTM Account Password Reset</h1><p>Hey " + username + "!. It seems like you requested a password reset for your OurUTM account. The password has been temporarily set to " + password + ". <br>"
+                "OurUTM Account Password Reset\r\nHey " + username + "! It seems like you requested a password reset for your OurUTM account. The password has been temporarily set to " + password + ". \r\nYou can use this email address and the given password to log in to your account, and from there you can change your password.")
+    body_html = "<html><head></head><body><h1>OurUTM Account Password Reset</h1><p>Hey " + username + "! It seems like you requested a password reset for your OurUTM account. The password has been temporarily set to <b>" + password + "<b>. <br>"
     "You can use this email address and the given password to log in to your account, and from there you can change your password.</p></body></html"
 
     client = boto3.client('ses', region_name=AWS_REGION)
@@ -173,19 +220,51 @@ def login(email, password):
     if ret == 1:
         username = getUsername(email)
         print(username + " has logged in.")
+        sql = ('UPDATE userAccounts SET userLoggedIn = 1 WHERE userEmail = %s'.format(conn))
+        cur.execute(sql, email)
+        conn.commit()
+        cur.close()
+        conn.close()
         return True
     else:
         print("The email and password don't seem to match")
         return False
 
 
+def changePassword(email, old_password, new_password):
+    # hash both
+    hashed_old = hashSHA256(old_password)
+    hashed_new = hashSHA256(new_password)
+    email = email.lower()
+
+    # check db record whether user is logged in AND old password is correct
+    conn = pymysql.connect(host='slackoverflowdb.cyy8oalnodc0.ca-central-1.rds.amazonaws.com', port=3306, user='admin',
+                           passwd='adminadmin', db='mysql')
+    cur = conn.cursor()
+    cur.execute("USE slackoverflowDB")
+    sql = ('SELECT * FROM userAccounts WHERE userEmail = %s AND userPassword = UNHEX(%s) AND userLoggedIn = 1'.format(conn))
+    ret = cur.execute(sql, (email, hashed_old))
+    if ret == 1:
+        #  successful. can now update password
+        sql = ('UPDATE userAccounts SET userPassword = UNHEX(%s) WHERE userEmail = %s'.format(conn))
+        rows_affected = cur.execute(sql, (hashed_new, email))
+        conn.commit()
+        cur.close()
+        conn.close()
+        print("Password was updated successfully.")
+        return True
+    else:
+        print("You need to be logged in, and the current password must match the email address given.")
+        return False
+
+
 def main(event, context):
     # testing purposes:
     email = "amy.ch1000@gmail.com"
-
     # return login(email, "insert emailed password")
     print("* CASE 1: ADDING USER")
     r1 = createUser("Amy", "Amy1", email)
+    createUser("Not Amy", "Not Amy1", "amymichellechung@gmail.com")
     if r1:
         print("CASE 1 successful")
     # should be successful
@@ -201,8 +280,18 @@ def main(event, context):
     r4 = login(email, "Amy1")
     if r4:
         print("CASE 4 successful")
-    print("* CASE 5: CHANGING PASSWORD")
+    print("* CASE 5: GENERATING DEFAULT PASSWORD")
     r5 = resetPassword(email)
     if r5:
         print("CASE 5 successful")
+
+    print("* CASE 7: CHANGE PASSWORD WHILE NOT LOGGED IN")
+    r7 = changePassword('amymichellechung@gmail.com', 'Not Amy1', "ActuallyAmy")
+    if not r7:
+        print("CASE 7 failed successfully")
     # show db with updated password
+    print("* CASE 6: CHANGE PASSWORD WHILE LOGGED IN")
+    r6 = changePassword(email, "Ry3P3o", "swag")
+    if r6:
+        print("CASE 6 successful")
+    return True
