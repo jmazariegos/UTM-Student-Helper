@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Our UTM</title>
+	<meta charset="UTF-8"> 
+	<script type="text/javascript">
+	//$("#reg").hide();
+	//$("#reset").hide();
+	//$("#home").hide();
+	//$("#map").hide();
+	//$("#account").hide();
+	//$("#note").hide();
+</script>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="client.js"></script>
+<link rel="stylesheet" type="text/css" href="layout.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<!-- 
+div:
+Login
+Reg
+Reset
+Home
+Map
+Account
+note take -> should rename
+navbar
+-->
+
+<body>
+
+	<!-- Login page
+	----------------------------------------------------------
+-->
+<div class="Body">
+	<div id="login">
+		<!-- <form id="loginForm"> -->
+			<br>
+			<!-- these are temp till I fully css this page -->
+			<br>
+			User Name:
+			<input name="userid" id="userid" required><br>
+			Password:
+			<input name="pass" id="pass" required><br>
+			<button id="loginButton" type="submit"><br>Login<br></button><br>
+			<br>
+			<div>
+				<div id="Reglink">|Register|</div>
+				<div id="Forgot">|Forgot Password|</div>
+			</div>
+			<!-- </form> -->
+		</div>
+
+		<!-- Regstration page
+	----------------------------------------------------------
+-->
+
+<div id="reg">
+	User Name:
+	<input name="userid" required>
+	Password:
+	<input name="pass" required>
+	<button id="regButton" type="submit"><br>Submit<br></button>
+</div>
+
+<!-- Reset page
+	----------------------------------------------------------
+-->
+
+<div id="reset">
+</div>
+
+		<!-- Home page
+	----------------------------------------------------------
+-->
+
+<div id="home">
+	<div class="container-fluid" id="main" >
+		<!-- Burger -->
+		<div class="row py-3">
+			<div class="col-2 px-1 bg-light position-fixed" id="sticky-sidebar">
+				<div class="nav-link">Map</div>
+				<div class="nav-link">Calendar</div>
+				<div class="nav-link">Notes</div>
+				<div class="nav-link">Timetable</div>
+				<div class="nav-link">Settings</div>
+				<div id='logout'  class="nav-link">Logout</div>
+			</div>
+			<!-- Calender Body -->
+			<div class="col offset-2" id="main">
+				
+				<H1> Welcome Home!</h1>
+					<table>
+<!-- 						<script> 
+							var url = "data/timeTable.json";
+
+							$.getJSON(url, function(data) {
+								console.log(data);
+								$courses = data['courses'];
+								document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
+							});
+
+						</script> -->
+						<div id="course-list"></div>
+						<tr>
+							<th>Sunday</th>
+							<th>Monday</th>
+							<th>Tuesday</th>
+							<th>Wednesday</th>
+							<th>Thursday</th>
+							<th>Friday</th>
+							<th>Saturday</th>
+						</tr>
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1</td>
+							<td>2</td>
+						</tr>
+
+						<tr>
+							<td>3</td>
+							<td>4</td>
+							<td>5</td>
+							<td>6</td>
+							<td>7</td>
+							<td>8</td>
+							<td>9</td>
+						</tr>
+
+						<tr>
+							<td>10</td>
+							<td>11</td>
+							<td>12</td>
+							<td>13</td>
+							<td>14</td>
+							<td>15</td>
+							<td>16</td>
+						</tr>
+
+						<tr>
+							<td>17</td>
+							<td>18</td>
+							<td>19</td>
+							<td>20</td>
+							<td>21</td>
+							<td>22</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>24</td>
+							<td>25</td>
+							<td>26</td>
+							<td>27</td>
+							<td>28</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+
+					<!-- Side Buttons -->
+				</div>
+				<div id="buttons">
+
+					<button>New Note +</button>
+
+					<div id = "CurrentNote">
+
+					</div>
+					<div id="buttonholder">
+						<button>Add<br>Event</button>
+						<button>Plan<br>Timetable</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Map page
+	----------------------------------------------------------
+-->
+
+<div class="map">
+</div>
+
+		<!-- Account page
+	----------------------------------------------------------
+-->
+
+<div class="account">
+</div>
+
+		<!-- Note page
+	----------------------------------------------------------
+-->
+
+<div class="note">
+</div>
+	<!-- Navbar page
+	----------------------------------------------------------
+-->
+
+<div class="navbar">
+	<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light"> 
+		<img src="logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+		<!-- <img src = ></img> -->
+	</nav>
+</div>
+
+
+
+
+</body>
+</html>
