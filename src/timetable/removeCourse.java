@@ -1,4 +1,4 @@
-package courseScraper;
+package timetable;
 
 public class removeCourse {
 

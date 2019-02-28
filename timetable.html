@@ -38,6 +38,10 @@
 				height: 40px;
 				width: 400px;
 			}
+			input[type="radio"] {
+				width: 20px;
+				height: 20px;
+			}
 			#course-container {
 				height: 200px;
 				width: 420px;
@@ -134,13 +138,30 @@
 							if(!e.target.innerHTML.startsWith(course.code + course.semester)){
 								continue;
 							}
-							text += course.code + course.semester + "<br>";
-							text += course.name + "<br><br>";
-							text += course.description;
+							text += "<p>" + course.code + course.semester + "<br>";
+							text += course.name + "<br><br></p>";
+							text += course.description + "</div>";
+							text += "<div><form id=\"form\"><table name=\"lectures\">";
+							for(var i = 0; i < course.lectures.length; i++){
+								lecture = course.lectures[i];
+								text += "<tr><td><input type=\"radio\" form=\"form\" class=\"lecture\" value=\"" + lecture.section + "\"><label>LEC" + lecture.section + "</label></td><td><p>";
+								for(var j = 0; j < lecture.timings.length; j++){
+									timing = lecture.timings[j];
+									text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
+								}
+								text += "</td></tr>";
+							}
+							text += "</table><input type=\"submit\" value=\"Enrol in course\"></form></div>"
 							break;
 						}
 						$courseinfo.innerHTML = text;
 					});
+// 					document.querySelectorAll('.lecture').forEach(function(element){
+// 						element.addEventListener('click', function(){
+// 							const $lectures = document.querySelector('.lecture');
+							
+// 						});
+// 					});
 				}
 				
 				const typeHandler = function(e){
@@ -154,7 +175,7 @@
 						text = "";
 						for(var key in courses){
 							course = courses[key];
-							if(!course.code.startsWith(search.toUpperCase()) && (!course.name.startsWith(search) || search.length < 4)
+							if(!course.code.startsWith(search.toUpperCase()) && (!course.name.includes(search) || search.length < 4)
 									|| $session.value !== course.session || ($semester.value !== course.semester || 
 											($semester.value === "F" && course.semester == "Y"))){
 								continue;

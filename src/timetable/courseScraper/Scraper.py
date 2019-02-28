@@ -6,15 +6,15 @@ from selenium.common.exceptions import TimeoutException
 import time as t
 import json
 
-bypass = False
+bypass = True
 current_folder = 'chromedriver' #must be changed to path of chromedriver.exe
-JSONname = '../../data/courses.json'
+JSONname = '../../../data/courses.json'
 
 def scrape_courses(criteria, session):
     if(session.lower().startswith('fall') or session.lower().startswith('winter')):
         session = '20189'
     elif('summer' in session.lower()):
-        session = '20185'
+        session = '20195'
     else:
         print("No valid session found within text");
         return
