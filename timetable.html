@@ -1,212 +1,271 @@
 <!DOCTYPE html>
-
+<html>
 	<head>
-		
 		<!--<link rel="stylesheet" type="text/css" href="./bootstrap-4.0.0-dist/css/bootstrap.css">-->
 		<meta charset="UTF-8"> 
 		<style>
+			body{
+				background-color: rgb(229,229,229);
+			}
 			h2, th{
 				text-align: center;
 			}
 			th{
-			  border: 1px solid white;	
-			  padding: 10px 40px 10px 40px;
-			  background-color: lightblue;
-			}
-			table{
-			  margin-left: auto;
-			  margin-right: auto;
+				border: 1px solid;
+				border-color: rgb(204,204,204);
+				font-size: 13px;
+				font-family: arial, helvetica, sans-serif;
+				background-color: rgb(238,238,238);
+				padding: 5px 50px 5px 50px;
 			}
 			td{
-			  border: 1px solid white;
-			  text-align: left;
-			  font-size: 20px;
-			  margin: 10px;
-			  background-color: lightgray;
-			  height: 50px;
-			  width: 10%;
+				border: 1px solid;
+				border-color: rgb(238,238,238);
+				border-right: none;
+				border-left: none;
+				text-align: center;
+				font-size: 13px;
+				font-family: arial, helvetica, sans-serif;
+				margin: 10px;
+				background-color: white;
+			}
+			input {
+				border: 1px solid #0ca6f2;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(149,192,255,.75);
+				font-size: 22px;
+				padding-left: 20px;
+				height: 40px;
+				width: 400px;
+			}
+			input[type="radio"] {
+				width: 20px;
+				height: 20px;
+			}
+			#course-container {
+				height: 200px;
+				width: 420px;
+				font-family: arial, helvetica, sans-serif;
+				display: block;
+				overflow: auto;
+			}
+			#timetable {
+				margin-left: auto;
+				margin-right: auto;
+				border-collapse: collapse;
+				border-spacing: 0;
+				float: right;
+			}
+			#courses {
+				width: 410px;
+				height: 467px;
+				table-layout: fixed;
+				border: 1px solid;
+				border-color: rgb(204,204,204);
+				background-color: white;
+				display: block;
+				overflow: auto;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			.course {
+				border: 1px solid lightgrey;
+				padding: 15px 157px 15px 157px;
+				cursor: pointer;
+			}
+			.time {
+				text-align: right;
+				padding: 15px 10px 15px 30px;
+			}
+			.timeslot {
+				text-align: center;
+			}
+			.inline {
+				display: inline-block;
 			}
 			.class {
-				background-color: lightgreen;
-				opacity: 10%;
-				font-size: 14px;
-				border: 0.5px solid gray;
-			}
-			.classinfo{
-				display: none;
-				background-color: lightblue;
-				border-radius: 1px;
-				box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);  
-				opacity: 10%;
-				font-size: 14px;
-				position: absolute;
-			}
-			.class:hover .classinfo{
-				display: block;
+				border: 1px solid;
+				border-color: white;
+				color: white;
+				width: inherit;
+				height: inherit;
+				display: inline-block;
+				background-color: purple;
 			}
 		</style> 
-		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-		
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	</head>
 
 	<body>
-
-		<nav>
-			<ul>
-				<li> Home </li>
-			</ul>
-		</nav>
-		
-		<h2>Time Table</h2>
-		
-		<table id="timetable">
-
-		<script> 
-		//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
-		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
-		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
-
-		
-		var url = "./data/timeTable.json";
-			
-		$.getJSON(url, function(data) {
-			console.log(data); //this writes to the console, and I think we need this request to access data
-			
-			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
-			var timetable = document.getElementById("timetable");
-			
-			var courses = data['courses']; //get value of this key
-			var course_list_len = courses.length;
-			
-			for (i=0; i < course_list_len; i++){ //go through each course
-			
-				var code = courses[i].code;
-				var ses = courses[i].session;
-				var name = courses[i].name;
-				var description = courses[i].description;
+		<div id="search-container" class="inline">
+			<div id="course-container">
+			</div>
+			<div id="searchbar-container">
+				<input type="text" id="searchbar" placeholder="Search..">
+			</div>
+			<div id="criteria" class="inline">
+				<select name="session">
+					<option value="fall/winter">Fall/Winter</option>
+					<option value="summer">Summer</option>
+				</select>
+				<select name="semester">
+					<option value="F">First</option>
+					<option value="S">Second</option>
+				</select>
+			</div>
+			<div id="search-results-container">
+				<table id="courses"></table>
+			</div>
+			<script>
+				const $searchbar = document.querySelector('#searchbar');
+				const $table = document.querySelector('#courses');
+				const $courseinfo = document.querySelector('#course-container');
+				const $session = document.querySelector('select[name=\'session\']');
+				const $semester = document.querySelector('select[name=\'semester\']');
 				
-				var lec = courses[i].lectures[0]; //0 since we only have once tuple in the list of lectures
-				var section = lec.section;
-				var time = lec.timings;
-
-				for(j=0; j < time.length; j++) { //go through each lecture
-					var d = time[j][0];
-					var day_index = days[d];
-					var start = time[j][1];
-					var end = time[j][2];
-					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of table headers is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
-							if (m == day_index){						 								   
-								var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-								col.insertAdjacentHTML('beforeend', new_node);								
-							}
-						}  
+				const courseHandler = function(e){
+					for(var i = 0, row; row = $table.rows[i]; i++) {
+						for(var j = 0, col; col = row.cells[j]; j++) {
+							col.style.backgroundColor = "white";
+						}
 					}
+					e.target.style.backgroundColor = "grey";
+					$.getJSON("./data/courses.json", function(courses){
+						console.log(courses);
+						text = "";
+						for(var key in courses){
+							course = courses[key];
+							if(!e.target.innerHTML.startsWith(course.code + course.semester)){
+								continue;
+							}
+							text += "<p>" + course.code + course.semester + "<br>";
+							text += course.name + "<br><br></p>";
+							text += course.description + "</div>";
+							text += "<div><form id=\"form\"><table name=\"lectures\">";
+							for(var i = 0; i < course.lectures.length; i++){
+								lecture = course.lectures[i];
+								text += "<tr><td><input type=\"radio\" form=\"form\" class=\"lecture\" value=\"" + lecture.section + "\"><label>LEC" + lecture.section + "</label></td><td><p>";
+								for(var j = 0; j < lecture.timings.length; j++){
+									timing = lecture.timings[j];
+									text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
+								}
+								text += "</td></tr>";
+							}
+							text += "</table><input type=\"submit\" value=\"Enrol in course\"></form></div>"
+							break;
+						}
+						$courseinfo.innerHTML = text;
+					});
+// 					document.querySelectorAll('.lecture').forEach(function(element){
+// 						element.addEventListener('click', function(){
+// 							const $lectures = document.querySelector('.lecture');
+							
+// 						});
+// 					});
 				}
 				
-				var tutorials = courses[i].tutorials[0];
-				time = tutorials.timings;
-				section = tutorials.section;
-				
-				for(j=0; j < time.length; j++) { //go through each tutorial
-					var d = time[j][0]; 
-					var day_index = days[d];
-					var start = time[j][1];
-					var end = time[j][2];
-					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
-							if (m == day_index){						 								   
-								var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-								col.insertAdjacentHTML('beforeend', new_node);								
-							}
-						}  
+				const typeHandler = function(e){
+					if(e.target.value === ""){
+						$table.innerHTML = "";
+						return;
 					}
+					var search = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+					$.getJSON("./data/courses.json", function(courses){
+						console.log(courses);
+						text = "";
+						for(var key in courses){
+							course = courses[key];
+							if(!course.code.startsWith(search.toUpperCase()) && (!course.name.includes(search) || search.length < 4)
+									|| $session.value !== course.session || ($semester.value !== course.semester || 
+											($semester.value === "F" && course.semester == "Y"))){
+								continue;
+							}
+							text += "<tr><td class=\"course\">" + course.code + course.semester + "</td></tr>";
+						}
+						$table.innerHTML = text;
+						
+						document.querySelectorAll('.course').forEach(function(element){
+							element.addEventListener('click', courseHandler);
+						});
+					});
 				}
 				
-				var practicals = courses[i].practicals[0];
-				time = practicals.timings;
-				section = practicals.section;
-				
-				for(j=0; j < time.length; j++) { //go through each practical
-					var d = time[j][0]; 
-					var day_index = days[d];
-					var start = time[j][1];
-					var end = time[j][2];
-					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
-							if (m == day_index){						 								   
-								var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-								col.insertAdjacentHTML('beforeend', new_node);								
-							}
-						}  
-					}
+				$session.oninput = function(){
+					$searchbar.dispatchEvent(new Event('input'));
 				}
-				
-			}			
-		});
-		</script>
-		<tr>
-			<th>Sunday</th>
-			<th>Monday</th>
-			<th>Tuesday</th>
-			<th>Wednesday</th>
-			<th>Thursday</th>
-			<th>Friday</th>
-			<th>Saturday</th>
-		</tr>
-		
-		<tr>
-			<td>27</td>
-			<td>28</td>
-			<td>29</td>
-			<td>30</td>
-			<td>31</td>
-			<td>1</td>
-			<td>2</td>
-		</tr>
-		
-		<tr>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
-			<td>6</td>
-			<td>7</td>
-			<td>8</td>
-			<td>9</td>
-		</tr>
-		
-		<tr>
-			<td>10</td>
-			<td>11</td>
-			<td>12</td>
-			<td>13</td>
-			<td>14</td>
-			<td>15</td>
-			<td>16</td>
-		</tr>
-		
-		<tr>
-			<td>17</td>
-			<td>18</td>
-			<td>19</td>
-			<td>20</td>
-			<td>21</td>
-			<td>22</td>
-			<td>23</td>
-		</tr>
-		
-		<tr>
-			<td>24</td>
-			<td>25</td>
-			<td>26</td>
-			<td>27</td>
-			<td>28</td>
-			<td>1</td>
-			<td>2</td>
-		</tr>
-		
-		</table>
-		
+				$semester.oninput = function(){
+					$searchbar.dispatchEvent(new Event('input'));
+				}
+				$searchbar.addEventListener('input', typeHandler);
+				$searchbar.addEventListener('propertyChange', typeHandler);
+			</script>
+		</div>
+		<div id="timetable-container" class="inline">
+			<table id="timetable"></table>
+			<script>
+				var days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+				var dtc = {"MO":1, "TU":2, "WE":3, "TH":4, "FR":5}
+				var ttr = {"09:00":2, "10:00":3, "11:00":4, "12:00":5, "13:00":6, "14:00":7, "15:00":8, "16:00":9, "17:00":10, "18:00":11, "19:00":12, "20:00":13, "21:00":14, "22:00":15}
+				var text = "<tr>";
+				for(var i = 0; i < 6; i++){
+					text += "<th>" + days[i] + "</th>";
+				}
+				text += "</tr>"; 
+				for(var i = 8; i < 23; i++){
+					text += "<tr>";
+					if(i < 13){
+						text += "<th class=\"time\">" + i + ":00";
+					}else{
+						text += "<th class=\"time\">" + (i - 12) + ":00"; 
+					}
+					for(var j = 0; j < 5; j++){
+						text += "<td class=\"timeslot\"></td>";
+					}
+					text += "</tr>"
+				}
+				var timetable = document.getElementById("timetable");
+				timetable.innerHTML = text;
+ 				$.getJSON("./data/timeTable.json", function(courses){
+ 					console.log(courses);
+ 					for(var i = 0; i < courses.length; i++){
+ 						var course = courses[i];
+ 						var lecture = course.lecture;
+ 						var tutorial = course.tutorial;
+ 						var practical = course.practical;
+ 						
+ 						var timings = lecture.timings;
+ 						for(var i = 0; i < timings.length; i++){
+ 							for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
+ 								var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
+ 								var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>LEC" + lecture.section + "</div>";
+ 								timeslot.insertAdjacentHTML('beforeend', new_node);
+ 							}
+ 						}
+ 						
+ 						timings = tutorial.timings;
+ 						if(timings){
+	 						for(var i = 0; i < timings.length; i++){
+	 							for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
+	 								var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
+	 								var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>TUT" + tutorial.section + "</div>";
+	 								timeslot.insertAdjacentHTML('beforeend', new_node);
+	 							}
+	 						}
+ 						}
+ 						
+ 						timings = practical.timings;
+ 						if(timings){
+	 						for(var i = 0; i < timings.length; i++){
+	 							for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
+	 								var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
+	 								var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>PRA" + practical.section + "</div>";
+	 								timeslot.insertAdjacentHTML('beforeend', new_node);
+	 							}
+	 						}
+ 						}
+ 					}
+ 				});
+			</script>
+		</div>
 	</body>
-
 </html>
