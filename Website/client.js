@@ -53,17 +53,17 @@ function login(){
     	}), 
   	};
 
-  	var pullResults = '';
-  	lambda.invoke(params, function(error, data) {
-  		if (error) {
-    		prompt(error);
-  		} else {
-    		pullResults = JSON.parse(Data.Payload);
-  		}
-	});
-	console.log(pullResults);
+ //  	var pullResults = '';
+ //  	lambda.invoke(params, function(error, data) {
+ //  		if (error) {
+ //    		prompt(error);
+ //  		} else {
+ //    		pullResults = JSON.parse(Data.Payload);
+ //  		}
+	// });
+	// console.log(pullResults);
 
-	var page="#login";
+	var page="#home";
 	setCookie('page', page, 360);
 	$(page).show();
 	$("#navbar").show();
