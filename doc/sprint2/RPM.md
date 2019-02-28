@@ -98,6 +98,7 @@ ______________________________________
 - Display course times in calendar
 
 **Members**: Ibrahim, Jessica
+
 **Estimate (hours)**: 2-4
 ______________________________________
 
@@ -108,6 +109,7 @@ ______________________________________
 - Be able to get courses from timetable to enter grades for
 
 **Members**: Anmol
+
 **Estimate (hours)**: 1-2
 ______________________________________
 
@@ -122,6 +124,7 @@ ______________________________________
 - Create appropriate error checking and messages for debugging, as well as test cases
 
 **Members**: Amy
+
 **Estimate (hours)**: 2-4
 ______________________________________
 
@@ -132,4 +135,5 @@ ______________________________________
 - Check all emails are unique
 
 **Members**: Amy
+
 **Estimate (hours)**: 2-4
