@@ -17,8 +17,6 @@ public class AddEvent {
 	
 	public AddEvent(String eventName, String description, String startDate, String startTime, String endDate, String endTime) throws FileNotFoundException, IOException, ParseException{
 		
-		
-		
 		JSONObject event = new JSONObject(); 
 	
 		event.put("eventName", eventName);
@@ -70,9 +68,15 @@ public class AddEvent {
 		
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException
+	public static void main(String[] args) //throws FileNotFoundException, IOException, ParseException
 	{
 		System.out.println("no");
-		AddEvent ae = new AddEvent("Csc301 Meeting","Meeting about 301", "20190212", "1900","20190212", "2359");
+		try {
+			AddEvent ae = new AddEvent("Find this","Meeting about 301", "20190212", "1900","20190212", "2359");
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//TODO this only runs once, make this a method and allow custom events to be made
 	}
 }
