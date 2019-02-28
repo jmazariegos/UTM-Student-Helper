@@ -3,7 +3,9 @@
 <head>
 	<title>Our UTM</title>
 	<meta charset="UTF-8"> 
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
 	<script type="text/javascript">
+
 	//$("#reg").hide();
 	//$("#reset").hide();
 	//$("#home").hide();
@@ -39,12 +41,13 @@ navbar
 		<!-- <form id="loginForm"> -->
 			<br>
 			<!-- these are temp till I fully css this page -->
-			<br>
+			
 			User Name:
-			<input name="userid" id="userid" required><br>
-			Password:
-			<input name="pass" id="pass" required><br>
-			<button id="loginButton" type="submit"><br>Login<br></button><br>
+	E-Mail:
+	<input id="lEmail" type="Email" name="Email" required><br>
+	Password:
+	<input id="lpass" type="password" required><br>
+			<button id="loginButton" type="submit">Login<br></button><br>
 			<br>
 			<div>
 				<div id="Reglink">|Register|</div>
@@ -58,11 +61,16 @@ navbar
 -->
 
 <div id="reg">
+	<br>
 	User Name:
-	<input name="userid" required>
+	<input id="ruserid" name="userid" required><br>
+	E-Mail:
+	<input id="rEmail" type="Email" name="Email" required><br>
 	Password:
-	<input name="pass" required>
-	<button id="regButton" type="submit"><br>Submit<br></button>
+	<input id="rpass1" type="password" required>
+	Confirm Password:
+	<input id="rpass2" type="password" required><br>
+	<button id="regButton" type="submit">Submit<br></button>
 </div>
 
 <!-- Reset page
@@ -70,6 +78,10 @@ navbar
 -->
 
 <div id="reset">
+	<br>
+	Email:
+	<input name="userid" type='Email' required>
+	<button id="resetButton" type="submit">Submit<br></button>
 </div>
 
 		<!-- Home page
@@ -93,7 +105,7 @@ navbar
 				
 				<H1> Welcome Home!</h1>
 					<table>
-<!-- 						<script> 
+			<!-- 	<script> 
 							var url = "data/timeTable.json";
 
 							$.getJSON(url, function(data) {
