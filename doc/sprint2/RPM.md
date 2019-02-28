@@ -11,7 +11,7 @@
 - Iqbal
 
 **Release Goals**:
--  Ability to use website with an account
+- Ability to use website with an account
   - User stories:
     - Login
     - Create Account
