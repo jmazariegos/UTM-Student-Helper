@@ -9,7 +9,8 @@ public class NoteTaking {
 		try
 		{
 			t.writeToFile("hello");
-			t.writeToFile("hi");
+			//t.writeToFile("hi");
+			//System.out.println("done");
 			t.readFromFile();
 		}
 		catch(Exception e)
