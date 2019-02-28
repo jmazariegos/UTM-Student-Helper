@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-
-	<head>
-		
-		<!--<link rel="stylesheet" type="text/css" href="./bootstrap-4.0.0-dist/css/bootstrap.css">-->
-		<style>
+<html>
+<head>
+	<title>Our UTM</title>
+	<style>
 			h2, th{
 				text-align: center;
 			}
@@ -23,108 +22,319 @@
 			  margin: 10px;
 			  background-color: lightgray;
 			  height: 50px;
+
+			  width: 10%;
 			}
-		</style>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
-	</head>
+			.class {
+				background-color: lightgreen;
+				opacity: 10%;
+				font-size: 14px;
+				border: 0.5px solid gray;
+			}
+			.classinfo{
+				display: none;
+				background-color: lightblue;
+				border-radius: 1px;
+				box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);  
+				opacity: 10%;
+				font-size: 14px;
+				position: absolute;
+			}
+			.class:hover .classinfo{
+				display: block;
+			}
+		</style> 
+	<meta charset="UTF-8"> 
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
 
-	<body>
+<script src="Website/jquery-3.3.1.min.js"></script>
+<script src="Website/client.js"></script>
+<link rel="stylesheet" type="text/css" href="Website/layout.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
 
-		<nav>
-			<ul>
-				<li> Home </li>
-			</ul>
-		</nav>
+<!-- 
+div:
+Login
+Reg
+Reset
+Home
+Map
+Account
+note take -> should rename
+navbar
+-->
+
+<body>
+
+	<!-- Login page
+	----------------------------------------------------------
+-->
+<div class="Body">
+	<div id="login">
+		<!-- <form id="loginForm"> -->
+			<br>
+			<!-- these are temp till I fully css this page -->
+			
+			User Name:
+	E-Mail:
+	<input id="lEmail" type="Email" name="Email" required><br>
+	Password:
+	<input id="lpass" type="password" required><br>
+			<button id="loginButton" type="submit">Login<br></button><br>
+			<br>
+			<div>
+				<div id="Reglink">|Register|</div>
+				<div id="Forgot">|Forgot Password|</div>
+			</div>
+			<!-- </form> -->
+		</div>
+
+		<!-- Regstration page
+	----------------------------------------------------------
+-->
+
+<div id="reg">
+	<br>
+	User Name:
+	<input id="ruserid" name="userid" required><br>
+	E-Mail:
+	<input id="rEmail" type="Email" name="Email" required><br>
+	Password:
+	<input id="rpass1" type="password" required>
+	Confirm Password:
+	<input id="rpass2" type="password" required><br>
+	<button id="regButton" type="submit">Submit<br></button>
+</div>
+
+<!-- Reset page
+	----------------------------------------------------------
+-->
+
+<div id="reset">
+	<br>
+	Email:
+	<input name="userid" type='Email' required>
+	<button id="resetButton" type="submit">Submit<br></button>
+</div>
+
+		<!-- Home page
+	----------------------------------------------------------
+-->
+
+<div id="home">
+	<div class="container-fluid" id="main" >
+		<!-- Burger -->
+		<div class="row py-3">
+			<div class="col-2 px-1 bg-light position-fixed" id="sticky-sidebar">
+				<div class="nav-link">Map</div>
+				<div class="nav-link">Calendar</div>
+				<div class="nav-link">Notes</div>
+				<div class="nav-link">Timetable</div>
+				<div class="nav-link">Settings</div>
+				<div id='logout'  class="nav-link">Logout</div>
+			</div>
+			<!-- Calender Body -->
+			<div class="col offset-2" id="main">
+				<h2>Time Table</h2>
 		
-		<h2>Calendar</h2>
-		
-		<table>
+		<table id="timetable">
 
 		<script> 
 		//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
-		// xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
+		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
+		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
+
 		
-		var url = "data/calendar.json";
-		
+		var url = "./data/timeTable.json";
+			
 		$.getJSON(url, function(data) {
 			console.log(data); //this writes to the console, and I think we need this request to access data
-			$courses = data['courses'][0]; //index 0 because courses is a list and we have 1 course in the list
-			$code = $courses.code; //access value of 'code'
-			$days = $courses.timings;
 			
-			for (i=; i < $days.length; i++){
-				//for each row
-				// get index/day, and add the section that is on that day
-			}
+			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
+			var timetable = document.getElementById("timetable");
 			
-			//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
+			var courses = data['courses']; //get value of this key
+			var course_list_len = courses.length;
 			
+			for (i=0; i < course_list_len; i++){ //go through each course
+			
+				var code = courses[i].code;
+				var ses = courses[i].session;
+				var name = courses[i].name;
+				var description = courses[i].description;
+				
+				var lec = courses[i].lectures[0]; //0 since we only have once tuple in the list of lectures
+				var section = lec.section;
+				var time = lec.timings;
+
+				for(j=0; j < time.length; j++) { //go through each lecture
+					var d = time[j][0];
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of table headers is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
+					}
+				}
+				
+				var tutorials = courses[i].tutorials[0];
+				time = tutorials.timings;
+				section = tutorials.section;
+				
+				for(j=0; j < time.length; j++) { //go through each tutorial
+					var d = time[j][0]; 
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
+					}
+				}
+				
+				var practicals = courses[i].practicals[0];
+				time = practicals.timings;
+				section = practicals.section;
+				
+				for(j=0; j < time.length; j++) { //go through each practical
+					var d = time[j][0]; 
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
+					}
+				}
+				
+			}			
 		});
 		</script>
-		<div id="course-list"></div>
 		<tr>
-				<th>Sunday</th>
-				<th>Monday</th>
-				<th>Tuesday</th>
-				<th>Wednesday</th>
-				<th>Thursday</th>
-				<th>Friday</th>
-				<th>Saturday</th>
-			</tr>
+			<th>Sunday</th>
+			<th>Monday</th>
+			<th>Tuesday</th>
+			<th>Wednesday</th>
+			<th>Thursday</th>
+			<th>Friday</th>
+			<th>Saturday</th>
+		</tr>
 		
 		<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-		  <td></td>
-				<td>1</td>
-				<td>2</td>
-			</tr>
+			<td>27</td>
+			<td>28</td>
+			<td>29</td>
+			<td>30</td>
+			<td>31</td>
+			<td>1</td>
+			<td>2</td>
+		</tr>
 		
 		<tr>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-		  <td>7</td>
-				<td>8</td>
-				<td>9</td>
-			</tr>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+		</tr>
 		
 		<tr>
-				<td>10</td>
-				<td>11</td>
-				<td>12</td>
-				<td>13</td>
-		  <td>14</td>
-				<td>15</td>
-				<td>16</td>
-			</tr>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+			<td>13</td>
+			<td>14</td>
+			<td>15</td>
+			<td>16</td>
+		</tr>
 		
 		<tr>
-				<td>17</td>
-				<td>18</td>
-				<td>19</td>
-				<td>20</td>
-		  <td>21</td>
-				<td>22</td>
-				<td>23</td>
-			</tr>
+			<td>17</td>
+			<td>18</td>
+			<td>19</td>
+			<td>20</td>
+			<td>21</td>
+			<td>22</td>
+			<td>23</td>
+		</tr>
 		
 		<tr>
-				<td>24</td>
-				<td>25</td>
-				<td>26</td>
-				<td>27</td>
-		  <td>28</td>
-				<td></td>
-				<td></td>
-			</tr>
-		
+			<td>24</td>
+			<td>25</td>
+			<td>26</td>
+			<td>27</td>
+			<td>28</td>
+			<td>1</td>
+			<td>2</td>
+		</tr>
 		</table>
-		
-	</body>
 
+					<!-- Side Buttons -->
+				</div>
+				<div id="buttons">
+
+					<button>New Note +</button>
+
+					<div id = "CurrentNote">
+
+					</div>
+					<div id="buttonholder">
+						<button>Add<br>Event</button>
+						<button>Plan<br>Timetable</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Map page
+	----------------------------------------------------------
+-->
+
+<div class="map">
+</div>
+
+		<!-- Account page
+	----------------------------------------------------------
+-->
+
+<div class="account">
+</div>
+
+		<!-- Note page
+	----------------------------------------------------------
+-->
+
+<div class="note">
+</div>
+	<!-- Navbar page
+	----------------------------------------------------------
+-->
+
+<div class="navbar">
+	<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light"> 
+		<img src="Website/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+		<!-- <img src = ></img> -->
+	</nav>
+</div>
+
+
+
+
+</body>
 </html>

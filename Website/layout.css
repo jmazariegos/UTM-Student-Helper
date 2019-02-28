@@ -1,7 +1,8 @@
 
 body{
-	/*background :#f5f3f5;*/
+	background :#f5f3f5;
 }
+
 
 /*table Layout*/
 h2, th{
@@ -26,12 +27,15 @@ td{
 	height: 50px;
 }
 
-#main{
+/*#main{
 	padding-top: 18px;
-}
+}*/
 .navbar{
-	padding-top: 18px;
+	
 }
 #buttons{
 	float:left;
+}
+.Body{
+	padding-top: 25px;
 }
