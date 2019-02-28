@@ -35,12 +35,35 @@ function login(){
 	hideall();
 	var id = $("#luserid").val();
 	var p1 = $("#lpass1").val();
-
-
 	// Login
 
+	//Parse Input
 
-	var page="#home";
+	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
+	var params = {
+    	FunctionName: "OurUTMUserAccounts", 
+    	InvocationType: "RequestResponse", 
+    	LogType: "None",
+    	Payload: JSON.stringify({
+    		"function": "login",
+    		"parameters":{
+    			"email":id,
+    			"password":p1,
+    		}
+    	}), 
+  	};
+
+  	var pullResults = '';
+  	lambda.invoke(params, function(error, data) {
+  		if (error) {
+    		prompt(error);
+  		} else {
+    		pullResults = JSON.parse(Data.Payload);
+  		}
+	});
+	console.log(pullResults);
+
+	var page="#login";
 	setCookie('page', page, 360);
 	$(page).show();
 	$("#navbar").show();
