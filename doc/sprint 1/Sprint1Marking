@@ -27,7 +27,7 @@ User Stories (PB.md, sprint1.md) (Max 10 marks) [10]
  [2 marks=all stories in PB.md are prioritized and the order of priority in PB.md matches the order of priority on the Tracker]
 
  
-Tracking on Pivotal Tracker:  (max 10 marks) [9]
+Tracking on Pivotal Tracker:  (max 10 marks) [10]
 - Are all your stories present on sprint1.md recorded  on the tracker? 
   [2=all stories recorded]
 
@@ -39,7 +39,8 @@ Tracking on Pivotal Tracker:  (max 10 marks) [9]
 
 - Is the commit done by the person to whom the task has been assigned to? 
   COMMENT: Some team members had 0 dev commits even though they were assigned tasks. 
-  [1=two or more tasks were not completed as assigned]
+  UPDATE: I missed some commits in other branches. 
+  [2=all assignned tasks are completed]
 
 - Tasks Distribution
   [2=every team member had at least one task assigned and completed]
@@ -57,5 +58,5 @@ System Design - (PDF or MD file or other suitable format) (Max 10 marks) [10]
   [4 marks: The Architecture Diagram is present, it is formatted using proper graphic symbols, and it follows a known Architecture diagram.
 
   
-  34/35
+  35/35
   Great work, keep it up!
