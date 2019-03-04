@@ -17,7 +17,22 @@ import javax.swing.JTextField;
 
 import org.json.simple.parser.ParseException;
 
-public class EventGUI extends JApplet{
+//imports from addEvents
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collection;
+
+//import org.json.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.*;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+
+public class EventGUI extends JFrame{
 
 	/**
 	 * 
@@ -25,7 +40,7 @@ public class EventGUI extends JApplet{
 	private static final long serialVersionUID = -8814604997415822330L;
 	private JPanel pan;
 	
-	public void init() {
+	public EventGUI() {
 		
 		JButton btEnter = new JButton("Enter");
 		
@@ -112,7 +127,13 @@ public class EventGUI extends JApplet{
 				//AddEvent
 				if (valid) {
 					try {
-						AddEvent ae = new AddEvent(eventName,description, startDate, startTime, endDate, endTime);
+						try{
+							//AddEvent ae = new AddEvent("WILLITWORK","Meeting about 301", "20190212", "1900","20190212", "2359");
+							AddEvent ae = new AddEvent(eventName,description, startDate, startTime, endDate, endTime);
+						}catch (FileNotFoundException e2){
+							System.out.println("FNF");
+							e2.printStackTrace();
+						}
 					} catch (IOException | ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -225,5 +246,9 @@ public class EventGUI extends JApplet{
 		return true;
 	}
 	
+	public static void main(String args[]){
+		System.out.println("Cool");
+		EventGUI eg = new EventGUI();
+	}
 	
 }
