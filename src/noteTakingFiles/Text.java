@@ -32,19 +32,23 @@ public class Text {
 	}
 	
 	//reads all contents of file
-	public void readFromFile() throws IOException
+	public String readFromFile() throws IOException
 	{
 		FileReader file = new FileReader(currPath);
 		BufferedReader br = new BufferedReader(file);
 		
 		String s;
+		String st = "";
+		
 		while((s = br.readLine()) != null)
 		{
-			System.out.println(s);
+			st = st + s;
+			//System.out.println(s);
 		}
 		
 		
 		file.close();
+		return st;
 	}
 	
 }
