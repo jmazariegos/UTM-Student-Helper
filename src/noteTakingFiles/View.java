@@ -1,6 +1,7 @@
 package noteTakingFiles;
 
 import javax.swing.*;
+import java.applet.*;
 
 
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-public class View extends JFrame implements ActionListener{
+public class View extends JApplet implements ActionListener{
 
 	private JFrame frame;
 	private JTextArea text;
@@ -17,16 +18,10 @@ public class View extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;  // just in case
 	
-	public View()
+	public void init()
 	{
 		t = new Text();
-		setUI();
-	}
 	
-	private void setUI()
-	{
-		frame = new JFrame("Notes");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel(new BorderLayout());
 		
 		JButton save = new JButton("save");
@@ -43,10 +38,7 @@ public class View extends JFrame implements ActionListener{
 		panel.add(load, BorderLayout.EAST);
 		panel.add(text);
 		
-		frame.add(panel);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		this.add(panel);
 	}
 	
 	@Override

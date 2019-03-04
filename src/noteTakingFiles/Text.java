@@ -39,10 +39,16 @@ public class Text {
 		
 		String s;
 		String st = "";
-		
+		boolean first = true;
 		while((s = br.readLine()) != null)
 		{
-			st = st + s;
+			if(first)
+			{
+				st = s;
+				first = false;
+			}
+			else
+				st = st +'\n'+ s;
 			//System.out.println(s);
 		}
 		
