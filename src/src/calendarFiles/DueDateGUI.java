@@ -33,7 +33,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 
 
-public class EventGUI extends JApplet{
+public class DueDateGUI extends JApplet{
 
 	/**
 	 * 
@@ -46,48 +46,53 @@ public class EventGUI extends JApplet{
 		JButton btEnter = new JButton("Enter");
 		
 		//Textfields
-		JTextField tfEventName = new JTextField(20);
+		JTextField tfAssignmentName = new JTextField(20);
+		JTextField tfCourseCode = new JTextField(20);
 		JTextField tfDescription = new JTextField(20);
-		JTextField tfStartDate = new JTextField(20);
-		JTextField tfStartTime = new JTextField(20);
-		JTextField tfEndDate = new JTextField(20);
-		JTextField tfEndTime = new JTextField(20);
+		JTextField tfDueDate = new JTextField(20);
+		JTextField tfDueTime = new JTextField(20);
 		
 		//Labels
-		JLabel lblEventName = new JLabel("Event Name:");
+		JLabel lblAssignmentName = new JLabel("Assignment Name:");
+		JLabel lblCourseCode = new JLabel("Course Code:");
 		JLabel lblDescription = new JLabel("Description:");
-		JLabel lblStartDate = new JLabel("Start Date (YYYYMMDD):");
-		JLabel lblStartTime = new JLabel("Start Time (HHMM):");
-		JLabel lblEndDate = new JLabel("End Date (YYYYMMDD):");
-		JLabel lblEndTime = new JLabel("End Time (HHMM):");
+		JLabel lblDueDate = new JLabel("Due Date (YYYYMMDD):");
+		JLabel lblDueTime = new JLabel("Due Time (HHMM):");
+
 		
 		
 		// Invalid Labels
 		String inv = "Invalid Entry";
-		JLabel invlblEventName = new JLabel();
+		JLabel invlblAssignmentName = new JLabel();
+		JLabel invlblCourseCode = new JLabel();
 		JLabel invlblDescription = new JLabel();
-		JLabel invlblStartDate = new JLabel();
-		JLabel invlblStartTime = new JLabel();
-		JLabel invlblEndDate = new JLabel();
-		JLabel invlblEndTime = new JLabel();
+		JLabel invlblDueDate = new JLabel();
+		JLabel invlblDueTime = new JLabel();
+
 
 		btEnter.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				//Check if all entries are valid
 				boolean valid = true;
-				String eventName = tfEventName.getText();
+				String assignmentName = tfAssignmentName.getText();
+				String courseCode = tfCourseCode.getText();
 				String description = tfDescription.getText();
-				String startDate = tfStartDate.getText();
-				String startTime = tfStartTime.getText();
-				String endDate = tfEndDate.getText();
-				String endTime = tfEndTime.getText();
+				String dueDate = tfDueDate.getText();
+				String dueTime = tfDueTime.getText();
 				
-				if (eventName.isEmpty()){
+				if (assignmentName.isEmpty()){
 					valid = false;
-					invlblEventName.setText(inv);
+					invlblAssignmentName.setText(inv);
 				}else{
-					invlblEventName.setText("Valid");
+					invlblAssignmentName.setText("Valid");
+				}
+				
+				if (courseCode.isEmpty()){
+					valid = false;
+					invlblCourseCode.setText(inv);
+				}else{
+					invlblCourseCode.setText("Valid");
 				}
 				
 				if (description.isEmpty()){
@@ -97,40 +102,27 @@ public class EventGUI extends JApplet{
 					invlblDescription.setText("Valid");
 				}
 				
-				if (startDate.isEmpty() || !isDate(startDate)){
+				if (dueDate.isEmpty() || !isDate(dueDate)){
 					valid = false;
-					invlblStartDate.setText(inv);
+					invlblDueDate.setText(inv);
 				}else{
-					invlblStartDate.setText("Valid");
+					invlblDueDate.setText("Valid");
 				}
 				
-				if (startTime.isEmpty() || !isTime(startTime)){
+				if (dueTime.isEmpty() || !isTime(dueTime)){
 					valid = false;
-					invlblStartTime.setText(inv);
+					invlblDueTime.setText(inv);
 				}else{
-					invlblStartTime.setText("Valid");
+					invlblDueTime.setText("Valid");
 				}
-				
-				if (endDate.isEmpty() || !isDate(endDate)){
-					valid = false;
-					invlblEndDate.setText(inv);
-				}else{
-					invlblEndDate.setText("Valid");
-				}
-				
-				if (endTime.isEmpty() || !isTime(endTime)){
-					valid = false;
-					invlblEndTime.setText(inv);
-				}else{
-					invlblEndTime.setText("Valid");
-				}
+	
 				
 				//AddEvent
 				if (valid) {
 					try {
 						try{
 							//AddEvent ae = new AddEvent("WILLITWORK","Meeting about 301", "20190212", "1900","20190212", "2359");
-							AddEvent ae = new AddEvent(eventName,description, startDate, startTime, endDate, endTime);
+							AddDueDate ae = new AddDueDate(assignmentName, courseCode, description, dueDate, dueTime);
 						}catch (FileNotFoundException e2){
 							System.out.println("FNF");
 							e2.printStackTrace();
@@ -152,29 +144,25 @@ public class EventGUI extends JApplet{
 		pan.setVisible(true);
 		pan.setFocusable(true);
 		
-		pan.add(lblEventName);
-		pan.add(tfEventName);
-		pan.add(invlblEventName);
+		pan.add(lblAssignmentName);
+		pan.add(tfAssignmentName);
+		pan.add(invlblAssignmentName);
+		
+		pan.add(lblCourseCode);
+		pan.add(tfCourseCode);
+		pan.add(invlblCourseCode);
 		
 		pan.add(lblDescription);
 		pan.add(tfDescription);
 		pan.add(invlblDescription);
 		
-		pan.add(lblStartDate);
-		pan.add(tfStartDate);
-		pan.add(invlblStartDate);
+		pan.add(lblDueDate);
+		pan.add(tfDueDate);
+		pan.add(invlblDueDate);
 		
-		pan.add(lblStartTime);
-		pan.add(tfStartTime);
-		pan.add(invlblStartTime);
-		
-		pan.add(lblEndDate);
-		pan.add(tfEndDate);
-		pan.add(invlblEndDate);
-		
-		pan.add(lblEndTime);
-		pan.add(tfEndTime);
-		pan.add(invlblEndTime);
+		pan.add(lblDueTime);
+		pan.add(tfDueTime);
+		pan.add(invlblDueTime);
 		
 		pan.add(btEnter);
 		
