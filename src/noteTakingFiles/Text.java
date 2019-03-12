@@ -13,7 +13,8 @@ public class Text {
 	
 	public Text()
 	{
-		currPath = "file.txt";
+		String text = new File(System.getProperty("user.dir")).getParentFile().getParentFile().toString();
+		currPath = text + "\\data\\file.txt";
 	}
 	
 	//for changing the file
@@ -54,6 +55,7 @@ public class Text {
 		
 		
 		file.close();
+		System.out.println(currPath);
 		return st;
 	}
 	
