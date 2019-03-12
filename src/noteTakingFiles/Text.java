@@ -55,7 +55,6 @@ public class Text {
 		
 		
 		file.close();
-		System.out.println(currPath);
 		return st;
 	}
 	
