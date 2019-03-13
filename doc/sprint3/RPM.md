@@ -17,7 +17,7 @@
     - Create Account
 - Ability to use timetable and calendar
   - User stories:
-    - Add Events / Due Dates to Calendar
+    - Add Events / Due Dates to Calendar (1/2)
     - Add Course to Timetable
     - Timetable Generator (picks timings)
 - Ability to track grades
@@ -25,7 +25,7 @@
     - Grade Tracker
 - Ability to take notes
   - User stories:
-    - Note-Taking
+    - Note-Taking (1/2)
 
 **Notes**:
 - Still need to figure out server asap
