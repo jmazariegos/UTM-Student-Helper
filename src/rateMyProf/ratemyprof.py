@@ -1,15 +1,8 @@
-import selenium
-from selenium.webdriver.common.by import By
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-
 import json
-import bs4
 
-PROF_FILE = "RMPProfs.json"
+PROF_FILE = "RMPProfs.json" # will be using DB
 
 def rateMyProf(profName):
-
     # check format of profName input
     profName = profName.upper()
     rev = profName.split(' ')
@@ -70,9 +63,3 @@ def readProfData(prof_d, selectedCourse=None):
         "Average student rating: {2}\n".format(prof_d['name'], s_course, prof_d['quality'])
 
     return s
-
-
-if __name__ == '__main__':
-
-    prof = rateMyProf("dan zingaro")
-    # print(readProfData(prof, "379"))
