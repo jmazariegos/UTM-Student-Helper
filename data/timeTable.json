@@ -1,4 +1,4 @@
-[
+{"courses":[
 	{
         "code": "CSC108H5",
         "session": "fall/winter",
@@ -42,3 +42,4 @@
         }
     }
 ]
+}

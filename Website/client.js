@@ -61,13 +61,15 @@ function login(){
   		if (error) {
     		prompt("error"+error);
   		} else {
-  			page="#home";
     		pullResults = JSON.parse(data.Payload);
     		console.log(pullResults);
+    		if(pullResults['msg']==="login: success"){
+    			hideall();
+    			page="#home";
+    		}
   		}
 	});
 	
-	var page="#login";
 	setCookie('page', page, 360);
 	$(page).show();
 	$("#navbar").show();
@@ -88,7 +90,7 @@ function Register(){
 	var id = $("#ruserid").val();
 	var p1 = $("#rpass1").val();
 	var p2 = $("#rpass2").val();
-	var email = $("#guessText").val();
+	var email = $("#remail").val();
 	console.log(id +"<- id "+p1);
 	if (p1.length < 8){ // Set to regex
 		// Set error

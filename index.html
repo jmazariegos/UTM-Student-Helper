@@ -140,7 +140,7 @@ navbar
 		
 		<table id="timetable">
 
-		<script> 
+	<script> 
 		//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
 		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
 		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
@@ -154,7 +154,7 @@ navbar
 			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
 			var timetable = document.getElementById("timetable");
 			
-			var courses = data['courses']; //get value of this key
+			var courses = data["courses"]; //get value of this key
 			var course_list_len = courses.length;
 			
 			for (i=0; i < course_list_len; i++){ //go through each course
@@ -223,7 +223,7 @@ navbar
 				
 			}			
 		});
-		</script>
+		</script> 
 		<tr>
 			<th>Sunday</th>
 			<th>Monday</th>
