@@ -33,11 +33,12 @@ function getCookie(cname) {
 // For  the user to login
 function login(){
 	hideall();
-	var id = $("#luserid").val();
-	var p1 = $("#lpass1").val();
+	var id = $("#lemail").val();
+	var p1 = $("#lpass").val();
+	console.log(id,p1);
 	// Login
 
-	//Parse Input
+	// Parse the input
 
 	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
 	var params = {
@@ -53,33 +54,33 @@ function login(){
     	}), 
   	};
 
- //  	var pullResults = '';
- //  	lambda.invoke(params, function(error, data) {
- //  		if (error) {
- //    		prompt(error);
- //  		} else {
- //    		pullResults = JSON.parse(Data.Payload);
- //  		}
-	// });
-	// console.log(pullResults);
-
-	var page="#home";
+  	var pullResults;
+  	var page="#login";
+  	
+  	lambda.invoke(params, function(error, data) {
+  		if (error) {
+    		prompt("error"+error);
+  		} else {
+  			page="#home";
+    		pullResults = JSON.parse(data.Payload);
+    		console.log(pullResults);
+  		}
+	});
+	
+	var page="#login";
 	setCookie('page', page, 360);
 	$(page).show();
 	$("#navbar").show();
-
 }
 
 //for user logout --------------------------------------------------
 function logout(){
-
 	hideall();
 	$("#navbar").show();
 	var page="#login";
 	setCookie('page', page, 360);
 	$(page).show();
 	setCookie('user', "", 360);
-
 }
 
 //for user to  --------------------------------------------------
@@ -88,15 +89,44 @@ function Register(){
 	var p1 = $("#rpass1").val();
 	var p2 = $("#rpass2").val();
 	var email = $("#guessText").val();
-
 	console.log(id +"<- id "+p1);
+	if (p1.length < 8){ // Set to regex
+		// Set error
+		return;
+	}else if (!(p1 === p2)){
+		// Set error
+		return;
+	}
+	// Check if userid + email is valid
 
 
-	//Create account
+	//Parse Input
+	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
+	var params = {
+    	FunctionName: "OurUTMUserAccounts", 
+    	InvocationType: "RequestResponse", 
+    	LogType: "None",
+    	Payload: JSON.stringify({
+    		"function": "createUser",
+    		"parameters":{
+    			"username":id,
+    			"password":p1,
+    			"email":email,
+    		}
+    	}), 
+  	};
 
+  	var pullResults;
 
-
-
+  	lambda.invoke(params, function(error, data) {
+  		if (error) {
+    		prompt("error: "+error);
+    		return;
+  		} else {
+    		pullResults = JSON.parse(data.Payload);
+    		console.log("okay: "+pullResults);
+  		}
+	});
 
 	hideall();
 	var	page="#login";
@@ -114,7 +144,6 @@ function Registration(){
 	setCookie('page', page, 360);
 	$("#navbar").show();
 	$(page).show();
-
 }
 
 // for loading Forgot password page --------------------------------------------------
@@ -128,8 +157,6 @@ function Forgotpass(){
 }
 function Reset(){
 	//Reset Password
-
-
 	hideall();
 	var	page="#login";
 	setCookie('page', page, 360);
