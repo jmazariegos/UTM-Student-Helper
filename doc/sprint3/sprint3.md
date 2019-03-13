@@ -27,7 +27,7 @@ Note: All of the stories were started and attempted, however not all were fully 
 **Estimate (hours)**: 2-4
 ______________________________________
 
-### **Note-Taking**
+### **Note-Taking (1/2)**
 **Task**:
 - Make new text file
 - Retrieve a text file
@@ -38,7 +38,7 @@ ______________________________________
 **Estimate (hours)**: 4-8
 ______________________________________
 
-### **Add Events / Due Dates to Calendar**
+### **Add Events / Due Dates to Calendar (1/2)**
 **Task**:
 - Add ability to create a new date event
 - Add ability to store date events as JSON in database
