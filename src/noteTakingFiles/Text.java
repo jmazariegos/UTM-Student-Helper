@@ -13,7 +13,8 @@ public class Text {
 	
 	public Text()
 	{
-		currPath = "file.txt";
+		String text = new File(System.getProperty("user.dir")).getParentFile().getParentFile().toString();
+		currPath = text + "\\data\\file.txt";
 	}
 	
 	//for changing the file
@@ -32,19 +33,29 @@ public class Text {
 	}
 	
 	//reads all contents of file
-	public void readFromFile() throws IOException
+	public String readFromFile() throws IOException
 	{
 		FileReader file = new FileReader(currPath);
 		BufferedReader br = new BufferedReader(file);
 		
 		String s;
+		String st = "";
+		boolean first = true;
 		while((s = br.readLine()) != null)
 		{
-			System.out.println(s);
+			if(first)
+			{
+				st = s;
+				first = false;
+			}
+			else
+				st = st +'\n'+ s;
+			//System.out.println(s);
 		}
 		
 		
 		file.close();
+		return st;
 	}
 	
 }
