@@ -78,7 +78,7 @@ navbar
 			
 			User Name:
 	E-Mail:
-	<input id="lEmail" type="Email" name="Email" required><br>
+	<input id="lemail" type="Email" required><br>
 	Password:
 	<input id="lpass" type="password" required><br>
 			<button id="loginButton" type="submit">Login<br></button><br>
@@ -99,7 +99,7 @@ navbar
 	User Name:
 	<input id="ruserid" name="userid" required><br>
 	E-Mail:
-	<input id="rEmail" type="Email" name="Email" required><br>
+	<input id="remail" type="Email" name="Email" required><br>
 	Password:
 	<input id="rpass1" type="password" required>
 	Confirm Password:
@@ -114,7 +114,7 @@ navbar
 <div id="reset">
 	<br>
 	Email:
-	<input name="userid" type='Email' required>
+	<input id="resemail" type='Email' required>
 	<button id="resetButton" type="submit">Submit<br></button>
 </div>
 
@@ -140,13 +140,13 @@ navbar
 		
 		<table id="timetable">
 
-		<script> 
+	<script> 
 		//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
 		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
 		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
 
 		
-		var url = "./data/timeTable.json";
+		var url = "./data/timeTable1.json";
 			
 		$.getJSON(url, function(data) {
 			console.log(data); //this writes to the console, and I think we need this request to access data
@@ -154,7 +154,7 @@ navbar
 			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
 			var timetable = document.getElementById("timetable");
 			
-			var courses = data['courses']; //get value of this key
+			var courses = data["courses"]; //get value of this key
 			var course_list_len = courses.length;
 			
 			for (i=0; i < course_list_len; i++){ //go through each course
@@ -223,7 +223,7 @@ navbar
 				
 			}			
 		});
-		</script>
+		</script> 
 		<tr>
 			<th>Sunday</th>
 			<th>Monday</th>
