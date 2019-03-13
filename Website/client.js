@@ -66,12 +66,15 @@ function login(){
     		if(pullResults['msg']==="login: success"){
     			hideall();
     			page="#home";
+    			$(page).show();
+
     		}
   		}
 	});
 	
 	setCookie('page', page, 360);
 	$(page).show();
+	console.log(page);	
 	$("#navbar").show();
 }
 
