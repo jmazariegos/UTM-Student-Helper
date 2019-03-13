@@ -16,7 +16,7 @@ ______________________________________
 
 **So** that I can see what time slots that course could take on my timetable and see a general layout of the timetable as I make it
 ______________________________________
-**User story:** Note-Taking
+**User story:** Note-Taking (2/2)
 
 **Priority:** Top
 
@@ -24,7 +24,7 @@ ______________________________________
 
 **As** Tom Muhammad (disorganized student)
 
-**I want** to be able to take notes
+**I want** to be able to take notes online
 
 **So** that I can refer to them later
 
@@ -66,7 +66,7 @@ ______________________________________
 
 **So** that I won’t have to switch to other note-taking apps, and so that I can see them all in one place.
 ______________________________________
-**User story:** Add Events / Due Dates to Calendar
+**User story:** Add Events / Due Dates to Calendar (2/2)
 
 **Priority:** High
 
@@ -74,7 +74,7 @@ ______________________________________
 
 **As** Tom Muhammad (disorganized student)
 
-**I want** to be able to create dates in my calendar
+**I want** to be able to create dates in my calendar online
 
 **So** that I can use the calendar to keep track of things I need to do
 ______________________________________
