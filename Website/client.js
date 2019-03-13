@@ -157,6 +157,34 @@ function Forgotpass(){
 }
 function Reset(){
 	//Reset Password
+	var email = $("#resemail").val();
+
+	//Parse Input
+	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
+	var params = {
+    	FunctionName: "OurUTMUserAccounts", 
+    	InvocationType: "RequestResponse", 
+    	LogType: "None",
+    	Payload: JSON.stringify({
+    		"function": "resetPassword",
+    		"parameters":{
+    			"email":email,
+    		}
+    	}), 
+  	};
+
+  	var pullResults;
+
+  	lambda.invoke(params, function(error, data) {
+  		if (error) {
+    		prompt("error: "+error);
+    		return;
+  		} else {
+    		pullResults = JSON.parse(data.Payload);
+    		console.log("okay: "+pullResults);
+  		}
+	});
+
 	hideall();
 	var	page="#login";
 	setCookie('page', page, 360);
