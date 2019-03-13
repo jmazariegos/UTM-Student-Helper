@@ -32,7 +32,6 @@ ______________________________________
 - Make new text file
 - Retrieve a text file
 - Edit a text file
-- Make it work on a website
 
 **Members**: Iqbal
 
@@ -43,7 +42,6 @@ ______________________________________
 **Task**:
 - Add ability to create a new date event
 - Add ability to store date events as JSON in database
-- Make usable on website as Applet/Servlet
 
 **Members**: Ibrahim, Iqbal
 
