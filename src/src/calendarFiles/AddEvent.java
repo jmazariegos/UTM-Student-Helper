@@ -31,7 +31,7 @@ public class AddEvent {
 		
 		event.put("endTime", endTime);
 
-		addToDatabase(event ,"data/eventsDB.json");	
+		addToDatabase(event ,"/data/eventsDB.json");	
 		
 		/*{
 		    "eventName": "A1",
@@ -46,8 +46,11 @@ public class AddEvent {
 	}
 	
 	public void addToDatabase(JSONObject jo, String fileName) throws FileNotFoundException, IOException, ParseException{
+		String text = new File(System.getProperty("user.dir")).getParentFile().getParentFile().toString();
+		String path = text + fileName;
 		JSONParser parser = new JSONParser();
-		JSONObject db = (JSONObject) parser.parse(new FileReader(fileName));
+		FileReader fr = new FileReader(path);
+		JSONObject db = (JSONObject) parser.parse(fr);
 		
 		JSONArray events = (JSONArray) db.get("events");
 		JSONArray dueDates = (JSONArray) db.get("dueDates");
@@ -60,7 +63,7 @@ public class AddEvent {
 		db2.put("dueDates", dueDates);
 		
 		
-		PrintWriter pw = new PrintWriter(fileName); 
+		PrintWriter pw = new PrintWriter(path); 
         pw.write(db2.toJSONString()); 
           
         pw.flush(); 
