@@ -3,16 +3,16 @@ package src;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class Person {
+public class Courses {
 
 	@Id private ObjectId _id;
 
 	private String firstName;
 	private String lastName;
 	
-	public Person() {}
+	public Courses() {}
 	
-	public Person(ObjectId _id, String firstName, String lastName) {
+	public Courses(ObjectId _id, String firstName, String lastName) {
 		this._id = _id;
 		this.firstName = firstName;
 		this.lastName = lastName;

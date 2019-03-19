@@ -24,7 +24,7 @@ public class PersonController {
   
   @RequestMapping(value = "/", method = RequestMethod.POST)
   public Person createPerson(@Valid @RequestBody Person person) {
-    person.setID(ObjectId.get());
+    person.set_id(ObjectId.get());
     repository.save(person);
     return person;
   }
