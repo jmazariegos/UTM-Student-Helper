@@ -145,26 +145,24 @@ navbar
 		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
 		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
 
-		
-		var url = "./data/timeTable1.json";
+		var url = "./data/timeTable.json";
 			
-		$.getJSON(url, function(data) {
-			console.log(data); //this writes to the console, and I think we need this request to access data
+		$.getJSON(url, function(courses) {
+			console.log(courses); //this writes to the console, and I think we need this request to access data
 			
 			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
-			var timetable = document.getElementById("timetable");
+			var calendar = document.getElementById("calendar");
 			
-			var courses = data["courses"]; //get value of this key
 			var course_list_len = courses.length;
 			
-			for (i=0; i < course_list_len; i++){ //go through each course
+			for (key in courses){ //go through each course
 			
-				var code = courses[i].code;
-				var ses = courses[i].session;
-				var name = courses[i].name;
-				var description = courses[i].description;
+				var code = courses[key].code;
+				var ses = courses[key].session;
+				var name = courses[key].name;
+				var description = courses[key].description;
 				
-				var lec = courses[i].lectures[0]; //0 since we only have once tuple in the list of lectures
+				var lec = courses[key].lecture; //0 since we only have once tuple in the list of lectures
 				var section = lec.section;
 				var time = lec.timings;
 
@@ -173,8 +171,8 @@ navbar
 					var day_index = days[d];
 					var start = time[j][1];
 					var end = time[j][2];
-					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of table headers is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
+					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
+						for (var m = 1, col; col = row.cells[m]; m++) { //1 because no classes on sunday
 							if (m == day_index){						 								   
 								var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
 								col.insertAdjacentHTML('beforeend', new_node);								
@@ -183,36 +181,37 @@ navbar
 					}
 				}
 				
-				var tutorials = courses[i].tutorials[0];
+				var tutorials = courses[key].tutorial;
 				time = tutorials.timings;
 				section = tutorials.section;
-				
-				for(j=0; j < time.length; j++) { //go through each tutorial
-					var d = time[j][0]; 
-					var day_index = days[d];
-					var start = time[j][1];
-					var end = time[j][2];
-					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
-							if (m == day_index){						 								   
-								var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-								col.insertAdjacentHTML('beforeend', new_node);								
-							}
-						}  
+				if (time){
+					for(j=0; j < time.length; j++) { //go through each tutorial
+						var d = time[j][0]; 
+						var day_index = days[d];
+						var start = time[j][1];
+						var end = time[j][2];
+						for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
+							for (var m = 1, col; col = row.cells[m]; m++) {
+								if (m == day_index){						 								   
+									var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+									col.insertAdjacentHTML('beforeend', new_node);								
+								}
+							}  
+						}
 					}
 				}
+				var practical = courses[key].practical;
 				
-				var practicals = courses[i].practicals[0];
-				time = practicals.timings;
-				section = practicals.section;
+				time = practical.timings;
+				section = practical.section;
 				
 				for(j=0; j < time.length; j++) { //go through each practical
 					var d = time[j][0]; 
 					var day_index = days[d];
 					var start = time[j][1];
 					var end = time[j][2];
-					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
-						for (var m = 1, col; col = row.cells[m]; m++) {
+					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 0, col; col = row.cells[m]; m++) {
 							if (m == day_index){						 								   
 								var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
 								col.insertAdjacentHTML('beforeend', new_node);								
@@ -224,6 +223,7 @@ navbar
 			}			
 		});
 		</script> 
+		
 		<tr>
 			<th>Sunday</th>
 			<th>Monday</th>
