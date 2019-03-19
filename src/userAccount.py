@@ -25,7 +25,7 @@ def createUser(username, password, email):
                            passwd='adminadmin', db='mysql')
     cur = conn.cursor()
     cur.execute("USE slackoverflowDB")
-    sql = ('INSERT INTO userAccounts(userUsername, userPassword, userEmail) VALUES (%s, UNHEX(%s), %s)'.format(conn))
+    sql = ('INSERT INTO userAccounts(userUsername, userPassword, userEmail, userFriends) VALUES (%s, UNHEX(%s), %s, [])'.format(conn))
     # print("Successfully connected to database.")
     ret = cur.execute(sql, (username, hashed_password, email))
 
@@ -256,6 +256,27 @@ def changePassword(email, old_password, new_password):
     else:
         print("You need to be logged in, and the current password must match the email address given.")
         return False
+    
+def getFriends(email):
+    '''
+    Check return the list of friends if email exists in database
+    '''
+    email = email.lower()
+    if emailInDB(email): 
+        conn = pymysql.connect(host='slackoverflowdb.cyy8oalnodc0.ca-central-1.rds.amazonaws.com', port=3306, user='admin', 
+                           passwd='adminadmin', db='mysql')
+        cur = conn.cursor()
+        cur.execute("USE slackoverflowDB")
+        sql = ('SELECT userFriends FROM userAccounts WHERE userEmail = %s'.format(conn))
+        cur.execute(sql, email)
+        t = cur.fetchone()
+        cur.close()
+        conn.close()
+        return t[0]
+
+    return False
+    
+    
 
 
 def main(event, context):
