@@ -1,5 +1,6 @@
 package src.calendarFiles;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +18,8 @@ public class AddDueDate {
 			JSONObject event = new JSONObject(); 
 		
 			event.put("assignmentName", assignmentName);
+			
+			event.put("courseCode:", courseCode);
 	
 			event.put("description", description);
 			
@@ -24,7 +27,7 @@ public class AddDueDate {
 			
 			event.put("dueTime", dueTime);
 	
-			addToDatabase(event ,"data/eventsDB.json");	
+			addToDatabase(event ,"/data/eventsDB.json");	
 			
 			/*{
 			    "code": "CSC301",
@@ -38,8 +41,10 @@ public class AddDueDate {
 		}
 		
 		public void addToDatabase(JSONObject jo, String fileName) throws FileNotFoundException, IOException, ParseException{
+			String text = new File(System.getProperty("user.dir")).getParentFile().getParentFile().toString();
+			String path = text + fileName;
 			JSONParser parser = new JSONParser();
-			JSONObject db = (JSONObject) parser.parse(new FileReader(fileName));
+			JSONObject db = (JSONObject) parser.parse(new FileReader(path));
 			
 			JSONArray events = (JSONArray) db.get("events");
 			JSONArray dueDates = (JSONArray) db.get("dueDates");
@@ -52,7 +57,7 @@ public class AddDueDate {
 			db2.put("dueDates", dueDates);
 			
 			
-			PrintWriter pw = new PrintWriter(fileName); 
+			PrintWriter pw = new PrintWriter(path); 
 	        pw.write(db2.toJSONString()); 
 	          
 	        pw.flush(); 
