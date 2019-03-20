@@ -9,6 +9,10 @@
                 margin: auto;
                 padding: 15px;
                 background-color: aliceblue;
+                border-collapse: collapse; 
+            }
+            td {
+                border-bottom: 1px solid black;
             }
             h3{
                 color: cadetblue;
@@ -45,7 +49,6 @@
 		<script>
 			var d = new Date();
 			var n = d.getDay();
-			var h = d.getHours();
 			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6,}
 		</script>
 	</head>
@@ -66,8 +69,105 @@
         </div>
         
 		<!--TFC begin-->
-		<div id="davis"> <h3>TFC (Davis)</h3> XXXXXXXXXXXXXXXXXXXXX
+		<div id="davis"> <h3>TFC/Davis</h3> 
 		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Elements</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 6pm </li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fusion 5</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 7pm </li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>International Kitchen</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 3pm</li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Pizza Pizza</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 9pm</li>
+                        <li class="fri">Friday: 10:30am - 4pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Quesada</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 7pm</li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>               
+                <tr>
+                    <td>Salad Bar</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 3pm</li>
+                        <li class="fri">Friday: 8am - 2pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Tim Hortons - TFC Self-Serve</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 6pm</li>
+                        <li class="fri">Friday: 8am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Tim Hortons - The Meeting Place</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 10pm</li>
+                        <li class="fri">Friday: 7:30am - 7pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Vegilicious</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 6pm</li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
         </div>
 		<!--TFC end-->
 		
