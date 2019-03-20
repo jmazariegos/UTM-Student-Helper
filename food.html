@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Food Location and Hours</title>
+		<meta charset="UTF-8"> 
+		<style>
+            table{
+                border: 2px solid grey;
+                margin: auto;
+                padding: 15px;
+                background-color: aliceblue;
+                border-collapse: collapse; 
+            }
+            td {
+                border-bottom: 1px solid black;
+                padding: 0 15px 0 15px;
+            }
+            th{
+                border-bottom: 1px solid black;
+                background-color: cadetblue;
+                color: white;
+            }
+            h3{
+                color: cadetblue;
+                text-align: center;
+                text-decoration: overline underline;
+                padding-top: 55px;
+            }
+            #localnavbar{
+                text-align: center;
+                overflow: hidden;
+                background-color: aliceblue;
+            }
+            #localnavbar a{
+                float: left;
+                display: block;
+                text-align: center;
+                padding: 14px;
+                color: black;
+                text-decoration: none;
+            }
+            #localnavbar a:hover{
+                text-decoration: underline;
+            }
+            .sticky{
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+            .sticky + .content{
+                padding-top: 60px;
+            }
+            .fri, .sat, .sun, .weekend, .mon-thurs, .mon-fri{
+                color: black;
+            }
+		</style>
+	</head>
+	
+	<body>
+	
+        <!-- sticky local nav-->
+        <div id="localnavbar">
+            <a href="#davis">TFC/Davis</a>  
+            <a href="#ib">IB</a>
+            <a href="#ne">NE</a>
+            <a href="#dh">DH</a>
+            <a href="#cct">CCT</a>
+            <a href="#library">Library</a>
+            <a href="#oph">OPH</a>            
+            <a href="#rawc">RAWC</a>
+            <a href="#kaneff">Kaneff</a>
+        </div>
+        
+		<!--TFC begin-->
+		<div id="davis"> <h3>TFC/Davis</h3> 
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Elements</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 6pm </li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fusion 5</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 7pm </li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>International Kitchen</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 3pm</li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Pizza Pizza</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 9pm</li>
+                        <li class="fri">Friday: 10:30am - 4pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Quesada</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 7pm</li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>               
+                <tr>
+                    <td>Salad Bar</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 3pm</li>
+                        <li class="fri">Friday: 8am - 2pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Tim Hortons - TFC Self-Serve</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 6pm</li>
+                        <li class="fri">Friday: 8am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Tim Hortons - The Meeting Place</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 10pm</li>
+                        <li class="fri">Friday: 7:30am - 7pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>                
+                <tr>
+                    <td>Vegilicious</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 11am - 6pm</li>
+                        <li class="fri">Friday: 11am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+		<!--TFC end-->
+		
+		<!--IB begin-->
+		<div id="ib"> <h3>IB (Instructional Building)</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Bento Sushi</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 6pm </li>
+                        <li class="fri">Friday: 10:30am - 4pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quesada</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 9pm </li>
+                        <li class="fri">Friday: 10:30am - 6pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IB Subway</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 9pm</li>
+                        <li class="fri">Friday: 10:30am - 6pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
+		</div>
+		<!--IB end-->
+		
+		<!--NE begin-->
+		<div id="ne"> <h3>NE (North Building)</h3> 
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>New North</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 5pm</li>
+                        <li class="fri">Friday: 7:30am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
+		</div>
+		<!--NE end-->
+		
+		<!--DH begin-->
+		<div id="dh"> <h3>DH (Deerfield Hall)</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>North Side Bistro</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8:30am - 6pm</li>
+                        <li class="fri">Friday: 8:30am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
+		</div>
+		<!--DH end-->
+		
+		<!--CCT begin-->
+		<div id="cct"> <h3>CCT</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Tim Hortons Self-Serve</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 4pm</li>
+                        <li class="fri">Friday: 8am - 2pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+		</div>
+		<!--CCT end-->
+		
+		<!--Library begin-->
+		<div id="library"> <h3>Library (HMALC)</h3>
+
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Starbucks</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 10pm</li>
+                        <li class="fri">Friday: 7:30am - 6pm</li>
+                        <li class="sat">Saturday: 12pm - 6pm</li>
+                        <li class="sun">Sunday: 1pm - 6pm</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+		</div>
+		<!--Library end-->
+		
+		<!--OPH begin-->
+		<div id="oph"> <h3>OPH (Oscar Peterson Hall)</h3> 
+            
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Colman Commons Dining Hall</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 12am</li>
+                        <li class="fri">Friday: 7:30am - 9pm</li>
+                        <li class="sat">Saturday: 9am - 9pm</li>
+                        <li class="sun">Sunday: 9am - 12pm</li>
+                        </ul>
+                    </td>
+                </tr>           
+                <tr>
+                    <td>Tea Bar</td>
+                    <td>
+                        <ul>
+                        <li class="mon-fri">Monday - Friday: 10am - 9pm</li>
+                        <li class="sat">Saturday: 10am - 9pm</li>
+                        <li class="sun">Sunday: 10am - 12am</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
+		</div>
+		<!--OPH end-->
+		
+		<!--RAWC begin-->
+		<div id="rawc"> <h3>RAWC</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Booster Juice</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 8:30pm </li>
+                        <li class="fri">Friday: 7:30am - 6pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
+		</div>
+		<!--RAWC end-->
+		
+		<!--Kaneff begin-->
+		<div id="kaneff"> <h3>Kaneff</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Second Cup</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 5pm</li>
+                        <li class="fri">Friday: 8am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
+		</div>
+		<!--Kaneff end-->
+		
+        <script>
+        //placed at bottom so that it starts when page fully loads
+        //sticky nav js and css from:
+        //https://www.w3schools.com/howto/howto_js_navbar_sticky.asp
+        window.onscroll = function() {myFunction()};
+        var localnavbar = document.getElementById("localnavbar");
+        var sticky = localnavbar.offsetTop;
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                localnavbar.classList.add("sticky")
+            } else {
+                localnavbar.classList.remove("sticky");
+            }
+        }
+            
+        //change css based on date
+        var day = new Date();
+        var dayAsInt = day.getDay();
+        var block1;
+        var block2;
+        if (dayAsInt == 0){
+            block1 = document.getElementsByClassName("sun")
+            block2 = document.getElementsByClassName("weekend");
+        } else if (dayAsInt <= 4){
+            block1 = document.getElementsByClassName("mon-thurs");
+            block2 = document.getElementsByClassName("mon-fri");
+        } else if (dayAsInt == 5){
+            block1 = document.getElementsByClassName("fri");
+            block2 = document.getElementsByClassName("mon-fri");
+        } else if (dayAsInt == 6){
+            block1 = document.getElementsByClassName("sat");
+            block2 = document.getElementsByClassName("weekend");
+        }
+            
+        for(var i=0; i<block1.length; i++){
+            block1[i].style["color"] = "#2E8B57";
+            block1[i].style["font-weight"] = "bold";
+        }
+        
+        for(var i=0; i<block2.length; i++){
+            block2[i].style["color"] = "#2E8B57";
+            block2[i].style["font-weight"] = "bold";
+        }
+        
+        </script>
+        
+	</body>
+</html>
