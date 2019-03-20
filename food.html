@@ -50,13 +50,10 @@
             .sticky + .content{
                 padding-top: 60px;
             }
+            .fri, .sat, .sun, .weekend, .mon-thurs, .mon-fri{
+                color: black;
+            }
 		</style>
-		
-		<script>
-			var d = new Date();
-			var n = d.getDay();
-			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6,}
-		</script>
 	</head>
 	
 	<body>
@@ -407,6 +404,36 @@
                 localnavbar.classList.remove("sticky");
             }
         }
+            
+        //change css based on date
+        var day = new Date();
+        var dayAsInt = day.getDay();
+        var block1;
+        var block2;
+        if (dayAsInt == 0){
+            block1 = document.getElementsByClassName("sun")
+            block2 = document.getElementsByClassName("weekend");
+        } else if (dayAsInt <= 4){
+            block1 = document.getElementsByClassName("mon-thurs");
+            block2 = document.getElementsByClassName("mon-fri");
+        } else if (dayAsInt == 5){
+            block1 = document.getElementsByClassName("fri");
+            block2 = document.getElementsByClassName("mon-fri");
+        } else if (dayAsInt == 6){
+            block1 = document.getElementsByClassName("sat");
+            block2 = document.getElementsByClassName("weekend");
+        }
+            
+        for(var i=0; i<block1.length; i++){
+            block1[i].style["color"] = "#2E8B57";
+            block1[i].style["font-weight"] = "bold";
+        }
+        
+        for(var i=0; i<block2.length; i++){
+            block2[i].style["color"] = "#2E8B57";
+            block2[i].style["font-weight"] = "bold";
+        }
+        
         </script>
         
 	</body>
