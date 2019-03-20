@@ -4,112 +4,304 @@
 		<title>Food Location and Hours</title>
 		<meta charset="UTF-8"> 
 		<style>
+            table{
+                border: 2px solid grey;
+                margin: auto;
+                padding: 15px;
+                background-color: aliceblue;
+            }
+            h3{
+                color: cadetblue;
+                text-align: center;
+                text-decoration: overline underline;
+                padding-top: 55px;
+            }
+            #localnavbar{
+                text-align: center;
+                overflow: hidden;
+                background-color: aliceblue;
+            }
+            #localnavbar a{
+                float: left;
+                display: block;
+                text-align: center;
+                padding: 14px;
+                color: black;
+                text-decoration: none;
+            }
+            #localnavbar a:hover{
+                text-decoration: underline;
+            }
+            .sticky{
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+            .sticky + .content{
+                padding-top: 60px;
+            }
 		</style>
 		
 		<script>
 			var d = new Date();
 			var n = d.getDay();
 			var h = d.getHours();
+			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6,}
 		</script>
 	</head>
 	
 	<body>
 	
+        <!-- sticky local nav-->
+        <div id="localnavbar">
+            <a href="#davis">TFC/Davis</a>  
+            <a href="#ib">IB</a>
+            <a href="#ne">NE</a>
+            <a href="#dh">DH</a>
+            <a href="#cct">CCT</a>
+            <a href="#library">Library</a>
+            <a href="#oph">OPH</a>            
+            <a href="#rawc">RAWC</a>
+            <a href="#kaneff">Kaneff</a>
+        </div>
+        
 		<!--TFC begin-->
-		<div> <h3>TFC (Davis)</h3>
-		</div>
+		<div id="davis"> <h3>TFC (Davis)</h3> XXXXXXXXXXXXXXXXXXXXX
+		
+        </div>
 		<!--TFC end-->
 		
 		<!--IB begin-->
-		<div> <h3>IB (Instructional Building)</h3>
+		<div id="ib"> <h3>IB (Instructional Building)</h3>
 		
-		<table>
-		<tr>
-			<th>Service</th>
-			<th>Time</th>
-		</tr>
-		<tr>
-			<td>Bento Sushi</td>
-			<td>
-				<ul>
-				<li class="mon-thurs">Monday - Thursday: 10:30am - 6pm </li>
-				<li class="fri">Friday: 10:30am - 4pm</li>
-				<li class="weekend">Weekend: CLOSED</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td>Quesada</td>
-			<td>
-				<ul>
-				<li class="mon-thurs">Monday - Thursday: 10:30am - 9pm </li>
-				<li class="fri">Friday: 10:30am - 6pm</li>
-				<li class="weekend">Weekend: CLOSED</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td>IB Subway</td>
-			<td>
-				<ul>
-				<li class="mon-thurs">Monday - Thursday: 10:30am - 9pm</li>
-				<li class="fri">Friday: 10:30am - 6pm</li>
-				<li class="weekend">Weekend: 11am - 4pm</li>
-				</ul>
-			</td>
-		</tr>
-		</table>
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Bento Sushi</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 6pm </li>
+                        <li class="fri">Friday: 10:30am - 4pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quesada</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 9pm </li>
+                        <li class="fri">Friday: 10:30am - 6pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IB Subway</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 10:30am - 9pm</li>
+                        <li class="fri">Friday: 10:30am - 6pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 		
 		</div>
 		<!--IB end-->
 		
 		<!--NE begin-->
-		<div> <h3>NE (North Building)</h3>
+		<div id="ne"> <h3>NE (North Building)</h3> 
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>New North</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 5pm</li>
+                        <li class="fri">Friday: 7:30am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
 		</div>
 		<!--NE end-->
 		
 		<!--DH begin-->
-		<div> <h3>DH (Deerfield Hall)</h3>
+		<div id="dh"> <h3>DH (Deerfield Hall)</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>North Side Bistro</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8:30am - 6pm</li>
+                        <li class="fri">Friday: 8:30am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
 		</div>
 		<!--DH end-->
 		
 		<!--CCT begin-->
-		<div> <h3>CCT</h3>
+		<div id="cct"> <h3>CCT</h3>
 		
-		<table>
-		<tr>
-			<th>Service</th>
-			<th>Time</th>
-		</tr>
-		<tr>
-			<td>Tim Hortons Self-Serve</td>
-			<td>
-				<ul>
-				<li class="mon-thurs">Monday - Thursday: 8am - 4pm</li>
-				<li class="fri">Friday: 8am - 2pm</li>
-				<li class="weekend">Weekend: CLOSED</li>
-				</ul>
-			</td>
-		</tr>
-		</table>
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Tim Hortons Self-Serve</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 4pm</li>
+                        <li class="fri">Friday: 8am - 2pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
 		</div>
 		<!--CCT end-->
 		
 		<!--Library begin-->
-		<div> <h3>Library</h3>
+		<div id="library"> <h3>Library (HMALC)</h3>
+
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Starbucks</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 10pm</li>
+                        <li class="fri">Friday: 7:30am - 6pm</li>
+                        <li class="sat">Saturday: 12pm - 6pm</li>
+                        <li class="sun">Sunday: 1pm - 6pm</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
 		</div>
 		<!--Library end-->
 		
 		<!--OPH begin-->
-		<div> <h3>OPH (Oscar Peterson Hall)</h3>
+		<div id="oph"> <h3>OPH (Oscar Peterson Hall)</h3> 
+            
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Colman Commons Dining Hall</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 12am</li>
+                        <li class="fri">Friday: 7:30am - 9pm</li>
+                        <li class="sat">Saturday: 9am - 9pm</li>
+                        <li class="sun">Sunday: 9am - 12pm</li>
+                        </ul>
+                    </td>
+                </tr>           
+                <tr>
+                    <td>Tea Bar</td>
+                    <td>
+                        <ul>
+                        <li class="mon-fri">Monday - Friday: 10am - 9pm</li>
+                        <li class="sat">Saturday: 10am - 9pm</li>
+                        <li class="sun">Sunday: 10am - 12am</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            
 		</div>
 		<!--OPH end-->
 		
+		<!--RAWC begin-->
+		<div id="rawc"> <h3>RAWC</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Booster Juice</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 7:30am - 8:30pm </li>
+                        <li class="fri">Friday: 7:30am - 6pm</li>
+                        <li class="weekend">Weekend: 11am - 4pm</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
+		</div>
+		<!--RAWC end-->
+		
 		<!--Kaneff begin-->
-		<div> <h3>Kaneff</h3>
+		<div id="kaneff"> <h3>Kaneff</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>Second Cup</td>
+                    <td>
+                        <ul>
+                        <li class="mon-thurs">Monday - Thursday: 8am - 5pm</li>
+                        <li class="fri">Friday: 8am - 3pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
 		</div>
 		<!--Kaneff end-->
 		
+        <script>
+        //placed at bottom so that it starts when page fully loads
+        //sticky nav js and css from:
+        //https://www.w3schools.com/howto/howto_js_navbar_sticky.asp
+        window.onscroll = function() {myFunction()};
+        var localnavbar = document.getElementById("localnavbar");
+        var sticky = localnavbar.offsetTop;
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                localnavbar.classList.add("sticky")
+            } else {
+                localnavbar.classList.remove("sticky");
+            }
+        }
+        </script>
+        
 	</body>
 </html>
