@@ -1,0 +1,50 @@
+﻿{
+  "buildings": [
+    {
+      "code": "IB",
+      "name": "Instructional Building",
+      "food": [
+        {
+          "Place": "temp"
+        }
+      ],
+      "floors": 3
+    },
+    {
+      "code": "DH",
+      "name": "Deerfield Hall",
+      "Food": [ {} ],
+      "floors": 4
+    },
+    {
+      "code": "NE",
+      "name": "North Building",
+      "Food": [ {} ],
+      "floors": 8
+    },
+    {
+      "code": "CC",
+      "name": "CCIT",
+      "Food": [ {} ],
+      "floors": 3
+    },
+    {
+      "code": "DV",
+      "name": "Davis",
+      "Food": [ {} ],
+      "floors": 3
+    },
+    {
+      "code": "KN",
+      "name": "Kanaff",
+      "Food": [ {} ],
+      "floors": 3
+    },
+    {
+      "code": "Library",
+      "name": "Library",
+      "Food": [ {} ],
+      "floors": 4
+    }
+  ]
+}

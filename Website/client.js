@@ -55,7 +55,7 @@ function login(){
   	};
 
   	var pullResults;
-  	var page="#login";
+  	let page="#login";
   	
   	lambda.invoke(params, function(error, data) {
   		if (error) {
@@ -70,12 +70,14 @@ function login(){
 
     		}
   		}
+  		setCookie('page', page, 360);
+  		$(page).show();
+		console.log(page);	
+		$("#navbar").show();
 	});
 	
-	setCookie('page', page, 360);
-	$(page).show();
-	console.log(page);	
-	$("#navbar").show();
+	
+
 }
 
 //for user logout --------------------------------------------------
