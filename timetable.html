@@ -131,7 +131,7 @@
 						}
 					}
 					e.target.style.backgroundColor = "grey";
-					$.getJSON("./data/courses.json", function(courses){
+					$.getJSON("./data/courses.json", function(courses){ //get request for single course
 						console.log(courses);
 						text = "";
 						for(var key in courses){
@@ -142,10 +142,10 @@
 							text += "<p>" + course.code + course.semester + "<br>";
 							text += course.name + "<br><br></p>";
 							text += course.description + "</div>";
-							text += "<div><form id=\"form\"><table name=\"lectures\">";
+							text += "<div><form method=\"POST\" action=\"/api/poo\"><table name=\"lectures\">"; //make post request for enrolling
 							for(var i = 0; i < course.lectures.length; i++){
 								lecture = course.lectures[i];
-								text += "<tr><td><input type=\"radio\" form=\"form\" class=\"lecture\" value=\"" + lecture.section + "\"><label>LEC" + lecture.section + "</label></td><td><p>";
+								text += "<tr><td><input type=\"radio\" name=\"lecture\" value=\"" + lecture.section + "\"><label>LEC" + lecture.section + "</label></td><td><p>";
 								for(var j = 0; j < lecture.timings.length; j++){
 									timing = lecture.timings[j];
 									text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
@@ -171,7 +171,7 @@
 						return;
 					}
 					var search = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-					$.getJSON("./data/courses.json", function(courses){
+					$.getJSON("./data/courses.json", function(courses){ //get request for all matching courses
 						console.log(courses);
 						text = "";
 						for(var key in courses){
@@ -226,7 +226,7 @@
 				}
 				var timetable = document.getElementById("timetable");
 				timetable.innerHTML = text;
- 				$.getJSON("./data/timeTable.json", function(courses){
+ 				$.getJSON("./data/timeTable.json", function(courses){ //get request for enrolled courses
  					console.log(courses);
  					for(var i = 0; i < courses.length; i++){
  						var course = courses[i];
