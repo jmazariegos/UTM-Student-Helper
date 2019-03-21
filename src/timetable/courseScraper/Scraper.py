@@ -61,7 +61,7 @@ def scrape_courses(criteria, session):
             if len(cells) < 13:
                 continue
             section = {'section': cells[1].text[3:], 'instructor': cells[2].text, 'timings': []}
-            if cells[7].text.count('\n') > 1:
+            if cells[7].text.count('\n') >= 1:
                 days = cells[7].text.split('\n')
                 starts = cells[8].text.split('\n')
                 ends = cells[9].text.split('\n')

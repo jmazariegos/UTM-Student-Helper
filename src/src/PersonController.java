@@ -16,6 +16,7 @@ import java.util.List;
 public class PersonController {
   @Autowired
   private PersonRepository repository;
+
   
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public List<Person> getAllPeople() {

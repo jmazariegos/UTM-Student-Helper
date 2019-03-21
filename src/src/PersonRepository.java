@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface PersonRepository extends MongoRepository<Person, String> {
 
-	List<Person> findByLastName(@Param("name") String name);
+	List<Person> findByLastNameIgnoreCase(@Param("name") String name);
 
 }
