@@ -19,11 +19,10 @@ function loadBuilding(building) {
                 }
             }
 
-            if(placeJSON == null){
+            if(placeJSON === null){
                 console.log("Shouldn't be here");
                 return;
             }
-
 
             // Take apart button table
             while (table.rows.length>0){
@@ -39,7 +38,66 @@ function loadBuilding(building) {
             var pic = document.getElementById("mapImg");
             pic.src ="images/parking-map.PNG"; // This to be changed to proper image
 
+            // Floors JSON:
+            var names ={
+                1:"1st Floor",
+                2:"2nd Floor",
+                3:"3rd Floor",
+                4:"4th Floor",
+                5:"5th Floor",
+                6:"6th Floor",
+                7:"7th Floor",
+                8:"8th Floor",
+                9:"9th Floor",
+            }
+
             // Add New Buttons for each floor
+            var floor = placeJSON.floors
+            for (var i=floor; i > 0; i--){
+                var row = table.insertRow(0);
+                var cell = row.insertCell(0);
+                row.id = i;
+                var createClickHandler = function(row) {
+                    return function() {
+                        var cell = row.getElementsByTagName("td")[0];
+                        var id = cell.val;
+                        console.log("Floor: " + id);
+                        
+                    };
+                  };
+                row.onclick = createClickHandler(row);
+                cell.val = i;
+                cell.innerHTML = names[i];
+            }
+
+            var row = table.insertRow(0);
+            var cell = row.insertCell(0);
+            cell.innerHTML = "Front";
+            var createClickHandler = function(row) {
+                    return function() {
+                        var cell = row.getElementsByTagName("td")[0];
+                        var id = cell.val;
+                        console.log("FRONT: ");
+                        
+                    };
+                  };
+            cell.val = 0;
+            row.onclick = createClickHandler(row);
+
+            var row = table.insertRow(0);
+            var cell = row.insertCell(0);
+            cell.innerHTML = "Campus";
+            var createClickHandler = function(row) {
+                    return function() {
+                        loadMain();   
+                    };
+                  };
+            cell.val = 0;
+            row.onclick = createClickHandler(row);
+
+
+
+
 
             // Add Apropriate listeners
             

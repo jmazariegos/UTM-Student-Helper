@@ -13,14 +13,14 @@
  		-> ignore housing
  		-> Get pictures
  		-> Food done, make the edits with Map
- 		
+
  		-> Location Map
  			-> Need pictures of each location
  			-> setup folder with each floor plan init 
  				-> First floor IB -> ib/1.jpeg
  				-> This for easy access
-
- 			-> location/0.jpeg is exterior picture
+ 				-> location/0.jpeg is exterior picture
+ 			
 
  	-> Friends
  		-> Friends div
