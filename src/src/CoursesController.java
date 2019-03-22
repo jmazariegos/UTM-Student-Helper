@@ -7,9 +7,11 @@ import javax.validation.Valid;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,11 +20,11 @@ public class CoursesController {
 	@Autowired
 	private CoursesRepository coursesRepository;
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Courses> getCourses(@RequestBody Map<String, String> body) {
-		String code = body.get("code");
-		String session = body.get("session");
-		String semester = body.get("semester");
+	public List<Courses> getCourses(@RequestParam("code") String code, 
+									@RequestParam("session") String session,
+									@RequestParam("semester") String semester) {
 		return coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester);
 	}
 	
