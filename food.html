@@ -68,6 +68,7 @@
             <a href="#library">Library</a>
             <a href="#oph">OPH</a>            
             <a href="#rawc">RAWC</a>
+            <a href="#studentcentre">Student Centre</a>
             <a href="#kaneff">Kaneff</a>
         </div>
         
@@ -367,6 +368,30 @@
 		</div>
 		<!--RAWC end-->
 		
+		<!--Student Centre begin-->
+		<div id="studentcentre"> <h3>Student Centre</h3>
+		
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>The Blind Duck</td>
+                    <td>
+                        <ul>
+                        <li class="mon-wed">Monday - Wednesday: 11am – 8pm</li>
+                        <li class="thurs">Thursday: 11am – 7pm</li>
+                        <li class="fri">Friday: 11am – 5pm</li>
+                        <li class="weekend">Weekend: CLOSED</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+		
+		</div>
+		<!--Student Centre end-->
+		
 		<!--Kaneff begin-->
 		<div id="kaneff"> <h3>Kaneff</h3>
 		
@@ -408,14 +433,20 @@
         //change css based on date
         var day = new Date();
         var dayAsInt = day.getDay();
-        var block1;
-        var block2;
+        var block1 = "";
+        var block2 = "";
+        var block3 = "";
         if (dayAsInt == 0){
             block1 = document.getElementsByClassName("sun")
             block2 = document.getElementsByClassName("weekend");
-        } else if (dayAsInt <= 4){
-            block1 = document.getElementsByClassName("mon-thurs");
-            block2 = document.getElementsByClassName("mon-fri");
+        } else if (dayAsInt <= 3){
+            block1 = document.getElementsByClassName("mon-wed");
+            block2 = document.getElementsByClassName("mon-thurs");
+            block3 = document.getElementsByClassName("mon-fri");
+		} else if (dayAsInt <= 4){
+		    block1 = document.getElementsByClassName("thurs");
+            block2 = document.getElementsByClassName("mon-thurs");
+            block3 = document.getElementsByClassName("mon-fri");
         } else if (dayAsInt == 5){
             block1 = document.getElementsByClassName("fri");
             block2 = document.getElementsByClassName("mon-fri");
@@ -432,6 +463,11 @@
         for(var i=0; i<block2.length; i++){
             block2[i].style["color"] = "#2E8B57";
             block2[i].style["font-weight"] = "bold";
+        }
+		
+		for(var i=0; i<block3.length; i++){
+            block3[i].style["color"] = "#2E8B57";
+            block3[i].style["font-weight"] = "bold";
         }
         
         </script>
