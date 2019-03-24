@@ -3,49 +3,49 @@
 <head>
 	<title>Our UTM</title>
 	<style>
-			h2, th{
-				text-align: center;
-			}
-			th{
-			  border: 1px solid white;	
-			  padding: 10px 40px 10px 40px;
-			  background-color: lightblue;
-			}
-			table{
-			  margin-left: auto;
-			  margin-right: auto;
-			}
-			td{
-			  border: 1px solid white;
-			  text-align: left;
-			  font-size: 20px;
-			  margin: 10px;
-			  background-color: lightgray;
-			  height: 50px;
+     h2, th{
+        text-align: center;
+    }
+    th{
+       border: 1px solid white;	
+       padding: 10px 40px 10px 40px;
+       background-color: lightblue;
+   }
+   table{
+       margin-left: auto;
+       margin-right: auto;
+   }
+   td{
+       border: 1px solid white;
+       text-align: left;
+       font-size: 20px;
+       margin: 10px;
+       background-color: lightgray;
+       height: 50px;
 
-			  width: 10%;
-			}
-			.class {
-				background-color: lightgreen;
-				opacity: 10%;
-				font-size: 14px;
-				border: 0.5px solid gray;
-			}
-			.classinfo{
-				display: none;
-				background-color: lightblue;
-				border-radius: 1px;
-				box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);  
-				opacity: 10%;
-				font-size: 14px;
-				position: absolute;
-			}
-			.class:hover .classinfo{
-				display: block;
-			}
-		</style> 
-	<meta charset="UTF-8"> 
-	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
+       width: 10%;
+   }
+   .class {
+    background-color: lightgreen;
+    opacity: 10%;
+    font-size: 14px;
+    border: 0.5px solid gray;
+}
+.classinfo{
+    display: none;
+    background-color: lightblue;
+    border-radius: 1px;
+    box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);  
+    opacity: 10%;
+    font-size: 14px;
+    position: absolute;
+}
+.class:hover .classinfo{
+    display: block;
+}
+</style> 
+<meta charset="UTF-8"> 
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
 
 <script src="Website/jquery-3.3.1.min.js"></script>
 <script src="Website/client.js"></script>
@@ -70,9 +70,9 @@ navbar
 	<!-- Login page
 	----------------------------------------------------------
 -->
-    <div class="Body">
-        <div id="login">
-            <!-- <form id="loginForm"> -->
+<div class="Body">
+    <div id="login">
+        <!-- <form id="loginForm"> -->
             <br>
             <!-- these are temp till I fully css this page -->
             User Name:
@@ -92,54 +92,54 @@ navbar
         <!-- Regstration page
         ----------------------------------------------------------
     -->
-        <!-- Need to make a Pop up -->
-        <div id="reg">
-            <br>
-            User Name:
-            <input id="ruserid" name="userid" required><br>
-            E-Mail:
-            <input id="remail" type="Email" name="Email" required><br>
-            Password:
-            <input id="rpass1" type="password" required>
-            Confirm Password:
-            <input id="rpass2" type="password" required><br>
-            <button id="regButton" type="submit">Submit<br></button>
-        </div>
+    <!-- Need to make a Pop up -->
+    <div id="reg">
+        <br>
+        User Name:
+        <input id="ruserid" name="userid" required><br>
+        E-Mail:
+        <input id="remail" type="Email" name="Email" required><br>
+        Password:
+        <input id="rpass1" type="password" required>
+        Confirm Password:
+        <input id="rpass2" type="password" required><br>
+        <button id="regButton" type="submit">Submit<br></button>
+    </div>
 
         <!-- Reset page
         ----------------------------------------------------------
     -->
 
 
-        <!-- Need to make a Pop up -->
-        <div id="reset">
-            <br>
-            Email:
-            <input id="resemail" type='Email' required>
-            <button id="resetButton" type="submit">Submit<br></button>
-        </div>
+    <!-- Need to make a Pop up -->
+    <div id="reset">
+        <br>
+        Email:
+        <input id="resemail" type='Email' required>
+        <button id="resetButton" type="submit">Submit<br></button>
+    </div>
 
         <!-- Home page
         ----------------------------------------------------------
     -->
 
-        <div id="home">
-            <div class="container-fluid" id="main">
-                <!-- Burger -->
-                <div class="row py-3">
-                    <div class="col-2 px-1 bg-light position-fixed" id="sticky-sidebar">
-                        <div class="nav-link">Map</div>
-                        <div class="nav-link">Calendar</div>
-                        <div class="nav-link">Notes</div>
-                        <div class="nav-link">Timetable</div>
-                        <div class="nav-link">Settings</div>
-                        <div id='logout' class="nav-link">Logout</div>
-                    </div>
-                    <!-- Calender Body -->
-                    <div class="col offset-2" id="main">
-                        <h2>Time Table</h2>
+    <div id="home">
+        <div class="container-fluid" id="main">
+            <!-- Burger -->
+            <div class="row py-3">
+                <div class="col-2 px-1 bg-light position-fixed" id="sticky-sidebar">
+                    <div id='side-map' class="nav-link">Map</div>
+                    <div class="nav-link">Calendar</div>
+                    <div class="nav-link">Notes</div>
+                    <div class="nav-link">Timetable</div>
+                    <div class="nav-link">Settings</div>
+                    <div id='logout' class="nav-link">Logout</div>
+                </div>
+                <!-- Calender Body -->
+                <div class="col offset-2" id="main">
+                    <h2>Time Table</h2>
 
-                        <table id="timetable">
+                    <table id="timetable">
 
                             <script>//request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
 		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
@@ -223,114 +223,124 @@ navbar
 
 			}
 		});</script>
-                            <tr>
-                                <th>Sunday</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
-                                <th>Thursday</th>
-                                <th>Friday</th>
-                                <th>Saturday</th>
-                            </tr>
+        <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
 
-                            <tr>
-                                <td>27</td>
-                                <td>28</td>
-                                <td>29</td>
-                                <td>30</td>
-                                <td>31</td>
-                                <td>1</td>
-                                <td>2</td>
-                            </tr>
+        <tr>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
 
-                            <tr>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                            </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
 
-                            <tr>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
-                                <td>15</td>
-                                <td>16</td>
-                            </tr>
+        <tr>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
 
-                            <tr>
-                                <td>17</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td>20</td>
-                                <td>21</td>
-                                <td>22</td>
-                                <td>23</td>
-                            </tr>
+        <tr>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+        </tr>
 
-                            <tr>
-                                <td>24</td>
-                                <td>25</td>
-                                <td>26</td>
-                                <td>27</td>
-                                <td>28</td>
-                                <td>1</td>
-                                <td>2</td>
-                            </tr>
-                        </table>
+        <tr>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    </table>
 
-                        <!-- Side Buttons -->
-                    </div>
-                    <div id="buttons">
+    <!-- Side Buttons -->
+</div>
+<div id="buttons">
 
-                        <button>New Note +</button>
+    <button>New Note +</button>
 
-                        <div id="CurrentNote">
+    <div id="CurrentNote">
 
-                        </div>
-                        <div id="buttonholder">
-                            <button>Add<br>Event</button>
-                            <button>Plan<br>Timetable</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+    <div id="buttonholder">
+        <button>Add<br>Event</button>
+        <button>Plan<br>Timetable</button>
+    </div>
+</div>
+</div>
+</div>
+</div>
         <!-- Map page
         ----------------------------------------------------------
     -->
 
-        <div class="map">
+    <div id="map"  >
+        <h1 id="mapTitle"></h1>
+        <!-- Our map image -->
+        <div id="mapContainer">
+            <!-- The map image -->
+            <img id="mapImg" />
+            <!-- Link Buttons -->
+            <table id="mapButtons">
+            </table>
         </div>
+        <table id="foodTable"></table>
+    </div>
 
         <!-- Account page
         ----------------------------------------------------------
     -->
 
-        <div class="account">
-        </div>
+    <div class="account">
+    </div>
 
         <!-- Note page
         ----------------------------------------------------------
     -->
 
-        <div class="note">
-        </div>
+    <div class="note">
+    </div>
         <!-- Navbar page
         ----------------------------------------------------------
     -->
 
-        <div class="navbar">
-            <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
-                <img src="Website/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
-                <!-- <img src = ></img> -->
-            </nav>
-        </div>
+    <div class="navbar">
+        <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+            <img src="Website/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <!-- <img src = ></img> -->
+        </nav>
+    </div>
 
 
 
