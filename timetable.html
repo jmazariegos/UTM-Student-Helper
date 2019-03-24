@@ -95,6 +95,7 @@
 			}
 		</style> 
 		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>	
+		<script src="./Scripts/reloadTimetable.js"></script>
 	</head>
 
 	<body>
@@ -131,38 +132,160 @@
 						}
 					}
 					e.target.style.backgroundColor = "grey";
-					$.getJSON("./data/courses.json", function(courses){ //get request for single course
+					var data = {
+							"code": e.target.innerHTML.substring(0, 8),
+							"session": $session.value,
+							"semester": $semester.value
+					}
+					$.getJSON("http://localhost:8080/courses/", data, function(courses){ //get request for single course
 						console.log(courses);
-						text = "";
-						for(var key in courses){
-							course = courses[key];
-							if(!e.target.innerHTML.startsWith(course.code + course.semester)){
-								continue;
+						var course = courses[0];
+						text = "<p>" + course.code + course.semester + "<br>";
+						text += course.name + "<br><br></p>";
+						text += course.description + "</div>";
+						text += "<div><table name=\"lectures\">"; //make post request for enrolling
+						for(var i = 0; i < course.lectures.length; i++){
+							lecture = course.lectures[i];
+							text += "<tr><td><input type=\"radio\" name=\"lecture\" value=\"" + i + "\"><label>LEC" + lecture.section + "</label></td><td><p>";
+							for(var j = 0; j < lecture.timings.length; j++){
+								timing = lecture.timings[j];
+								text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
 							}
-							text += "<p>" + course.code + course.semester + "<br>";
-							text += course.name + "<br><br></p>";
-							text += course.description + "</div>";
-							text += "<div><form method=\"POST\" action=\"/api/poo\"><table name=\"lectures\">"; //make post request for enrolling
-							for(var i = 0; i < course.lectures.length; i++){
-								lecture = course.lectures[i];
-								text += "<tr><td><input type=\"radio\" name=\"lecture\" value=\"" + lecture.section + "\"><label>LEC" + lecture.section + "</label></td><td><p>";
-								for(var j = 0; j < lecture.timings.length; j++){
-									timing = lecture.timings[j];
-									text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
-								}
-								text += "</td></tr>";
-							}
-							text += "</table><input type=\"submit\" value=\"Enrol in course\"></form></div>"
-							break;
+							text += "</td></tr>";
 						}
-						$courseinfo.innerHTML = text;
+						for(var i = 0; i < course.tutorials.length; i++){
+							tutorial = course.tutorials[i];
+							text += "<tr><td><input type=\"radio\" name=\"tutorial\" value=\"" + i + "\"><label>TUT" + tutorial.section + "</label></td><td><p>";
+							for(var j = 0; j < tutorial.timings.length; j++){
+								timing = tutorial.timings[j];
+								text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
+							}
+							text += "</td></tr>";
+						}
+						for(var i = 0; i < course.practicals.length; i++){
+							practical = course.practicals[i];
+							text += "<tr><td><input type=\"radio\" name=\"practical\" value=\"" + i + "\"><label>PRA" + practical.section + "</label></td><td><p>";
+							for(var j = 0; j < practical.timings.length; j++){
+								timing = practical.timings[j];
+								text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
+							}
+							text += "</td></tr>";
+						}
+						$.getJSON("http://localhost:8080/timetable/exists", data, function(result){
+							if(result){
+								text += "</table><input type=\"submit\" value=\"Modify course\" name=\"enrol\">";
+								text += "<input type=\"submit\" value=\"Unenrol in course\" name=\"unenrol\"></div>";
+								$courseinfo.innerHTML = text;
+								
+								unenrolBtn = document.querySelector('input[name=\'unenrol\']');
+								if(unenrolBtn){
+									console.log(data);
+									unenrolBtn.onclick = function(element){
+								        $.ajax({
+								        	url: "http://localhost:8080/timetable/",
+								        	type: "DELETE",
+								        	data: JSON.stringify(data),
+								        	dataType: 'json',
+								        	contentType: 'application/json',
+								        	success: function(result){
+								        		console.log(result);
+								        		unenrolBtn.parentNode.removeChild(unenrolBtn);
+								        		document.querySelector('input[name=\'enrol\']').value = "Enrol in course";
+								        	},
+								        	error: function(err){
+								        		console.log(err);
+								        	}
+								        });
+								        var timetable = document.getElementById("timetable");
+								        reload();
+									};
+								}
+							}else{
+								text += "</table><input type=\"submit\" value=\"Enrol in course\" name=\"enrol\"></div>";
+								$courseinfo.innerHTML = text;
+							}
+							enrolBtn = document.querySelector('input[name=\'enrol\']');
+							if(enrolBtn){
+								enrolBtn.onclick = function(element){
+									var lecture = -1;
+									document.querySelectorAll('input[name=\'lecture\']').forEach(function(radio){
+										if(radio.checked){
+											lecture = radio.value;
+											return;
+										}
+									});
+									if(lecture === -1){
+										Alert("Choose a lecture section.");
+										return;
+									}
+									var tutorial = {};
+									document.querySelectorAll('input[name=\'tutorial\']').forEach(function(radio){
+										if(radio.checked){
+											tutorial = course.tutorials[radio.value];
+											return;
+										}
+									});
+									var practical = {};
+									document.querySelectorAll('input[name=\'practical\']').forEach(function(radio){
+										if(radio.checked){
+											practical = course.practicals[radio.value];
+											return;
+										}
+									});
+							        var newCourse = {
+							            "code": course.code,
+							            "session": course.session,
+							            "semester": course.semester,
+							            "name": course.name,
+							            "description": course.description,
+							            "lecture": course.lectures[lecture],
+							            "tutorial": tutorial,
+							            "practical": practical
+							        };
+							        $.ajax({
+							        	url: "http://localhost:8080/timetable/",
+							        	type: "POST",
+							        	data: JSON.stringify(newCourse),
+							        	dataType: 'json',
+							        	contentType: 'application/json',
+							        	success: function(result){
+							        		enrolBtn.value = "Modify course";
+							        		enrolBtn.insertAdjacentHTML("afterend", "<input type=\"submit\" value=\"Unenrol in course\" name=\"unenrol\">");
+											unenrolBtn = document.querySelector('input[name=\'unenrol\']');
+											if(unenrolBtn){
+												console.log(data);
+												unenrolBtn.onclick = function(element){
+											        $.ajax({
+											        	url: "http://localhost:8080/timetable/",
+											        	type: "DELETE",
+											        	data: JSON.stringify(data),
+											        	dataType: 'json',
+											        	contentType: 'application/json',
+											        	success: function(result){
+											        		console.log(result);
+											        		unenrolBtn.parentNode.removeChild(unenrolBtn);
+											        		enrolBtn.value = "Enrol in course";
+											        	},
+											        	error: function(err){
+											        		console.log(err);
+											        	}
+											        });
+											        var timetable = document.getElementById("timetable");
+											        reload();
+												};
+											}
+							        		console.log(result);
+							        	},
+							        	error: function(err){
+							        		console.log(err);
+							        	}
+							        });
+							    	var timetable = document.getElementById("timetable");
+							        reload();
+								}
+							}
+						});
 					});
-// 					document.querySelectorAll('.lecture').forEach(function(element){
-// 						element.addEventListener('click', function(){
-// 							const $lectures = document.querySelector('.lecture');
-							
-// 						});
-// 					});
 				}
 				
 				const typeHandler = function(e){
@@ -170,17 +293,16 @@
 						$table.innerHTML = "";
 						return;
 					}
-					var search = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-					$.getJSON("./data/courses.json", function(courses){ //get request for all matching courses
+					data = {
+							"code": e.target.value,
+							"session": $session.value,
+							"semester": $semester.value
+					}
+					$.getJSON("http://localhost:8080/courses/", data, function(courses){ //get request for all matching courses
 						console.log(courses);
 						text = "";
 						for(var key in courses){
 							course = courses[key];
-							if(!course.code.startsWith(search.toUpperCase()) && (!course.name.includes(search) || search.length < 4)
-									|| $session.value !== course.session || ($semester.value !== course.semester || 
-											($semester.value === "F" && course.semester == "Y"))){
-								continue;
-							}
 							text += "<tr><td class=\"course\">" + course.code + course.semester + "</td></tr>";
 						}
 						$table.innerHTML = text;
@@ -193,9 +315,11 @@
 				
 				$session.oninput = function(){
 					$searchbar.dispatchEvent(new Event('input'));
+					reload();
 				}
 				$semester.oninput = function(){
 					$searchbar.dispatchEvent(new Event('input'));
+					reload();
 				}
 				$searchbar.addEventListener('input', typeHandler);
 				$searchbar.addEventListener('propertyChange', typeHandler);
@@ -205,8 +329,6 @@
 			<table id="timetable"></table>
 			<script>
 				var days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-				var dtc = {"MO":1, "TU":2, "WE":3, "TH":4, "FR":5}
-				var ttr = {"09:00":2, "10:00":3, "11:00":4, "12:00":5, "13:00":6, "14:00":7, "15:00":8, "16:00":9, "17:00":10, "18:00":11, "19:00":12, "20:00":13, "21:00":14, "22:00":15}
 				var text = "<tr>";
 				for(var i = 0; i < 6; i++){
 					text += "<th>" + days[i] + "</th>";
@@ -226,46 +348,7 @@
 				}
 				var timetable = document.getElementById("timetable");
 				timetable.innerHTML = text;
- 				$.getJSON("./data/timeTable.json", function(courses){ //get request for enrolled courses
- 					console.log(courses);
- 					for(var i = 0; i < courses.length; i++){
- 						var course = courses[i];
- 						var lecture = course.lecture;
- 						var tutorial = course.tutorial;
- 						var practical = course.practical;
- 						
- 						var timings = lecture.timings;
- 						for(var i = 0; i < timings.length; i++){
- 							for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
- 								var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
- 								var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>LEC" + lecture.section + "</div>";
- 								timeslot.insertAdjacentHTML('beforeend', new_node);
- 							}
- 						}
- 						
- 						timings = tutorial.timings;
- 						if(timings){
-	 						for(var i = 0; i < timings.length; i++){
-	 							for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
-	 								var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
-	 								var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>TUT" + tutorial.section + "</div>";
-	 								timeslot.insertAdjacentHTML('beforeend', new_node);
-	 							}
-	 						}
- 						}
- 						
- 						timings = practical.timings;
- 						if(timings){
-	 						for(var i = 0; i < timings.length; i++){
-	 							for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
-	 								var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
-	 								var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>PRA" + practical.section + "</div>";
-	 								timeslot.insertAdjacentHTML('beforeend', new_node);
-	 							}
-	 						}
- 						}
- 					}
- 				});
+		        reload();
 			</script>
 		</div>
 	</body>

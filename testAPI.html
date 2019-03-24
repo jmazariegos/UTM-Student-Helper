@@ -15,6 +15,9 @@
 					"lastName": "Fraggins"
 		        };
 		        xhr.send(JSON.stringify(j));
+		        xhr.onreadystatechange=(e)=>{
+		        	console.log(xhr.responseText);
+		        }
 			}
 		</script>
 	</head>
@@ -27,10 +30,9 @@
 			<input type="submit" value="Hello!" onclick="submitForm()">
 		</form>
 		<script>
-			const $form = document.querySelector('hello');
-			$form.readystatechange = function(data){
-				console.log(data);
-			};
+			$.getJSON("http://localhost:8080/courses/", {"code": "csc1", "session": "fall/winter", "semester": "F"}, function(courses){
+				console.log(courses);
+			});
 		</script>
 	</body>
 </html>
