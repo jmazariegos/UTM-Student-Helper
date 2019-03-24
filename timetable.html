@@ -131,7 +131,7 @@
 						}
 					}
 					e.target.style.backgroundColor = "grey";
-					data = {
+					var data = {
 							"code": e.target.innerHTML.substring(0, 8),
 							"session": $session.value,
 							"semester": $semester.value
@@ -152,49 +152,139 @@
 							}
 							text += "</td></tr>";
 						}
-						text += "</table><input type=\"submit\" value=\"Enrol in course\" name=\"enrol\"></div>"
-						$courseinfo.innerHTML = text;
-						
-						document.querySelector('input[name=\'enrol\']').onclick = function(element){
-							var lecture = -1;
-							document.querySelectorAll('input[name=\'lecture\']').forEach(function(radio){
-								if(radio.checked){
-									lecture = radio.value;
-									return;
-								}
-							});
-							if(lecture === -1){
-								console.log("no lecture chosen")
-								return;
+						for(var i = 0; i < course.tutorials.length; i++){
+							tutorial = course.tutorials[i];
+							text += "<tr><td><input type=\"radio\" name=\"tutorial\" value=\"" + i + "\"><label>TUT" + tutorial.section + "</label></td><td><p>";
+							for(var j = 0; j < tutorial.timings.length; j++){
+								timing = tutorial.timings[j];
+								text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
 							}
-					        var data = {
-					            "code": course.code,
-					            "session": course.session,
-					            "semester": course.semester,
-					            "name": course.name,
-					            "description": course.description,
-					            "lecture": course.lectures[lecture],
-					            "tutorial": {},
-					            "practical": {}
-					        };
-					        $.ajax({
-					        	url: "http://localhost:8080/timetable/",
-					        	type: "POST",
-					        	data: JSON.stringify(data),
-					        	dataType: 'json',
-					        	contentType: 'application/json',
-					        	success: function(result){
-					        		console.log(result);
-					        	},
-					        	error: function(err){
-					        		console.log(err);
-					        	}
-					        });
-					        clean();
-					        reload();
+							text += "</td></tr>";
 						}
+						for(var i = 0; i < course.practicals.length; i++){
+							practical = course.practicals[i];
+							text += "<tr><td><input type=\"radio\" name=\"practical\" value=\"" + i + "\"><label>PRA" + practical.section + "</label></td><td><p>";
+							for(var j = 0; j < practical.timings.length; j++){
+								timing = practical.timings[j];
+								text += timing[0] + " " + timing[1] + "-" + timing[2] + "<br>";
+							}
+							text += "</td></tr>";
+						}
+						$.getJSON("http://localhost:8080/timetable/exists", data, function(result){
+							if(result){
+								text += "</table><input type=\"submit\" value=\"Modify course\" name=\"enrol\">";
+								text += "<input type=\"submit\" value=\"Unenrol in course\" name=\"unenrol\"></div>";
+								$courseinfo.innerHTML = text;
+								
+								unenrolBtn = document.querySelector('input[name=\'unenrol\']');
+								if(unenrolBtn){
+									console.log(data);
+									unenrolBtn.onclick = function(element){
+								        $.ajax({
+								        	url: "http://localhost:8080/timetable/",
+								        	type: "DELETE",
+								        	data: JSON.stringify(data),
+								        	dataType: 'json',
+								        	contentType: 'application/json',
+								        	success: function(result){
+								        		console.log(result);
+								        		unenrolBtn.parentNode.removeChild(unenrolBtn);
+								        		document.querySelector('input[name=\'enrol\']').value = "Enrol in course";
+								        	},
+								        	error: function(err){
+								        		console.log(err);
+								        	}
+								        });
+								        var timetable = document.getElementById("timetable");
+								        reload();
+									};
+								}
+							}else{
+								text += "</table><input type=\"submit\" value=\"Enrol in course\" name=\"enrol\"></div>";
+								$courseinfo.innerHTML = text;
+							}
+							enrolBtn = document.querySelector('input[name=\'enrol\']');
+							if(enrolBtn){
+								enrolBtn.onclick = function(element){
+									var lecture = -1;
+									document.querySelectorAll('input[name=\'lecture\']').forEach(function(radio){
+										if(radio.checked){
+											lecture = radio.value;
+											return;
+										}
+									});
+									if(lecture === -1){
+										Alert("Choose a lecture section.");
+										return;
+									}
+									var tutorial = {};
+									document.querySelectorAll('input[name=\'tutorial\']').forEach(function(radio){
+										if(radio.checked){
+											tutorial = course.tutorials[radio.value];
+											return;
+										}
+									});
+									var practical = {};
+									document.querySelectorAll('input[name=\'practical\']').forEach(function(radio){
+										if(radio.checked){
+											practical = course.practicals[radio.value];
+											return;
+										}
+									});
+							        var newCourse = {
+							            "code": course.code,
+							            "session": course.session,
+							            "semester": course.semester,
+							            "name": course.name,
+							            "description": course.description,
+							            "lecture": course.lectures[lecture],
+							            "tutorial": tutorial,
+							            "practical": practical
+							        };
+							        $.ajax({
+							        	url: "http://localhost:8080/timetable/",
+							        	type: "POST",
+							        	data: JSON.stringify(newCourse),
+							        	dataType: 'json',
+							        	contentType: 'application/json',
+							        	success: function(result){
+							        		enrolBtn.value = "Modify course";
+							        		enrolBtn.insertAdjacentHTML("afterend", "<input type=\"submit\" value=\"Unenrol in course\" name=\"unenrol\">");
+											unenrolBtn = document.querySelector('input[name=\'unenrol\']');
+											if(unenrolBtn){
+												console.log(data);
+												unenrolBtn.onclick = function(element){
+											        $.ajax({
+											        	url: "http://localhost:8080/timetable/",
+											        	type: "DELETE",
+											        	data: JSON.stringify(data),
+											        	dataType: 'json',
+											        	contentType: 'application/json',
+											        	success: function(result){
+											        		console.log(result);
+											        		unenrolBtn.parentNode.removeChild(unenrolBtn);
+											        		enrolBtn.value = "Enrol in course";
+											        	},
+											        	error: function(err){
+											        		console.log(err);
+											        	}
+											        });
+											        var timetable = document.getElementById("timetable");
+											        reload();
+												};
+											}
+							        		console.log(result);
+							        	},
+							        	error: function(err){
+							        		console.log(err);
+							        	}
+							        });
+							    	var timetable = document.getElementById("timetable");
+							        reload();
+								}
+							}
+						});
 					});
-					
 				}
 				
 				const typeHandler = function(e){
@@ -224,9 +314,11 @@
 				
 				$session.oninput = function(){
 					$searchbar.dispatchEvent(new Event('input'));
+					reload();
 				}
 				$semester.oninput = function(){
 					$searchbar.dispatchEvent(new Event('input'));
+					reload();
 				}
 				$searchbar.addEventListener('input', typeHandler);
 				$searchbar.addEventListener('propertyChange', typeHandler);
@@ -255,7 +347,7 @@
 				}
 				var timetable = document.getElementById("timetable");
 				timetable.innerHTML = text;
-				reload();
+		        reload();
 			</script>
 		</div>
 	</body>

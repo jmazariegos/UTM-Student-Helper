@@ -19,6 +19,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class TimetableController {
 	@Autowired
 	private TimetableRepository timetableRepository;
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/exists", method = RequestMethod.GET)
+	public Boolean courseExists(@RequestParam("code") String code,
+								@RequestParam("session") String session,
+								@RequestParam("semester") String semester) {
+		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+		if(timetable.size() > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/", method = RequestMethod.DELETE)
+	public Timetable deleteCourse(@RequestBody Map<String, String> body) {
+		String code = body.get("code");
+		String session = body.get("session");
+		String semester = body.get("semester");
+		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+		if(timetable.size() > 0) {
+			Timetable course = timetable.get(0);
+			timetableRepository.deleteById(course.get_id());
+			return course;
+		}
+		return null;
+	}
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.GET)

@@ -25,7 +25,9 @@ public class CoursesController {
 	public List<Courses> getCourses(@RequestParam("code") String code, 
 									@RequestParam("session") String session,
 									@RequestParam("semester") String semester) {
-		return coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+		List<Courses> courses = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+		courses.addAll(coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, "Y"));
+		return courses;
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
