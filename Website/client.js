@@ -70,7 +70,7 @@ function login(){
   	};
 
   	var pullResults;
-  	var page="#login";
+  	let page="#login";
   	
   	lambda.invoke(params, function(error, data) {
   		if (error) {
@@ -78,19 +78,24 @@ function login(){
   		} else {
     		pullResults = JSON.parse(data.Payload);
     		console.log(pullResults);
-    		if(pullResults['msg']==="login: success"){
+    		if(pullResults['msg']==="login: successful"){
     			hideall();
     			page="#home";
+    			console.log("in if-> "+page);	
     			$(page).show();
+
 
     		}
   		}
+  		setCookie('page', page, 360);
+  		$(page).show();
+		console.log("after if-> "+page);	
+		$("#navbar").show();
+  		
 	});
 	
-	setCookie('page', page, 360);
-	$(page).show();
-	console.log(page);	
-	$("#navbar").show();
+	
+
 }
 
 //for user logout --------------------------------------------------
@@ -223,6 +228,7 @@ function hideall(){
 	$("#account").hide();
 	$("#note").hide();
 	$("#navbar").hide();
+
 }
 
 
@@ -390,6 +396,8 @@ function highlightday(){
 
 // Loads the main Map menu
 function loadMain(){
+	$("#map").show();
+	$("#navbar").show();
     // Create the title
     var title = document.getElementById("mapTitle");
     title.innerHTML = "MAP OF UTM";
