@@ -1,0 +1,36 @@
+ Anthony Notes:
+ Pls Ignore this -> Delete b4 pushing master
+ 	-> Floating Menus
+ 		-> Redesign Register -> Floats on login home page
+ 		-> Redseign Forgot Password -> "	"	"	"	"
+ 		-> Floats can be used for other elements as well(remove friend, add friend, etc)
+ 		-> Remove User from friend list
+ 		-> Ibad suggests Posistion Relative, Posistion Absolute
+
+ 	-> Maps + Food
+ 		-> Main Map with changing Sidebar -> More info in Black notebook
+ 		-> under Map -> food optionin regards to location
+ 		-> ignore housing
+ 		-> Get pictures
+ 		-> Food done, make the edits with Map
+
+ 		-> Location Map
+ 			-> Need pictures of each location
+ 			-> setup folder with each floor plan init 
+ 				-> First floor IB -> ib/1.jpeg
+ 				-> This for easy access
+ 				-> location/0.jpeg is exterior picture
+ 			
+
+ 	-> Friends
+ 		-> Friends div
+ 			-> Generate friend list
+ 			-> Buttons for each friend
+
+ 		-> Request div
+ 			-> View requests sent to user
+ 			-> button for each request
+
+ 		-> Blocked div -> Starts hidden
+ 			-> Viewed Blocked users
+ 			-> buttons to unblock
