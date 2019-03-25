@@ -11,10 +11,12 @@
 - Anmol
 
 **Release Goals**:
-- Must be able to present a usable demoing software by the end of this sprint 
-- Connect all components to the website
-- Focus on finishing core stories
-- Get database sorted out
+
+- Overview of Release Goals
+  - Must be able to present a usable demoing software by the end of this sprint 
+  - Connect all components to the website
+  - Focus on finishing core stories
+  - Get database sorted out
 
 - Ability to use timetable and calendar
   - User stories:
