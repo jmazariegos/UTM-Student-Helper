@@ -3,9 +3,7 @@
 <head>
 	<title>Our UTM</title>
 	<style>
-			h2, th{
-				text-align: center;
-			}
+/*<!-- Need to go over this -->*/
 			th{
 			  border: 1px solid white;	
 			  padding: 10px 40px 10px 40px;
@@ -45,8 +43,7 @@
 			}
 		</style> 
 	<meta charset="UTF-8"> 
-	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
-
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script> 
 <script src="Website/jquery-3.3.1.min.js"></script>
 <script src="Website/client.js"></script>
 <link rel="stylesheet" type="text/css" href="Website/layout.css">
@@ -127,10 +124,12 @@ navbar
 		<!-- Burger -->
 		<div class="row py-3">
 			<div class="col-2 px-1 bg-light position-fixed" id="sticky-sidebar">
-				<div class="nav-link">Map</div>
-				<div class="nav-link">Calendar</div>
-				<div class="nav-link">Notes</div>
-				<div class="nav-link">Timetable</div>
+                <div id='Home' class="nav-link">HOME</div>
+                <div class="nav-link">Calendar</div>
+                <div class="nav-link">Notes</div>
+                <div class="nav-link">Timetable</div>
+                <div class="nav-link">Friends</div>
+				<div id='side-map' class="nav-link">Map</div>
 				<div class="nav-link">Settings</div>
 				<div id='logout'  class="nav-link">Logout</div>
 			</div>
@@ -306,8 +305,18 @@ navbar
 	----------------------------------------------------------
 -->
 
-<div class="map">
-</div>
+ <div id="map">
+        <h1 id="mapTitle"></h1>
+        <!-- Our map image -->
+        <div id="mapContainer">
+            <!-- The map image -->
+            <img id="mapImg" />
+            <!-- Link Buttons -->
+            <table id="mapButtons">
+            </table>
+        </div>
+        <table id="foodTable"></table>
+    </div>
 
 		<!-- Account page
 	----------------------------------------------------------

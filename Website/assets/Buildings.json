@@ -1,0 +1,212 @@
+﻿{
+  "buildings": [
+    {
+      "code": "IB",
+      "name": "Instructional Building",
+      "Food": [
+        {
+          "name": "Bento Sushi",
+          "mon-thurs": "10:30am - 6pm",
+          "fri": "10:30am - 4pm",
+          "Sat": "CLOSED",
+          "Sun": "CLOSED" 
+        },
+        {
+          "name": "Subway",
+          "mon-thurs": "10:30am - 9pm",
+          "fri": "10:30am - 6pm",
+          "Sat": "11am - 4pm",
+          "Sun": "11am - 4pm" 
+        },
+        {
+          "name": "Quesada",
+          "mon-thurs": "10:30am - 9pm",
+          "fri": "10:30am - 6pm",
+          "Sat": "CLOSED",
+          "Sun": "CLOSED" 
+        }
+      ],
+      "floors": 3
+    },
+    {
+      "code": "DH",
+      "name": "Deerfield Hall",
+      "Food": [ {
+          "name": "North Side Bistro",
+          "mon-thurs": "8:30am - 6pm",
+          "fri": "8:30am - 3pm",
+          "Sat": "CLOSED",
+          "Sun": "CLOSED" 
+        } ],
+      "floors": 4
+    },
+    {
+      "code": "NE",
+      "name": "North Building",
+      "Food": [ {
+          "name": "'New' North",
+          "mon-thurs": "7:30am - 5pm",
+          "fri": "7:30am - 3pm",
+          "Sat": "CLOSED",
+          "Sun": "CLOSED" 
+        } ],
+      "floors": 0
+    },
+    {
+      "code": "CC",
+      "name": "CCIT",
+      "Food": [ {
+          "name": "Tim Hortons Self Serve",
+          "mon-thurs": "8am - 4pm",
+          "fri": "8am - 2pm",
+          "Sat": "CLOSED",
+          "Sun": "CLOSED" 
+        } ],
+      "floors": 3
+    },
+    {
+      "code": "DV",
+      "name": "Davis",
+      "Food": [ {
+        "name": "Elements",
+        "mon-thurs": "11am - 6pm",
+        "fri": "11am - 4pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "Fusion 5",
+        "mon-thurs": "11am - 7pm",
+        "fri": "11am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "International Kitchen",
+        "mon-thurs": "11am - 3pm",
+        "fri": "11am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "Pizza Pizza",
+        "mon-thurs": "10:30am - 9pm",
+        "fri": "10:30am - 4pm",
+        "Sat": "11am - 4pm",
+        "Sun": "11am - 4pm" 
+      },
+      {
+        "name": "Quesada",
+        "mon-thurs": "11am - 7pm",
+        "fri": "11am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "Salad Bar",
+        "mon-thurs": "8am - 3pm",
+        "fri": "11am - 2pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "Tim Hortons - Cafe Express",
+        "mon-thurs": "8am - 6pm",
+        "fri": "8am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED"
+      },
+      {
+        "name": "Vegilicious",
+        "mon-thurs": "11am - 6pm",
+        "fri": "11am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "Oooh la-la",
+        "mon-thurs": "8am - 6pm",
+        "fri": "11am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+      {
+        "name": "Grab and Go",
+        "mon-thurs": "8am - 6pm",
+        "fri": "8am - 4pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      },
+       {
+        "name": "Tim Hortons - The Meeting Place",
+        "mon-thurs": "7:30am - 10pm",
+        "fri": "7:30am - 7pm",
+        "Sat": "11am - 4pm",
+        "Sun": "11am - 4pm" 
+      }
+
+    ],
+      "floors": 3
+    },
+    {
+      "code": "KN",
+      "name": "Kanaff",
+      "Food": [{
+        "name": "Second Cup",
+        "mon-thurs": "8am - 5pm",
+        "fri": "8am - 3pm",
+        "Sat": "CLOSED",
+        "Sun": "CLOSED" 
+      }],
+      "floors": 2
+    },
+    {
+      "code": "Library",
+      "name": "Library",
+      "Food": [ {
+          "name": "Starbucks",
+          "mon-thurs": "7:30am - 10pm",
+          "fri": "7:30am - 6pm",
+          "Sat": "12pm - 6pm",
+          "Sun": "1pm - 6pm" 
+        } ],
+      "floors": 0
+    },
+        {
+      "code": "OPH",
+      "name": "Oscar Peterson Hall",
+      "Food": [ {
+          "name": "Colman Commons Dining Hall",
+          "mon-thurs": "7:30am - 12am",
+          "fri": "7:30am - 9pm",
+          "Sat": "9am - 9pm",
+          "Sun": "9am - 12am" 
+        } ],
+      "floors": 0
+    },
+    {
+      "code": "RAWC",
+      "name": "Recreational and Wellness centre",
+      "Food": [ {
+          "name": "Booster Juice",
+          "mon-thurs": "7:30am - 8pm",
+          "fri": "7:30am - 6pm",
+          "Sat": "11am - 4pm",
+          "Sun": "11am - 4pm" 
+        } ],
+      "floors": 0
+    },
+    {
+      "code": "Student Centre",
+      "name": "The Student Centre",
+      "Food": [ {
+          "name": "The Blind Duck Pub",
+          "mon-thurs": "11am - 8pm",
+          "fri": "11am - 8pm",
+          "Sat": "CLOSED",
+          "Sun": "CLOSED" 
+        } ],
+      "floors": 0
+    }
+  ]
+}
