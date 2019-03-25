@@ -19,7 +19,6 @@ var PATH = "./Website/assets";
 // Loads a specific building
 function loadBuilding(building) {
     // Building is the building name
-    var url = "./Website/TempFolder/Buildings.json";
     var table = document.getElementById("mapButtons");
     let placeJSON = null;
 
@@ -54,7 +53,7 @@ function loadBuilding(building) {
 
 
     var pic = document.getElementById("mapImg");
-    pic.src =PATH+"/parking-map.PNG"; // This to be changed to proper image
+    pic.src =PATH+"/"+building+"Front.jpg"; // This to be changed to proper image
 
 
     // Add New Buttons for each floor -> more than 1 floor
@@ -84,8 +83,7 @@ function loadBuilding(building) {
         cell.innerHTML = "Front";
         var createClickHandler = function(row) {
             return function() {
-                var cell = row.getElementsByTagName("td")[0];
-                var id = cell.val;
+                pic.src =PATH+"/"+building+"Front.jpg"; 
             };
         };
         cell.val = 0;

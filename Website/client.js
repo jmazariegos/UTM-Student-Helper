@@ -475,7 +475,8 @@ $(function(){
 			Forgotpass();
 	});
 
-	$("#resetButton").on('click',function(){
+	$("#resetButton").on('click',function(){				<div id='logout'  class="nav-link">Logout</div>
+
 		Reset();	
 	});
 	$("#side-map").on('click',function(){
