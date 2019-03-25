@@ -26,6 +26,7 @@ public class TimetableController {
 								@RequestParam("session") String session,
 								@RequestParam("semester") String semester) {
 		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+		timetable.addAll(timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, "Y"));
 		if(timetable.size() > 0) {
 			return true;
 		}else {
@@ -40,6 +41,7 @@ public class TimetableController {
 		String session = body.get("session");
 		String semester = body.get("semester");
 		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+		timetable.addAll(timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, "Y"));
 		if(timetable.size() > 0) {
 			Timetable course = timetable.get(0);
 			timetableRepository.deleteById(course.get_id());
