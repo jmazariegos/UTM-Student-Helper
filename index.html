@@ -3,9 +3,7 @@
 <head>
 	<title>Our UTM</title>
 	<style>
-			h2, th{
-				text-align: center;
-			}
+/*<!-- Need to go over this -->*/
 			th{
 			  border: 1px solid white;	
 			  padding: 10px 40px 10px 40px;
@@ -45,8 +43,7 @@
 			}
 		</style> 
 	<meta charset="UTF-8"> 
-	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script>
-
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.32.min.js"></script> 
 <script src="Website/jquery-3.3.1.min.js"></script>
 <script src="Website/client.js"></script>
 <link rel="stylesheet" type="text/css" href="Website/layout.css">
@@ -127,10 +124,12 @@ navbar
 		<!-- Burger -->
 		<div class="row py-3">
 			<div class="col-2 px-1 bg-light position-fixed" id="sticky-sidebar">
-				<div class="nav-link">Map</div>
-				<div class="nav-link">Calendar</div>
-				<div class="nav-link">Notes</div>
-				<div class="nav-link">Timetable</div>
+                <div id='Home' class="nav-link">HOME</div>
+                <div class="nav-link">Calendar</div>
+                <div class="nav-link">Notes</div>
+                <div class="nav-link">Timetable</div>
+                <div class="nav-link">Friends</div>
+				<div id='side-map' class="nav-link">Map</div>
 				<div class="nav-link">Settings</div>
 				<div id='logout'  class="nav-link">Logout</div>
 			</div>
@@ -145,24 +144,26 @@ navbar
 		//xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
 		//document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
 
-		var url = "./data/timeTable.json";
+		
+		var url = "./data/timeTable1.json";
 			
-		$.getJSON(url, function(courses) {
-			console.log(courses); //this writes to the console, and I think we need this request to access data
+		$.getJSON(url, function(data) {
+			console.log(data); //this writes to the console, and I think we need this request to access data
 			
 			var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
-			var calendar = document.getElementById("calendar");
+			var timetable = document.getElementById("timetable");
 			
+			var courses = data["courses"]; //get value of this key
 			var course_list_len = courses.length;
 			
-			for (key in courses){ //go through each course
+			for (i=0; i < course_list_len; i++){ //go through each course
 			
-				var code = courses[key].code;
-				var ses = courses[key].session;
-				var name = courses[key].name;
-				var description = courses[key].description;
+				var code = courses[i].code;
+				var ses = courses[i].session;
+				var name = courses[i].name;
+				var description = courses[i].description;
 				
-				var lec = courses[key].lecture; //0 since we only have once tuple in the list of lectures
+				var lec = courses[i].lectures[0]; //0 since we only have once tuple in the list of lectures
 				var section = lec.section;
 				var time = lec.timings;
 
@@ -171,8 +172,8 @@ navbar
 					var day_index = days[d];
 					var start = time[j][1];
 					var end = time[j][2];
-					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
-						for (var m = 1, col; col = row.cells[m]; m++) { //1 because no classes on sunday
+					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of table headers is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
 							if (m == day_index){						 								   
 								var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
 								col.insertAdjacentHTML('beforeend', new_node);								
@@ -181,37 +182,36 @@ navbar
 					}
 				}
 				
-				var tutorials = courses[key].tutorial;
+				var tutorials = courses[i].tutorials[0];
 				time = tutorials.timings;
 				section = tutorials.section;
-				if (time){
-					for(j=0; j < time.length; j++) { //go through each tutorial
-						var d = time[j][0]; 
-						var day_index = days[d];
-						var start = time[j][1];
-						var end = time[j][2];
-						for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
-							for (var m = 1, col; col = row.cells[m]; m++) {
-								if (m == day_index){						 								   
-									var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-									col.insertAdjacentHTML('beforeend', new_node);								
-								}
-							}  
-						}
+				
+				for(j=0; j < time.length; j++) { //go through each tutorial
+					var d = time[j][0]; 
+					var day_index = days[d];
+					var start = time[j][1];
+					var end = time[j][2];
+					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
+							if (m == day_index){						 								   
+								var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
+								col.insertAdjacentHTML('beforeend', new_node);								
+							}
+						}  
 					}
 				}
-				var practical = courses[key].practical;
 				
-				time = practical.timings;
-				section = practical.section;
+				var practicals = courses[i].practicals[0];
+				time = practicals.timings;
+				section = practicals.section;
 				
 				for(j=0; j < time.length; j++) { //go through each practical
 					var d = time[j][0]; 
 					var day_index = days[d];
 					var start = time[j][1];
 					var end = time[j][2];
-					for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
-						for (var m = 0, col; col = row.cells[m]; m++) {
+					for (var k = 1, row; row = timetable.rows[k]; k++) { //1 because row of date names is 0
+						for (var m = 1, col; col = row.cells[m]; m++) {
 							if (m == day_index){						 								   
 								var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
 								col.insertAdjacentHTML('beforeend', new_node);								
@@ -223,7 +223,6 @@ navbar
 			}			
 		});
 		</script> 
-		
 		<tr>
 			<th>Sunday</th>
 			<th>Monday</th>
@@ -306,8 +305,18 @@ navbar
 	----------------------------------------------------------
 -->
 
-<div class="map">
-</div>
+ <div id="map">
+        <h1 id="mapTitle"></h1>
+        <!-- Our map image -->
+        <div id="mapContainer">
+            <!-- The map image -->
+            <img id="mapImg" />
+            <!-- Link Buttons -->
+            <table id="mapButtons">
+            </table>
+        </div>
+        <table id="foodTable"></table>
+    </div>
 
 		<!-- Account page
 	----------------------------------------------------------
@@ -338,3 +347,4 @@ navbar
 
 </body>
 </html>
+>>>>>>> develop
