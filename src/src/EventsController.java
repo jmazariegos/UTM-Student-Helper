@@ -39,39 +39,33 @@ public class EventsController {
 		}
 		return null;
 	}
-	/*
+	//000
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Events> getEvents(@RequestParam("session") String session,
-										@RequestParam("semester") String semester) {
-		List<Timetable> timetable = timetableRepository.findBySessionAndSemesterAllIgnoreCase(session, semester);
-		timetable.addAll(timetableRepository.findBySessionAndSemesterAllIgnoreCase(session, "Y"));
-		return timetable;
+	public List<Events> getEvents() {
+		List<Events> events = eventsRepository.findAll();
+		return events;
 	}
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public Timetable createCourse(@Valid @RequestBody Timetable timetableCourse) {
-		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(
-				timetableCourse.getCode(), 
-				timetableCourse.getSession(), 
-				timetableCourse.getSemester());
-		if(timetable.size() == 1) {
-			Timetable updatedTimetable = timetable.get(0);
-			updatedTimetable.setCode(timetableCourse.getCode());
-			updatedTimetable.setSession(timetableCourse.getSession());
-			updatedTimetable.setSemester(timetableCourse.getSemester());
-			updatedTimetable.setName(timetableCourse.getName());
-			updatedTimetable.setDescription(timetableCourse.getDescription());
-			updatedTimetable.setLecture(timetableCourse.getLecture());
-			updatedTimetable.setTutorial(timetableCourse.getTutorial());
-			updatedTimetable.setPractical(timetableCourse.getPractical());
-			timetableRepository.save(updatedTimetable);
-			return updatedTimetable;
+	public Events createEvent(@Valid @RequestBody Events event) {
+		List<Events> events = eventsRepository.findByEventNameAndDescriptionAndStartDateAndStartTimeAndEndDateAndEndTimeAllIgnoreCase(
+				event.getEventName(), event.getDescription(), event.getStartDate(), event.getStartTime(), event.getEndDate(), event.getEndTime());
+		if(events.size() == 1) {
+			Events updatedEvents = events.get(0);
+			updatedEvents.setEventName(event.getEventName());
+			updatedEvents.setDescription(event.getDescription());
+			updatedEvents.setStartDate(event.getStartDate());
+			updatedEvents.setStartDate(event.getStartTime());
+			updatedEvents.setStartDate(event.getEndDate());
+			updatedEvents.setStartDate(event.getEndTime());
+			eventsRepository.save(updatedEvents);
+			return updatedEvents;
 		}
-		timetableCourse.set_id(ObjectId.get());
-	    timetableRepository.save(timetableCourse);
-	    return timetableCourse;
+		event.set_id(ObjectId.get());
+	    eventsRepository.save(event);
+	    return event;
 	}
-	*/
+	
 }
