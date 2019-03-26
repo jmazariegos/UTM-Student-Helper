@@ -5,10 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time as t
 import json
+import pymongo
 
 bypass = True
 current_folder = 'chromedriver' #must be changed to path of chromedriver.exe
-JSONname = '../../../data/courses.json'
+host_name = 'mongodb://localhost:27017'
+database_name = 'csc301'
+collection_name = 'Courses'
 
 def scrape_courses(criteria, session):
     if(session.lower().startswith('fall') or session.lower().startswith('winter')):
@@ -36,16 +39,12 @@ def scrape_courses(criteria, session):
 
     courses = browser.find_elements_by_xpath('//div[contains(@id, \''+criteria.upper()+'\')]/span') #find div id that contains the criteria
     course_descs = browser.find_elements_by_xpath('//div[@class=\'alert alert-info infoCourseDetails infoCourse\']') #gives the descs
-    try:
-        JSONfile = open(JSONname, 'r')
-        course_database = json.loads(JSONfile.read())
-        JSONfile.close()
-    except:
-        course_database = {}
+
+    client = pymongo.MongoClient(host_name)
+    db = client[database_name]
+    col = db[collection_name]
         
     for course, desc in zip(courses,course_descs): #each title and desc is obtained in the same order
-        if course.text[:6] in course_database.keys():
-            continue
         rows = browser.find_elements_by_xpath('//tr[contains(@id, \''+course.text[:9].upper()+'\')]') #gets the rows for this specific course
         course_dict = {}
         course_dict['code'] = course.text[:8]
@@ -62,7 +61,7 @@ def scrape_courses(criteria, session):
             if len(cells) < 13:
                 continue
             section = {'section': cells[1].text[3:], 'instructor': cells[2].text, 'timings': []}
-            if cells[7].text.count('\n') > 1:
+            if cells[7].text.count('\n') >= 1:
                 days = cells[7].text.split('\n')
                 starts = cells[8].text.split('\n')
                 ends = cells[9].text.split('\n')
@@ -76,25 +75,12 @@ def scrape_courses(criteria, session):
                 course_dict['tutorials'].append(section)
             else:
                 course_dict['practicals'].append(section)
-        course_database[course_dict['code'] + course_dict['semester'] + course_dict['session'][0]] = course_dict
+        query = {'code': course_dict['code'], 'session': course_dict['session'], 'semester': course_dict['semester']}
+        if col.find(query).count() == 0:
+            col.insert_one(course_dict)
+        else:
+            col.update_one(query, {'$set': course_dict})
     browser.quit() #:)
-    JSONfile = open(JSONname, 'w+')
-    JSONfile.write(json.dumps(course_database, indent=4))
-    JSONfile.close()
-
-
-def list_courses(criteria, session, semester):
-    JSONfile = open(JSONname, 'r')
-    course_database = json.loads(JSONfile.read())
-    JSONfile.close()
-    semester = semester.upper()
-    session = session.lower()
-    criteria = criteria[:6].upper()
-    for course in course_database:
-        details = course_database[course]
-        if criteria in details['code']:
-            if (details['semester'] == semester or details['semester'] == 'Y') and session in details['session']:
-                print(details['code'] + ' - ' + details['name'] + '\n' + details['description'] + '\n')
 
 if bypass:
     programs = ['ANT', 'AST', 'BIO', 'HSC', 'CHM', 'CIN', 'CLA', 'CCT', 'CSC', 'CTE', 'DTS', 'DRE', 'ERS', 'ECO', 'EDS', 'ENG', 'ENV', 'ERI', 'FAH', 'VST', 'FAS', 'FSC', 'PSY', 'FSL', 'FRE', 'LTL', 'GGR', 'HHS', 'JEG', 'JGE', 'HIS', 'RLG', 'IMI', 'ITA', 'GER', 'LAT', 'SPA', 'CHI', 'FGI', 'PRS', 'ARA', 'HIN', 'URD', 'SAN', 'LIN', 'JAL', 'MGM', 'MAT', 'MGT', 'PHL', 'PHY', 'JCP', 'JCB', 'POL', 'JPE', 'JEP', 'WRI', 'SOC', 'STA', 'UTM', 'VCC', 'WGS']

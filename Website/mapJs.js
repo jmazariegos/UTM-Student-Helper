@@ -68,7 +68,7 @@ function loadBuilding(building) {
                 return function() {
                     var cell = row.getElementsByTagName("td")[0];
                     var id = cell.val;
-                    pic.src =PATH+"/map_"+building+"_floor"+id+".PNG";
+                    pic.src =PATH+"/map_"+building+"_floor"+id+".png";
                 };
             };
             row.onclick = createClickHandler(row);

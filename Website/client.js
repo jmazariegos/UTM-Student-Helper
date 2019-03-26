@@ -285,12 +285,15 @@ function loadBuilding(building) {
                 return function() {
                     var cell = row.getElementsByTagName("td")[0];
                     var id = cell.val;
-                    pic.src =PATH+"/map_"+building+"_floor"+id+".PNG";
+                    pic.src =PATH+"/map_"+building+"_floor"+id+".png";
                 };
             };
             row.onclick = createClickHandler(row);
             cell.val = i;
             cell.innerHTML = names[i];
+            if (building == 'DH' && i == 1){
+                table.deleteRow(0);
+            }
         }
 
         // show the front of building button

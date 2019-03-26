@@ -9,12 +9,12 @@
     <!-- Move all style scripts out -->
     <style>
 
-        tr {
+        tr{
             border-bottom: 1px solid black;
             padding: 15px 15px 15px 15px;
         }
 
-        td {
+        td{
             border-bottom: 1px solid black;
             padding: 0 15px 0 15px;
         }
@@ -54,18 +54,23 @@
         body{
             background-color: #f9f8f8;
             /*Change up*/
-            font-family: 'wingdings'
         }
 
         #foodTable{
-                border: 2px solid grey;
-                padding: 15px;
-                background-color: aliceblue;
-                border-collapse: collapse; 
+            float: none;
+            border: 2px solid grey;
+            padding: 15px;
+            background-color: aliceblue;
+            border-collapse: collapse; 
         }
+
         .fri, .sat, .sun, .weekend, .mon-thurs, .mon-fri{
             color: black;
         }
+        #mapContainer{
+            overflow: auto;
+        }
+        
     </style>
 </head>
 <body>
@@ -80,7 +85,9 @@
             <table id="mapButtons">
             </table>
         </div>
-        <table id="foodTable"></table>
+        <div>
+            <table id="foodTable"></table>
+        </div>
     </div>
 </body>
 </html>

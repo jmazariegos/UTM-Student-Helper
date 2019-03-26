@@ -1,6 +1,6 @@
 We will be using powers of 2 to estimate user stories.
 
-Total User Stories: 20
+Total User Stories: 18
 
 # 1-Top Priority
 ______________________________________
@@ -29,30 +29,6 @@ ______________________________________
 **So** that I can refer to them later
 
 # 2-High Priority
-______________________________________
-**User story:** Create Account
-
-**Priority:** High
-
-**Points Value:** 4
-
-**As** Tom Muhammad (disorganized student)
-
-**I want** to be able to create an account
-
-**So** that all my notes and calendar dates will be saved and tied to my account.
-______________________________________
-**User story:** Login
-
-**Priority:** High
-
-**Points Value:** 4
-
-**As** Tom Muhammad (disorganized student)
-
-**I want** to be able to log into an account
-
-**So** that I am able to retrieve all my note and calendar information from any device.
 ______________________________________
 **User story:** Note-linking
 
