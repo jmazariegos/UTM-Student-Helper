@@ -173,9 +173,10 @@
 	#quote h1{
 		font-size: 350%;
 		text-align: center;
-	}
+/*		color: #f5bb00;
+*/	}
 	strong{
-		color: #ff0022
+		color: #c20114
 	}
 
 	.btn-toolbar{
