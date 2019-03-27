@@ -202,17 +202,21 @@ public class TimetableGenerator {
 		list.add("20:00");
 		list.add("21:00");
 		list.add("22:00");
-
-		
-		
-		
-		return 0;
+		return list.indexOf(start);
 	}
 	
 	public int getTimetableColumn(String day) {
-		return 0;
+		List<String> list = new ArrayList<String> ();
+		list.add("MO");
+		list.add("TU");
+		list.add("WE");
+		list.add("TH");
+		list.add("FR");
+		list.add("SA");
+		list.add("SU");
+
+		return list.indexOf(day);
 	}
-	
 	public int [] increment(int [] cc) {
 		int ind = cc.length - 1;
 		while (ind >= 0){
