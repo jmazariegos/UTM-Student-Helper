@@ -18,6 +18,10 @@ public class Events {
 		this.set_id(_id);
 		this.setEventName(eventName);
 		this.setDescription(description);
+		this.setStartDate(startDate);
+		this.setStartTime(startTime);
+		this.setEndDate(endDate);
+		this.setEndTime(endTime);
 	}
 	
 	public String get_id() {

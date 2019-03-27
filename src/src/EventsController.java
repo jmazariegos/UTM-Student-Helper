@@ -57,9 +57,9 @@ public class EventsController {
 			updatedEvents.setEventName(event.getEventName());
 			updatedEvents.setDescription(event.getDescription());
 			updatedEvents.setStartDate(event.getStartDate());
-			updatedEvents.setStartDate(event.getStartTime());
-			updatedEvents.setStartDate(event.getEndDate());
-			updatedEvents.setStartDate(event.getEndTime());
+			updatedEvents.setStartTime(event.getStartTime());
+			updatedEvents.setEndDate(event.getEndDate());
+			updatedEvents.setEndTime(event.getEndTime());
 			eventsRepository.save(updatedEvents);
 			return updatedEvents;
 		}
