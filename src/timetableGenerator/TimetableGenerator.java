@@ -51,8 +51,12 @@ public class TimetableGenerator {
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
 		this.allLectures.add(course.getLectures());
-		this.allTutorials.add(course.getTutorials());
-		this.allPracticals.add(course.getPracticals());
+		if(!course.getTutorials().isEmpty()) {
+			this.allTutorials.add(course.getTutorials());
+		}
+		if(!course.getPracticals().isEmpty()) {
+			this.allTutorials.add(course.getPracticals());
+		}
 		// have parallel lists: index 0 is for this course, etc
 		this.courseCodeMappings.add(course.getCode());
 	}
