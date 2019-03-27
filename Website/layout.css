@@ -22,6 +22,8 @@
         	margin: 10px;
 	      	height: 45px;
 }
+/*Start of Timtable css*/
+
 h2, #courses th{
 				text-align: center;
 			}
@@ -109,6 +111,7 @@ h2, #courses th{
 			}
 
 
+/*End of timetable css*/
 	#buttons{
 		float:left;
 	}
