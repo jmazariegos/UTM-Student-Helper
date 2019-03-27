@@ -30,6 +30,8 @@ public class TimetableGenerator {
 		this.allLectures = new ArrayList<>();
 		this.allTutorials = new ArrayList<>();
 		this.allPracticals = new ArrayList<>();
+		this.courseCodeMappings = new ArrayList<>();
+		this.allTimes = new ArrayList<>();
 		
 		for (Courses course: courses) {
 			addToLists(course);
@@ -55,7 +57,7 @@ public class TimetableGenerator {
 		this.courseCodeMappings.add(course.getCode());
 	}
 	
-	private boolean tryGenerateTimetable() {
+	public boolean tryGenerateTimetable() {
 		// use allTimes to fit things into timetable
 		int numElements = this.courseCodeMappings.size();
 		boolean[] fixed = new boolean [numElements];

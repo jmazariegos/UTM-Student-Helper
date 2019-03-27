@@ -34,7 +34,7 @@ public class CoursesController {
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/generate", method = RequestMethod.POST)
-	public List<Map<String, Object>> generateTimetable(@RequestBody Map<String, Object> body) {
+	public /*List<Map<String, Object>>*/ Object generateTimetable(@RequestBody Map<String, Object> body) {
 		List<String> codes = (List<String>) body.get("codes");
 		String session = (String) body.get("session");
 		String semester = (String) body.get("semester");
