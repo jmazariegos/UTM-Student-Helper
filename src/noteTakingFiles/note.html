@@ -2,16 +2,13 @@
 <html>
 <body>
 <button type="button" id="testLink" >Save</button>
-<textarea rows="50" cols="100" id="textareaCode"></textarea>
-<button  type="button" >Load</button>
+<textarea rows="50" cols="100" id="textareaCode" placeholder="Enter Text Here"></textarea>
+<button  type="button" onclick="load()">Load</button>
 
 <p id="demo">yo</p>
 
-
-
-<input id="myFile" type="file" onclick="load()"/>
 <script>
-(function load(){
+window.load = function(){
   var file = document.getElementById("myFile").files[0];
   var reader = new FileReader();
   reader.onload = function (e) {
@@ -20,8 +17,11 @@
     textArea.value = e.target.result;
   };
   reader.readAsText(file);
-  });
+  };
  </script>
+ 
+ <input id="myFile" type="file" onclick="load()"/>
+
  
 <!-- save file js-->
 <script>
