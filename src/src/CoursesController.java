@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import timetableGenerator.TimetableGenerator;
+
 @RestController
 @RequestMapping("/courses")
 public class CoursesController {
@@ -28,6 +30,26 @@ public class CoursesController {
 		List<Courses> courses = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester);
 		courses.addAll(coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, "Y"));
 		return courses;
+	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/generate", method = RequestMethod.POST)
+	public List<Map<String, Object>> generateTimetable(@RequestBody Map<String, Object> body) {
+		List<String> codes = (List<String>) body.get("codes");
+		String session = (String) body.get("session");
+		String semester = (String) body.get("semester");
+		List<Courses> cart = null;
+		for(String code: codes) {
+			if(cart != null) {
+				cart.add(coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester).get(0));
+			}else {
+				cart = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+			}
+		}
+		
+		TimetableGenerator generator = new TimetableGenerator(cart);
+		generator.tryGenerateTimetable();
+		return generator.getTimetable();
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)

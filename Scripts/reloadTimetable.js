@@ -6,7 +6,7 @@ function reload(){
 		"semester": document.querySelector('select[name=\'semester\']').value
 	}
 	
-	for(var row = 1; row < 16; row++){
+	for(var row = 1; row < 16; row++){ //reset all timeslots so we get no duplicates
 		for(var col = 1; col < 6; col++){
 			var timeslot = timetable.rows[row].cells[col];
 			timeslot.innerHTML = "";
@@ -15,14 +15,14 @@ function reload(){
 	
 	$.getJSON("http://localhost:8080/timetable/", data, function(courses){ //get request for enrolled courses
 		console.log(courses);
-		for(var c = 0; c < courses.length; c++){
+		for(var c = 0; c < courses.length; c++){ //this part just places enrolled courses into the timetable
 			var course = courses[c];
 			var lecture = course.lecture;
 			var tutorial = course.tutorial;
 			var practical = course.practical;
 			
 			var timings = lecture.timings;
-			for(var i = 0; i < timings.length; i++){
+			for(var i = 0; i < timings.length; i++){ //lectures
 				for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
 					var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
 					var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>LEC" + lecture.section + "</div>";
@@ -32,7 +32,7 @@ function reload(){
 			
 			timings = tutorial.timings;
 			if(timings){
-				for(var i = 0; i < timings.length; i++){
+				for(var i = 0; i < timings.length; i++){ //tutorials
 					for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
 						var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
 						var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>TUT" + tutorial.section + "</div>";
@@ -43,7 +43,7 @@ function reload(){
 			
 			timings = practical.timings;
 			if(timings){
-				for(var i = 0; i < timings.length; i++){
+				for(var i = 0; i < timings.length; i++){ //practicals
 					for(var j = ttr[timings[i][1]]; j < ttr[timings[i][2]]; j++){
 						var timeslot = timetable.rows[j].cells[dtc[timings[i][0]]];
 						var new_node = "<div class=\"class\">" + course.code + course.semester + "<br><br>PRA" + practical.section + "</div>";
