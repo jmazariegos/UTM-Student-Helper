@@ -22,6 +22,91 @@
         	margin: 10px;
 	      	height: 45px;
 }
+h2, #courses th{
+				text-align: center;
+			}
+			#courses th{
+				border: 1px solid;
+				border-color: rgb(204,204,204);
+				font-size: 13px;
+				font-family: arial, helvetica, sans-serif;
+				background-color: rgb(238,238,238);
+				padding: 5px 50px 5px 50px;
+			}
+			#courses td{
+				border: 1px solid;
+				border-color: rgb(238,238,238);
+				border-right: none;
+				border-left: none;
+				text-align: center;
+				font-size: 13px;
+				font-family: arial, helvetica, sans-serif;
+				margin: 10px;
+				background-color: white;
+			}
+			input {
+				border: 1px solid #0ca6f2;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(149,192,255,.75);
+				font-size: 22px;
+				padding-left: 20px;
+				height: 40px;
+				width: 400px;
+			}
+			input[type="radio"] {
+				width: 20px;
+				height: 20px;
+			}
+			#course-container {
+				height: 200px;
+				width: 420px;
+				font-family: arial, helvetica, sans-serif;
+				display: block;
+				overflow: auto;
+			}
+			#timetable {
+				margin-left: auto;
+				margin-right: auto;
+				border-collapse: collapse;
+				border-spacing: 0;
+				float: right;
+			}
+			#courses {
+				width: 410px;
+				height: 467px;
+				table-layout: fixed;
+				border: 1px solid;
+				border-color: rgb(204,204,204);
+				background-color: white;
+				display: block;
+				overflow: auto;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			.course {
+				border: 1px solid lightgrey;
+				padding: 15px 157px 15px 157px;
+				cursor: pointer;
+			}
+			.time {
+				text-align: right;
+				padding: 15px 10px 15px 30px;
+			}
+			.timeslot {
+				text-align: center;
+			}
+			.inline {
+				display: inline-block;
+			}
+			.class {
+				border: 1px solid;
+				border-color: white;
+				color: white;
+				width: inherit;
+				height: inherit;
+				display: inline-block;
+				background-color: purple;
+			}
 
 
 	#buttons{

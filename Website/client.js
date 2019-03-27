@@ -52,7 +52,6 @@ function login() {
     $("sidebar").hide();
     var id = $("#lemail").val();
     var p1 = $("#lpass").val();
-    console.log(id, p1);
     // Login
 
     // Parse the input
@@ -82,7 +81,6 @@ function login() {
             prompt("error" + error);
         } else {
             pullResults = JSON.parse(data.Payload);
-            console.log(pullResults);
             if (pullResults['msg'] === "login: successful") {
                 loadHome();
                 setUser(id);
@@ -92,7 +90,6 @@ function login() {
             }
         }
     });
-    console.log("after if-> " + page);
     $("#navbar").show();
 
 }
@@ -102,8 +99,6 @@ function setUser(email) {
         region: 'ca-central-1',
         apiVersion: '2018-02-25'
     });
-
-        console.log(email + "<- id ");
 
     var params = {
         FunctionName: "OurUTMUserAccounts",
@@ -124,7 +119,6 @@ function setUser(email) {
             return;
         } else {
             pullResults = JSON.parse(data.Payload);
-            console.log("userid-> " + pullResults["msg"]);
             setCookie('user', pullResults["msg"], 360);
         }
     });
@@ -175,7 +169,6 @@ function Register() {
             return;
         } else {
             pullResults = JSON.parse(data.Payload);
-            console.log("okay: " + pullResults);
         }
     });
 
@@ -215,7 +208,6 @@ function Reset() {
         } else {
             $('#reset').modal('hide');
             pullResults = JSON.parse(data.Payload);
-            console.log("okay: " + pullResults);
         }
     });
 
@@ -224,7 +216,6 @@ function Reset() {
     $("#navbar").show();
     $('#login').show();
 
-    console.log("Forgotten -> fixed");
 }
 
 function hideall() {
@@ -309,7 +300,6 @@ function loadTimetable() {
 
 // Loads the Friends screen screen
 function loadFriendsPage() {
-    console.log("fdsfds");
     hideall();
     $("#friends").show();
     $("#sidebar").show();
@@ -374,7 +364,6 @@ function loadBuilding(building) {
         }
     }
     if (placeJSON === null) {
-        console.log("Shouldn't be here");
         return;
     }
 
@@ -594,7 +583,6 @@ function loadFriends() {
         } else {
             pullResults = JSON.parse(data.Payload);
             let f = pullResults["msg"];
-            console.log(f);
             if (f === "Username not in database") {
                 return;
             }
@@ -642,7 +630,6 @@ function loadBlocked() {
         } else {
             pullResults = JSON.parse(data.Payload);
             let f = pullResults["msg"];
-            console.log(f);
             if (f === "Username not in database") {
                 return;
             }
@@ -693,7 +680,6 @@ function loadRequests() {
             if (f === "Username not in database") {
                 return;
             }
-            console.log(f);
             for (var i = 0; i < f.length; i++) {
                 var row = table.insertRow(0);
                 var cell = row.insertCell(0);
@@ -716,7 +702,6 @@ $(function() {
     });
 
     var page = getCookie("user");
-    console.log(page);
     if (page != "") {
         user = page;
         $('#sidebar').show()
