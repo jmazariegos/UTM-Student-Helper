@@ -20,12 +20,12 @@ function getCookie(cname) {
     var c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
   }
-  return "";
+  if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+  }
+}
+return "";
 }
 //---------------------------------------------------------------------
 
@@ -43,70 +43,58 @@ let names ={
     9:"9th Floor",
 }
 var PATH = "./Website/assets";
+var user = "";
 
 
 // For  the user to login
 function login(){
 	hideall();
-	var id = $("#lemail").val();
-	var p1 = $("#lpass").val();
-	console.log(id,p1);
+    $("sidebar").hide();
+    var id = $("#lemail").val();
+    var p1 = $("#lpass").val();
+    console.log(id,p1);
 	// Login
 
 	// Parse the input
 
 	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
 	var params = {
-    	FunctionName: "OurUTMUserAccounts", 
-    	InvocationType: "RequestResponse", 
-    	LogType: "None",
-    	Payload: JSON.stringify({
-    		"function": "login",
-    		"parameters":{
-    			"email":id,
-    			"password":p1,
-    		}
-    	}), 
-  	};
+       FunctionName: "OurUTMUserAccounts", 
+       InvocationType: "RequestResponse", 
+       LogType: "None",
+       Payload: JSON.stringify({
+          "function": "login",
+          "parameters":{
+             "email":id,
+             "password":p1,
+         }
+     }), 
+   };
 
-  	var pullResults;
-  	let page="#login";
-  	
-  	lambda.invoke(params, function(error, data) {
-  		if (error) {
-    		prompt("error"+error);
-  		} else {
-    		pullResults = JSON.parse(data.Payload);
-    		console.log(pullResults);
-    		if(pullResults['msg']==="login: successful"){
-    			hideall();
-    			page="#home";
-    			console.log("in if-> "+page);	
-    			$(page).show();
+   var pullResults;
+   let page="#login";
 
-
-    		}
-  		}
-  		setCookie('page', page, 360);
-  		$(page).show();
-		console.log("after if-> "+page);	
-		$("#navbar").show();
-  		
-	});
-	
-	
+   lambda.invoke(params, function(error, data) {
+    if (error) {
+      prompt("error"+error);
+  } else {
+      pullResults = JSON.parse(data.Payload);
+      console.log(pullResults);
+      if(pullResults['msg']==="login: successful"){
+        loadHome();
+        setCookie('user',id, 360);
+     }else{
+        $("#lpass").val("")
+        $(page).show();
+     }
+ }  		
+});
+   console.log("after if-> "+page);    
+   $("#navbar").show();	
 
 }
 
-//for user logout --------------------------------------------------
-function logout(){
-	hideall();
-	$("#navbar").show();
-	var page="#login";
-	setCookie('page', page, 360);
-	$(page).show();
-	setCookie('user', "", 360);
-}
+
 
 //for user to  --------------------------------------------------
 function Register(){
@@ -117,9 +105,10 @@ function Register(){
 	console.log(id +"<- id "+p1);
 	if (p1.length < 8){ // Set to regex
 		// Set error
+        alert("Password to short");
 		return;
 	}else if (!(p1 === p2)){
-		// Set error
+		alert("Password mismatch");
 		return;
 	}
 	// Check if userid + email is valid
@@ -128,58 +117,37 @@ function Register(){
 	//Parse Input
 	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
 	var params = {
-    	FunctionName: "OurUTMUserAccounts", 
-    	InvocationType: "RequestResponse", 
-    	LogType: "None",
-    	Payload: JSON.stringify({
-    		"function": "createUser",
-    		"parameters":{
-    			"username":id,
-    			"password":p1,
-    			"email":email,
-    		}
-    	}), 
-  	};
+       FunctionName: "OurUTMUserAccounts", 
+       InvocationType: "RequestResponse", 
+       LogType: "None",
+       Payload: JSON.stringify({
+          "function": "createUser",
+          "parameters":{
+             "username":id,
+             "password":p1,
+             "email":email,
+         }
+     }), 
+   };
 
-  	var pullResults;
+   var pullResults;
 
-  	lambda.invoke(params, function(error, data) {
-  		if (error) {
-    		prompt("error: "+error);
-    		return;
-  		} else {
-    		pullResults = JSON.parse(data.Payload);
-    		console.log("okay: "+pullResults);
-  		}
-	});
+   lambda.invoke(params, function(error, data) {
+    if (error) {
+      prompt("error: "+error);
+      return;
+  } else {
+      pullResults = JSON.parse(data.Payload);
+      console.log("okay: "+pullResults);
+  }
+});
 
-	hideall();
-	var	page="#login";
-	setCookie('page', page, 360);
-	$("#navbar").show();
-	$(page).show();
-	console.log("Reg");
-
+   hideall();
+   var	page="#login";
+   $("#navbar").show();
+   $(page).show();
 }
 
-// for loading registration page--------------------------------------------------
-function Registration(){
-	hideall();
-	var	page="#reg";
-	setCookie('page', page, 360);
-	$("#navbar").show();
-	$(page).show();
-}
-
-// for loading Forgot password page --------------------------------------------------
-function Forgotpass(){
-	hideall();
-	var	page="#reset";
-	setCookie('page', page, 360);
-	$("#navbar").show();
-	$(page).show();
-	console.log("Forgotten");
-}
 function Reset(){
 	//Reset Password
 	var email = $("#resemail").val();
@@ -187,36 +155,36 @@ function Reset(){
 	//Parse Input
 	var lambda = new AWS.Lambda({region: 'ca-central-1', apiVersion: '2018-02-25'});
 	var params = {
-    	FunctionName: "OurUTMUserAccounts", 
-    	InvocationType: "RequestResponse", 
-    	LogType: "None",
-    	Payload: JSON.stringify({
-    		"function": "resetPassword",
-    		"parameters":{
-    			"email":email,
-    		}
-    	}), 
-  	};
+       FunctionName: "OurUTMUserAccounts", 
+       InvocationType: "RequestResponse", 
+       LogType: "None",
+       Payload: JSON.stringify({
+          "function": "resetPassword",
+          "parameters":{
+             "email":email,
+         }
+     }), 
+   };
 
-  	var pullResults;
+   var pullResults;
 
-  	lambda.invoke(params, function(error, data) {
-  		if (error) {
-    		prompt("error: "+error);
-    		return;
-  		} else {
-    		pullResults = JSON.parse(data.Payload);
-    		console.log("okay: "+pullResults);
-  		}
-	});
+   lambda.invoke(params, function(error, data) {
+    if (error) {
+      prompt("error: "+error);
+      return;
+  } else {
+        $('#reset').modal('hide');
+      pullResults = JSON.parse(data.Payload);
+      console.log("okay: "+pullResults);
+  }
+});
 
-	hideall();
-	var	page="#login";
-	setCookie('page', page, 360);
-	$("#navbar").show();
-	$(page).show();
+hideall();
 
-	console.log("Forgotten -> fixed");
+   $("#navbar").show();
+   $('#login').show();
+
+   console.log("Forgotten -> fixed");
 }
 
 function hideall(){
@@ -228,9 +196,124 @@ function hideall(){
 	$("#account").hide();
 	$("#note").hide();
 	$("#navbar").hide();
+    $('#sidebar').hide();
+}
+
+function deactiveAll(){
+    $("#side-home").removeClass( "active" );
+    $("#side-calendar").removeClass( "active" );
+    $("#side-notes").removeClass( "active" );
+    $("#side-timetable").removeClass( "active" );
+    $("#side-friends").removeClass( "active" );
+    $("#side-map").removeClass( "active" );
+    $("#side-settings").removeClass( "active" );
+    $("#side-logout").removeClass( "active" );
+}
+
+// -----------------------------------------------------------------------------------------------------------------Side bar Loading
+
+// Loads the Home screen
+function loadHome(){
+    hideall();
+    $("#home").show();
+    $("#sidebar").show();
+    deactiveAll();
+    $("#side-home").addClass( "active");
+    $("#navbar").show(); 
+
+    // Additonal calls 
+}
+
+// Loads the Home screen
+function loadCalendar(){
+    hideall();
+    $("#sidebar").show();
+
+    $("#cal").show();
+    deactiveAll();
+    $("#side-calendar").addClass( "active");
+    $("#navbar").show(); 
+
+    // Additonal calls  
+
 
 }
 
+// Loads the Home screen
+function loadNotes(){
+    hideall();
+    $("#note").show();
+    $("#sidebar").show();
+    deactiveAll();
+    $("#side-notes").addClass( "active");
+    $("#navbar").show();  
+
+    // Additonal calls 
+
+
+}
+
+// Loads the Home screen
+function loadTimetable(){
+    hideall();
+    $("#sidebar").show();
+    $("#tt").show();
+    deactiveAll();
+    $("#side-timetable").addClass( "active");
+    $("#navbar").show();  
+
+    // Additonal calls 
+
+
+}
+
+// Loads the Home screen
+function loadFriends(){
+    hideall();
+    $("#friends").show();
+    $("#sidebar").show();
+    deactiveAll();
+    $("#side-friends").addClass( "active");
+    $("#navbar").show(); 
+
+    // Additonal calls 
+
+}
+
+// Loads the map screen
+function loadMap(){
+    hideall();
+    $("#map").show();
+    $("#sidebar").show();
+    deactiveAll();
+    $("#side-map").addClass( "active");
+    $("#navbar").show(); 
+
+    // Additonal calls 
+    loadMain();
+
+}
+
+// Loads the Settings screen
+function loadAccount(){
+    hideall();
+    $("#account").show();
+    $("#sidebar").show();
+    deactiveAll();
+    $("#side-settings").addClass( "active");
+    $("#navbar").show();  
+    // Additonal calls
+
+}
+
+//for user logout 
+function logout(){
+    hideall();
+    $("#navbar").show();
+    $("#sidebar").hide();
+    $('#login').show();
+    setCookie('user', "", 360);
+}
 
 // --------------------------------------------------------------------Functions for map
 // Loads a specific building
@@ -395,10 +478,9 @@ function highlightday(){
 
 
 
+
 // Loads the main Map menu
 function loadMain(){
-	$("#map").show();
-	$("#navbar").show();
     // Create the title
     var title = document.getElementById("mapTitle");
     title.innerHTML = "MAP OF UTM";
@@ -443,47 +525,65 @@ function loadMain(){
 $(function(){
 	// Setup all events here and display the appropriate UI
 	hideall();
+    deactiveAll();
+
 	$.getJSON(PATH + '/Buildings.json', function(data) {
         buildingsJSON = data;
         // loadMain();
     });
-	var page = getCookie("page");
+
+	var page = getCookie("user");
 	console.log(page);
-	if (page == ""){
-		page = '#login';
-		setCookie('page', page, 360);
-		setCookie('user', "", 360);
-	}
-	$(page).show(); // Here should load the right page on refresh
-
+	if (page != ""){
+        user=page;
+        $('#sidebar').show()
+        $("#side-home").addClass( "active");
+        $('#home').show();
+	}else{
+	   $('#login').show(); // Here should load the right page on refresh
+    }
 	console.log("loaded");
-	$("#logout").on('click',function(){
-			logout();
-	});
-	$("#loginButton").on('click',function(){
-			login();
-	});
 
-	$("#Reglink").on('click',function(){
-			Registration();
-	});
+	$("#loginButton").on('click',function(){
+     login();
+ });
 
 	$("#regButton").on('click',function(){
-			Register();
-	});
-
-	$("#Forgot").on('click',function(){
-			Forgotpass();
-	});
+     Register();
+ });
 
 	$("#resetButton").on('click',function(){				
-
 		Reset();	
 	});
-	$("#side-map").on('click',function(){
-		hideall();
-		loadMain();	
-	});
+
+
+    // ------------------------------------------ Side bar click handlers
+    $("#side-home").on('click', function(){
+        loadHome();
+    });
+    $("#side-calendar").on('click', function(){
+        loadCalendar();
+    });
+    $("#side-notes").on('click', function(){
+        loadNotes();
+    });
+    $("#side-timetable").on('click', function(){
+        loadTimetable();
+    });
+    $("#side-friends").on('click', function(){
+        loadFriends();
+    });
+    $("#side-map").on('click', function(){
+        loadMap();
+    });
+    $("#side-settings").on('click', function(){
+        loadAccount();
+    });
+    $("#side-logout").on('click', function(){
+        logout();
+    });
+	
+
 
 	
 });

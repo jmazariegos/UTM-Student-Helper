@@ -2,13 +2,14 @@
         	background-color: #f9f8f8;
         	/*Change up*/
         	/*font-family: 'wingdings'*/
+        	font-family: Comic Sans MS;
         }
         /*table Layout*/
         h2, th{
         	text-align: center;
         }
         th{
-        	border: 1px solid white;	
+        	backgroundorder: 1px solid white;	
         	padding: 5px 20px 5px 20px;
         	background-color: #0fa3b1;
         }
@@ -19,32 +20,24 @@
         	text-align: left;
         	font-size: 20px;
         	margin: 10px;
-/*        	background-color: #eeeeee;
-*/        	height: 50px;
-        }
+	      	height: 45px;
+}
 
-/*#main{
-	padding-top: 18px;
-	}*/
-	.navbar{
-		
-	}
+
 	#buttons{
 		float:left;
 	}
-	.Body{
-		padding-top: 25px;
-	}
+
 
 
 	#foodTable tr {
 		border-bottom: 1px solid black;
-        border-collapse: collapse; 
+		border-collapse: collapse; 
 
 		padding: 15px 15px 15px 15px;
 	}
 
-	 #foodTable td {
+	#foodTable td {
 		border-bottom: 1px solid black;
 		padding: 0 15px 0 15px;
 
@@ -104,6 +97,96 @@
 	}
 
 	#mapContainer{
-            overflow: auto;
-            padding: 15px 15px 15px 15px;
-    }
+		overflow: auto;
+		padding: 15px 15px 15px 15px;
+	}
+	/*<!-- Need to go over this -->*/
+	th{
+		border: 1px solid white;	
+		padding: 10px 40px 10px 40px;
+		background-color: lightblue;
+	}
+	table{
+		margin-left: auto;
+		margin-right: auto;
+		padding: 2px;
+	}
+	#home td{
+		border: 1px solid white;
+		text-align: left;
+		font-size: 20px;
+		margin: 10px;
+		background-color: lightgray;
+		height: 50px;
+		width: 10%;
+	}
+
+	.class {
+		background-color: lightgreen;
+		opacity: 10%;
+		font-size: 14px;
+		border: 0.5px solid gray;
+	}
+
+	.classinfo{
+		display: none;
+		background-color: lightblue;
+		border-radius: 1px;
+		box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);  
+		opacity: 10%;
+		font-size: 14px;
+		position: absolute;
+	}
+
+	.class:hover .classinfo{
+		display: block;
+	}
+
+	#sidebar{
+		float:left;
+		padding-left: 5px;
+		width: 10%;
+	}
+
+	#quote{
+		padding: 1%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#in{
+		border-radius: 20px;
+		background-color: #ffffff;
+		border: 2px solid #000000;
+		width: 30%;
+		padding:3%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#in button{
+		float:right;
+		padding-bottom: 1%;
+	}
+	#in h2{
+		float:left;
+	}
+
+	#quote h1{
+		font-size: 350%;
+		text-align: center;
+	}
+	strong{
+		color: #ff0022
+	}
+
+	.btn-toolbar{
+		float:right;
+	}
+
+	.beside{
+		float:right;
+		width:85%;
+		padding:2%;
+	}
+
+
+
