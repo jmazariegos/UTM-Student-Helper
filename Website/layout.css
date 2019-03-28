@@ -276,6 +276,26 @@ h2, #courses th{
 		width:85%;
 		padding:2%;
 	}
+	/*Friend Page Stuff*/
+
+	#friends table{
+		margin-left: auto;
+		margin-right: auto;
+		border: 2px solid grey;
+		width: 70%;
+		background-color: #ffffff;
+	}
+	.icon{
+		padding: 2px; 
+		width:5%;
+	}
+	.glyphicon{
+		padding: 1px; 
+		width: 100%;
+		height: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 
 

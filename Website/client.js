@@ -120,6 +120,10 @@ function setUser(email) {
         } else {
             pullResults = JSON.parse(data.Payload);
             setCookie('user', pullResults["msg"], 360);
+            user = pullResults["msg"];
+            loadFriends();
+            loadBlocked();
+            loadRequests();
         }
     });
 }
@@ -212,10 +216,8 @@ function Reset() {
     });
 
     hideall();
-
     $("#navbar").show();
     $('#login').show();
-
 }
 
 function hideall() {
@@ -264,7 +266,6 @@ function loadCalendar() {
     deactiveAll();
     $("#side-calendar").addClass("active");
     $("#navbar").show();
-
     // Additonal calls  
 
 
@@ -307,9 +308,7 @@ function loadFriendsPage() {
     $("#side-friends").addClass("active");
     $("#navbar").show();
     // Additonal calls 
-    loadFriends();
-    loadBlocked();
-    loadRequests();
+
 
 }
 
@@ -549,9 +548,54 @@ function loadMain() {
 }
 
 //-------------------------------------------------------------- Friend Functions
+
+function addFriend(){
+    var friend = $("#SearchBar").val();
+    if (friend === ""){
+      return;
+    }
+  var lambda = new AWS.Lambda({
+        region: 'ca-central-1',
+        apiVersion: '2018-02-25'
+  });
+
+  var friend = $("#SearchBar").val();
+  console.log("addfriend "+ friend);
+  var params = {
+        FunctionName: "OurUTMUserAccounts",
+        InvocationType: "RequestResponse",
+        LogType: "None",
+        Payload: JSON.stringify({
+            "function": "addFriend",
+            "parameters": {
+                "usernameFrom": user,
+                "usernameTo": friend,
+            }
+        }),
+    };
+    var pullResults;
+    lambda.invoke(params, function(error, data) {
+        if (error) {
+            prompt("error: " + error);
+            return;
+        } else {
+            pullResults = JSON.parse(data.Payload);
+            var retval = pullResults["msg"];
+            console.log(retval);
+            $("#SearchBar").val("");
+            if (retval ==="Friend request sent."){
+              $("#sucMesg").val(retval);
+              $("#alert-success").show();
+            }else {
+              $("#warnMesg").val(retval);
+              $("#warn").show();
+            }
+        }
+    });
+}
+
 function loadFriends() {
     // Gets user friends
-    let temp = 'anthony'
     var lambda = new AWS.Lambda({
         region: 'ca-central-1',
         apiVersion: '2018-02-25'
@@ -571,7 +615,7 @@ function loadFriends() {
         Payload: JSON.stringify({
             "function": "getFriends",
             "parameters": {
-                "username": temp
+                "username": user
             }
         }),
     };
@@ -588,9 +632,97 @@ function loadFriends() {
             }
             for (var i = 0; i < f.length; i++) {
                 var row = table.insertRow(0);
+                
+
+                // Remove User
                 var cell = row.insertCell(0);
-                cell.innerHTML = f[0];
-                cell.val = f[0];
+                cell.innerHTML = '<span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Remove"></span>';
+                cell.classList.add("icon");
+                var createClickHandler = function(cell) {
+                    return function() {
+                        var id = cell.val;
+                        var params = {
+                            FunctionName: "OurUTMUserAccounts",
+                            InvocationType: "RequestResponse",
+                            LogType: "None",
+                            Payload: JSON.stringify({
+                                "function": "removeFriend",
+                                "parameters": {
+                                    "usernameFrom": user,
+                                    "usernameTo":id
+                                }
+                            }),
+                        };
+                        var pullResults;
+                        lambda.invoke(params, function(error, data) {
+                            if (error) {
+                                prompt("error: " + error);
+                                return;
+                            } else {
+                                pullResults = JSON.parse(data.Payload);
+                                var retval = pullResults["msg"];
+                                console.log(retval);
+                                loadFriends();                                
+                            }
+                        });
+                    };
+                };
+                cell.onclick = createClickHandler(cell);
+                cell.val = f[i];
+
+                // Block user
+                var cell = row.insertCell(0);
+                cell.innerHTML = '<span class="glyphicon glyphicon-tower" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Block"></span>';
+                cell.classList.add("icon");
+                var createClickHandler = function(cell) {
+                    return function() {
+                        var id = cell.val;
+                        var params = {
+                            FunctionName: "OurUTMUserAccounts",
+                            InvocationType: "RequestResponse",
+                            LogType: "None",
+                            Payload: JSON.stringify({
+                                "function": "blockUser",
+                                "parameters": {
+                                    "usernameFrom": user,
+                                    "usernameTo":id
+                                }
+                            }),
+                        };
+                        var pullResults;
+                        lambda.invoke(params, function(error, data) {
+                            if (error) {
+                                prompt("error: " + error);
+                                return;
+                            } else {
+                                pullResults = JSON.parse(data.Payload);
+                                var retval = pullResults["msg"];
+                                console.log(retval);
+                                loadFriends(); 
+                                loadBlocked();                               
+                            }
+                        });
+
+
+
+                    };
+                };
+                cell.onclick = createClickHandler(cell);
+                cell.val = f[i];
+
+                // Compare Timetable
+                var cell = row.insertCell(0);
+                cell.innerHTML = '<span class="glyphicon glyphicon-duplicate" data-toggle="tooltip" data-placement="top" title="Compare Timetable" aria-hidden="true"></span>';
+                cell.classList.add("icon");
+
+                cell.val = f[i];
+
+                // Add user name
+                var cell = row.insertCell(0);
+                cell.innerHTML = f[i];
+                cell.val = f[i];
+
+
             }
         }
     });
@@ -603,7 +735,6 @@ function loadBlocked() {
         region: 'ca-central-1',
         apiVersion: '2018-02-25'
     });
-    let temp = 'anthony'
     //Clear old Table
     var table = document.getElementById("blocked-list");
     while (table.rows.length > 0) {
@@ -618,7 +749,7 @@ function loadBlocked() {
         Payload: JSON.stringify({
             "function": "getBlockedUsers",
             "parameters": {
-                "username": temp
+                "username": user
             }
         }),
     };
@@ -635,9 +766,49 @@ function loadBlocked() {
             }
             for (var i = 0; i < f.length; i++) {
                 var row = table.insertRow(0);
+
+                // Unblock Timetable
                 var cell = row.insertCell(0);
-                cell.innerHTML = f[0];
-                cell.val = f[0];
+                cell.innerHTML = '<span class="glyphicon glyphicon-minus" data-toggle="tooltip" data-placement="top" title="Unblock" aria-hidden="true"></span>';
+                cell.classList.add("icon");
+                var createClickHandler = function(cell) {
+                    return function() {
+                        var id = cell.val;
+                        var params = {
+                            FunctionName: "OurUTMUserAccounts",
+                            InvocationType: "RequestResponse",
+                            LogType: "None",
+                            Payload: JSON.stringify({
+                                "function": "unblockUser",
+                                "parameters": {
+                                    "usernameFrom": user,
+                                    "usernameTo":id
+                                }
+                            }),
+                        };
+                        var pullResults;
+                        lambda.invoke(params, function(error, data) {
+                            if (error){
+                                prompt("error: " + error);
+                                return;
+                            } else {
+                                pullResults = JSON.parse(data.Payload);
+                                var retval = pullResults["msg"];
+                                console.log(retval);
+                                loadBlocked();                                
+                            }
+                        });
+
+
+
+                    };
+                };
+                cell.onclick = createClickHandler(cell);
+                cell.val = f[i];
+
+                var cell = row.insertCell(0);
+                cell.innerHTML = f[i];
+                cell.val = f[i];
             }
         }
     });
@@ -649,7 +820,6 @@ function loadRequests() {
         region: 'ca-central-1',
         apiVersion: '2018-02-25'
     });
-    let temp = 'anthony'
 
     //Clear old Table
     var table = document.getElementById("pending-list");
@@ -665,7 +835,7 @@ function loadRequests() {
         Payload: JSON.stringify({
             "function": "getFriendRequests",
             "parameters": {
-                "username": temp
+                "username": user
             }
         }),
     };
@@ -682,9 +852,132 @@ function loadRequests() {
             }
             for (var i = 0; i < f.length; i++) {
                 var row = table.insertRow(0);
+
+                // Block User
                 var cell = row.insertCell(0);
-                cell.innerHTML = f[0];
-                cell.val = f[0];
+                cell.innerHTML = '<span class="glyphicon glyphicon-tower" data-toggle="tooltip" data-placement="top" title="Block" aria-hidden="true"></span>';
+                cell.classList.add("icon");
+
+                                var createClickHandler = function(cell) {
+                    return function() {
+                        var id = cell.val;
+                        var params = {
+                            FunctionName: "OurUTMUserAccounts",
+                            InvocationType: "RequestResponse",
+                            LogType: "None",
+                            Payload: JSON.stringify({
+                                "function": "blockUser",
+                                "parameters": {
+                                    "usernameFrom": user,
+                                    "usernameTo":id
+                                }
+                            }),
+                        };
+                        var pullResults;
+                        lambda.invoke(params, function(error, data) {
+                            if (error) {
+                                prompt("error: " + error);
+                                return;
+                            } else {
+                                pullResults = JSON.parse(data.Payload);
+                                var retval = pullResults["msg"];
+                                console.log(retval);
+                                loadBlocked();   
+                                loadRequests();                             
+                            }
+                        });
+
+
+
+                    };
+                };
+                cell.onclick = createClickHandler(cell);
+                cell.val = f[i];
+
+                // Remove user
+                var cell = row.insertCell(0);
+                cell.innerHTML = '<span class="glyphicon glyphicon-remove-sign" data-toggle="tooltip" data-placement="top" title="Reject Request" aria-hidden="true"></span>';
+                cell.classList.add("icon");
+
+                                var createClickHandler = function(cell) {
+                    return function() {
+                        var id = cell.val;
+                        var params = {
+                            FunctionName: "OurUTMUserAccounts",
+                            InvocationType: "RequestResponse",
+                            LogType: "None",
+                            Payload: JSON.stringify({
+                                "function": "declineFriendRequest",
+                                "parameters": {
+                                    "usernameFrom": user,
+                                    "usernameTo":id
+                                }
+                            }),
+                        };
+                        var pullResults;
+                        lambda.invoke(params, function(error, data) {
+                            if (error) {
+                                prompt("error: " + error);
+                                return;
+                            } else {
+                                pullResults = JSON.parse(data.Payload);
+                                var retval = pullResults["msg"];
+                                console.log(retval);
+                                loadRequests();                                
+                            }
+                        });
+
+
+
+                    };
+                };
+                cell.onclick = createClickHandler(cell);
+                cell.val = f[i];
+
+                // Add user Timetable
+                var cell = row.insertCell(0);
+                cell.innerHTML = '<span class="glyphicon glyphicon-ok-sign" data-toggle="tooltip" data-placement="top" title="Add request" aria-hidden="true"></span>';
+                cell.classList.add("icon");
+
+                var createClickHandler = function(cell) {
+                    return function() {
+                        var id = cell.val;
+                        var params = {
+                            FunctionName: "OurUTMUserAccounts",
+                            InvocationType: "RequestResponse",
+                            LogType: "None",
+                            Payload: JSON.stringify({
+                                "function": "acceptFriendRequest",
+                                "parameters": {
+                                    "usernameFrom": user,
+                                    "usernameTo":id
+                                }
+                            }),
+                        };
+                        var pullResults;
+                        lambda.invoke(params, function(error, data) {
+                            if (error) {
+                                prompt("error: " + error);
+                                return;
+                            } else {
+                                pullResults = JSON.parse(data.Payload);
+                                var retval = pullResults["msg"];
+                                console.log(retval);
+                                loadRequests();                                
+                                loadFriends();
+                            }
+                        });
+
+
+
+                    };
+                };
+                cell.onclick = createClickHandler(cell);
+                cell.val = f[i];
+
+                var cell = row.insertCell(0);
+                cell.innerHTML = f[i];
+                cell.val = f[i];
             }
         }
     });
@@ -707,11 +1000,15 @@ $(function() {
         $('#sidebar').show()
         $("#side-home").addClass("active");
         $('#home').show();
+            loadFriends();
+            loadBlocked();
+            loadRequests();
     } else {
         $('#login').show(); // Here should load the right page on refresh
     }
     console.log("loaded");
 
+    // Submission Click button handlers
     $("#loginButton").on('click', function() {
         login();
     });
@@ -754,7 +1051,12 @@ $(function() {
         loadAccount();
     });
 
-    $("#side-logout").on('click', function() {
-        logout();
+
+    $('[data-toggle="tooltip"]').tooltip()
+
+    
+    // Search Button -> Friends
+    $("#Search-button").on('click', function(){
+        addFriend();
     });
 });
