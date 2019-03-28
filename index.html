@@ -14,6 +14,23 @@
       <link rel="stylesheet" type="text/css" href="Website/layout.css">
       <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
       <!-- Move to Client.js -->
+<!--  -->
+      <script type="text/javascript">
+         $(document).ready( function () {
+            $('form').submit( function () {
+               var formdata = $(this).serialize();
+               $.ajax({
+                  type: "POST",
+                  url: "",
+                  data: formdata
+               });
+               return false;
+            });
+         });
+      </script>
+
+
+
       <script> 
          //request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/timeTable.json', true);
          //xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
@@ -228,30 +245,31 @@
          -->
       <div class="" id="sidebar">
          <ul class="nav nav-pills nav-stacked">
-            <li id='side-home'      class="active nav-link"> 
-            	<a href="#" onclick="return false;">Home<br></a>
+
+            <li id="side-home" class="active nav-link"> 
+               <a href="" onclick="return false;">Home<br></a>
             </li>
-            <li id="side-calendar"  class="active nav-link"> 
-            	<a href="#" onclick="return false;">Calendar<br></a>
+            <li id="side-calendar" class="active nav-link"> 
+               <a href="" onclick="return false;">Calendar<br></a>
             </li>
-            <li id="side-notes"     class="active nav-link"> 
-            	<a href="#" onclick="return false;">Notes<br></a>
+            <li id="side-notes" class="active nav-link"> 
+               <a href="" onclick="return false;">Notes<br></a>
             </li>
             <li id="side-timetable" class="active nav-link"> 
-            	<a href="#" onclick="return false;">Timetable<br></a>
+               <a href="" onclick="return false;">Timetable<br></a>
             </li>
-            <li id="side-friends"   class="active nav-link"> 
-            	<a href="#" onclick="return false;">Friends<br></a>
+            <li id="side-friends" class="active nav-link"> 
+               <a href="" onclick="return false;">Friends<br></a>
             </li>
-            <li id='side-map'       class="active nav-link"> 
-            	<a href="#" onclick="return false;">Map<br></a>
+            <li id="side-map"       class="active nav-link"> 
+               <a href="" onclick="return false;">Map<br></a>
             </li>
             <li id="side-settings"  class="active nav-link"> 
-            	<a href="#" onclick="return false;">Settings<br></a>
+               <a href="" onclick="return false;">Settings<br></a>
             </li>
-            <li id='side-logout'    class="active nav-link"> 
-            	<a href="#" onclick="return false;">Logout<br></a>
-			</li>
+            <li id='side-logout' class="nav-link"> 
+               <a href="" onclick="return false;">Logout<br></a>
+            </li>
          </ul>
       </div>
       <div id="home" class="beside">
@@ -349,19 +367,46 @@
             <!-- Friends page
          ----------------------------------------------------------
          -->
-      <div class="friends" class="beside"></div>
-
-       <!-- Timetable Page page
-         ----------------------------------------------------------
-         -->
-      <div class="tt" class="beside"></div>
-
-             <!-- Calender Page page
-         ----------------------------------------------------------
-         -->
-      <div class="cal" class="beside">
-               <h2>Calendar</h2>
       
+
+
+
+      <div id="friends" class="beside">
+         <h3>Search For Friend:</h3><br>
+         <form class="form-inline md-form mr-auto mb-4">
+               <input id="SearchBar"class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+               <button id="Search-button" class="btn btn-outline-warning btn-rounded btn-sm my-0">Search</button>
+         </form>
+         <!-- Our map image -->
+         <div >
+            <h2>Friends</h2>
+            <table id='friend-list'>
+            </table>
+         </div>
+         <div >
+            <h2>Requests</h2>
+            <table id='pending-list'>
+            </table>
+         </div>
+         <div >
+            <h2>Blocked</h2>
+            <table id='blocked-list'>
+            </table>
+         </div>
+      </div>
+
+
+      <!-- Timetable Page page ---------------------------------------------------------- -->
+      <div id="tt" class="beside">
+         
+      </div>
+
+
+
+      <!-- Calender Page page ---------------------------------------------------------- -->
+      <div id="cal" class="beside">
+         <div id="calender-div">
+
       <table id="calendar">
 
       <script> 
@@ -448,7 +493,7 @@
          }        
       });
       
-      <!--parse events-->
+      // <!--parse events-->
       var url = "http://localhost:8080/events/";
          
       $.getJSON(url, function(data) {
@@ -460,7 +505,7 @@
          var events_list_len = events.length;         
          
          
-         <!--parse events events-->
+         // <!--parse events' events-->
          for (i=0; i < events_list_len; i++){
             var eventName = events[i].eventName;
             var description = events[i].description; //
@@ -500,7 +545,7 @@
       });
 
       //dfjklasdfjhadshkflkads
-      <!--parse dueDates-->
+      // <!--parse dueDates-->
       var url = "http://localhost:8080/duedates/";
          
       $.getJSON(url, function(data) {
@@ -600,8 +645,10 @@
       </tr>
       
       </table>
-      <div id="addEvent">
-         <h2>Add an Event</h2>
+         </div>
+         <div id="addEvent">
+
+<h2>Add an Event</h2>
 
 
   <label for="eventName">Event name: </label>
@@ -660,9 +707,10 @@
     }
     
 </script>
-      </div>
-      <div id="addDue">
-         <h2>Add a Due Date</h2>
+         </div>
+         <div id="addDueDate">
+         
+<h2>Add a Due Date</h2>
 
 
   <label for="assignmentName">Assignment name: </label>
@@ -714,20 +762,29 @@
                                  console.log(err);
                               }
                              });
-        //kjhasdfjhkfsjhkfdkhjfahlfdhsfdsa
-        
+       
     }
     
-</script>
+</script>            
+         </div>
+
+
       </div>
 
-
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-         <strong></strong>
+<!-- 
+      <div id="warn" class="alert alert-warning alert-dismissible fade show" role="alert">
+         <strong>Warning!</strong><span id="warnMesg"></span>
+>>>>>>> 163641276-Friends-Frontend
          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>
          </button>
       </div>
+      <div id="success-msg" class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>Sucess</strong><span id="sucMesg"></span>
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div> -->
    </body>
 </html>
 
