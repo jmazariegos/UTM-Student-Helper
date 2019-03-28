@@ -585,10 +585,10 @@ function addFriend(){
             $("#SearchBar").val("");
             if (retval ==="Friend request sent."){
               $("#sucMesg").val(retval);
-              $("#alert-success").show();
+              $("#success-msg").alert("close");
             }else {
               $("#warnMesg").val(retval);
-              $("#warn").show();
+              $("#warn").alert("close");
             }
         }
     });
