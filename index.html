@@ -309,6 +309,32 @@
       </div>
       <!-- Timetable Page page ---------------------------------------------------------- -->
       <div id="tt" class="beside">
+		<div id="timetable-container" class="inline">
+			<table id="timetable"></table>
+			<script>
+				var days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]; //this whole script just makes the timetable layout not alot to say about it
+				var text = "<tr>";
+				for(var i = 0; i < 6; i++){
+					text += "<th>" + days[i] + "</th>";
+				}
+				text += "</tr>"; 
+				for(var i = 8; i < 23; i++){
+					text += "<tr>";
+					if(i < 13){
+						text += "<th class=\"time\">" + i + ":00";
+					}else{
+						text += "<th class=\"time\">" + (i - 12) + ":00"; 
+					}
+					for(var j = 0; j < 5; j++){
+						text += "<td class=\"timeslot\"></td>";
+					}
+					text += "</tr>"
+				}
+				var timetable = document.getElementById("timetable");
+				timetable.innerHTML = text;
+		        reload();
+			</script>
+		</div>
 		<div id="search-container" class="inline">
 			<div id="course-container">
 			</div>
@@ -339,32 +365,6 @@
 				<table id="courses"></table>
 			</div>
 			<script>createHandlers();</script>
-		</div>
-		<div id="timetable-container" class="inline">
-			<table id="timetable"></table>
-			<script>
-				var days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]; //this whole script just makes the timetable layout not alot to say about it
-				var text = "<tr>";
-				for(var i = 0; i < 6; i++){
-					text += "<th>" + days[i] + "</th>";
-				}
-				text += "</tr>"; 
-				for(var i = 8; i < 23; i++){
-					text += "<tr>";
-					if(i < 13){
-						text += "<th class=\"time\">" + i + ":00";
-					}else{
-						text += "<th class=\"time\">" + (i - 12) + ":00"; 
-					}
-					for(var j = 0; j < 5; j++){
-						text += "<td class=\"timeslot\"></td>";
-					}
-					text += "</tr>"
-				}
-				var timetable = document.getElementById("timetable");
-				timetable.innerHTML = text;
-		        reload();
-			</script>
 		</div>
       </div>
       <!-- Calender Page page ---------------------------------------------------------- -->
