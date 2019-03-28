@@ -23,6 +23,10 @@ public class TimetableGenerator {
 	private List<String> courseClassTypeMappings;
 	private Map<String, String> singleClass;
 	private List <Map<String, Object>> finalList;
+	// added for mappings
+	private List<String> allTC;
+	private List<String> allPC;
+	private List<String> allLC;
 	
 	public TimetableGenerator(List<Courses> courses) {
 		// set the timings to the Map courses
@@ -34,6 +38,9 @@ public class TimetableGenerator {
 		this.courseCodeMappings = new ArrayList<>();
 		this.courseClassTypeMappings = new ArrayList<>();
 		this.allTimes = new ArrayList<>();
+		this.allTC = new ArrayList<String>();
+		this.allPC = new ArrayList<String>();
+		this.allLC = new ArrayList<String>();
 		
 		for (Courses course: courses) {
 			addToLists(course);
@@ -42,6 +49,8 @@ public class TimetableGenerator {
 		this.allTimes.addAll(this.allTutorials);
 		for (int i = 0; i < this.allTutorials.size(); i ++) {
 			this.courseClassTypeMappings.add("TUT");
+			// these may be for any TUT
+			// E.G 108, 109, 223
 		}
 		this.allTimes.addAll(this.allPracticals);
 		for (int i = 0; i < this.allPracticals.size(); i ++) {
@@ -51,22 +60,27 @@ public class TimetableGenerator {
 		for (int i = 0; i < this.allLectures.size(); i ++) {
 			this.courseClassTypeMappings.add("LEC");
 		}
+		// add to allTC
+		this.courseCodeMappings.addAll(this.allTC);
+		this.courseCodeMappings.addAll(this.allPC);
+		this.courseCodeMappings.addAll(this.allLC);
+
 	}
 	
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
 		if(!course.getTutorials().isEmpty()) {
 			this.allTutorials.add(course.getTutorials());
-			this.courseCodeMappings.add(course.getCode());
-			
+			this.allTC.add(course.getCode());
+			//this.courseCodeMappings.add(course.getCode());
 		}
 		if(!course.getPracticals().isEmpty()) {
 			this.allPracticals.add(course.getPracticals());
-			this.courseCodeMappings.add(course.getCode());
-			
+			this.allPC.add(course.getCode());	
 		}
 		this.allLectures.add(course.getLectures());
-		this.courseCodeMappings.add(course.getCode());
+		this.allLC.add(course.getCode());
+		//this.courseCodeMappings.add(course.getCode());
 		
 		// have parallel lists: index 0 is for this course, etc
 	}
