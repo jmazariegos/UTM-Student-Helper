@@ -103,7 +103,7 @@ public class TimetableGenerator {
 		// reset timetable
 		this.timetableBool = new int [15][7];
 		Map<String, Object> curElem;
-		String [][] times;
+		List<List<String>> times;
 		String day, start, end;
 		for (int i = 0; i < 15; i ++) {
 			for (int j = 0; j < 7; j ++) {
@@ -116,12 +116,13 @@ public class TimetableGenerator {
 		for (int c : cc) {
 			curElem = this.allTimes.get(ind).get(c);
 			// try slot into timetable
-			times = (String[][]) curElem.get("timings");
-			for (String [] session : times) {
+			System.out.println(curElem.get("timings"));
+			times = (List<List<String>>) curElem.get("timings");
+			for (List<String> session : times) {
 				// note: some have different formats
-				day = session[0];
-				start = session[1];
-				end = session[2];
+				day = session.get(0);
+				start = session.get(1);
+				end = session.get(2);
 
 				if (insertIntoTable(day, start, end) == false) {
 					return false;
