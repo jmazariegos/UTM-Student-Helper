@@ -23,6 +23,12 @@ public class TimetableGenerator {
 	private List<String> courseClassTypeMappings;
 	private Map<String, String> singleClass;
 	private List <Map<String, Object>> finalList;
+	// added for mappings
+	private List<String> allTC;
+	private List<String> allPC;
+	private List<String> allLC;
+	// timetable list
+	private List<String> currentTimes;
 	
 	public TimetableGenerator(List<Courses> courses) {
 		// set the timings to the Map courses
@@ -34,6 +40,9 @@ public class TimetableGenerator {
 		this.courseCodeMappings = new ArrayList<>();
 		this.courseClassTypeMappings = new ArrayList<>();
 		this.allTimes = new ArrayList<>();
+		this.allTC = new ArrayList<String>();
+		this.allPC = new ArrayList<String>();
+		this.allLC = new ArrayList<String>();
 		
 		for (Courses course: courses) {
 			addToLists(course);
@@ -42,6 +51,8 @@ public class TimetableGenerator {
 		this.allTimes.addAll(this.allTutorials);
 		for (int i = 0; i < this.allTutorials.size(); i ++) {
 			this.courseClassTypeMappings.add("TUT");
+			// these may be for any TUT
+			// E.G 108, 109, 223
 		}
 		this.allTimes.addAll(this.allPracticals);
 		for (int i = 0; i < this.allPracticals.size(); i ++) {
@@ -51,22 +62,29 @@ public class TimetableGenerator {
 		for (int i = 0; i < this.allLectures.size(); i ++) {
 			this.courseClassTypeMappings.add("LEC");
 		}
+		// add to allTC
+		this.courseCodeMappings.addAll(this.allTC);
+		this.courseCodeMappings.addAll(this.allPC);
+		this.courseCodeMappings.addAll(this.allLC);
+
 	}
 	
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
-		this.allLectures.add(course.getLectures());
-		this.courseCodeMappings.add(course.getCode());
+		//this.allLectures.add(course.getLectures());
+		//this.courseCodeMappings.add(course.getCode());
 		if(!course.getTutorials().isEmpty()) {
 			this.allTutorials.add(course.getTutorials());
-			this.courseCodeMappings.add(course.getCode());
-			
+			this.allTC.add(course.getCode());
+			//this.courseCodeMappings.add(course.getCode());
 		}
 		if(!course.getPracticals().isEmpty()) {
 			this.allPracticals.add(course.getPracticals());
-			this.courseCodeMappings.add(course.getCode());
-			
+			this.allPC.add(course.getCode());	
 		}
+		this.allLectures.add(course.getLectures());
+		this.allLC.add(course.getCode());
+		//this.courseCodeMappings.add(course.getCode());
 		
 		// have parallel lists: index 0 is for this course, etc
 	}
@@ -112,6 +130,8 @@ public class TimetableGenerator {
 	public boolean checkCombo(int [] cc) {
 		// reset timetable
 		this.timetableBool = new int [15][7];
+		// new timetable
+		this.currentTimes = new ArrayList<String>();
 		Map<String, Object> curElem;
 		List<List<String>> times;
 		String day, start, end;
@@ -132,12 +152,14 @@ public class TimetableGenerator {
 				day = session.get(0);
 				start = session.get(1);
 				end = session.get(2);
-
-				if (insertIntoTable(day, start, end) == false) {
+				boolean success = insertIntoTable(day, start, end);
+				if (success == false) {
 					return false;
 				}
 			}
+			ind ++;
 		}
+
 		return true;
 	}
 	
@@ -166,39 +188,47 @@ public class TimetableGenerator {
 		}
 		int col, startRow, endRow;	
 		String day2 = null, start2 = null, end2 = null;
-		int loops = 1;
-		if (day.contains("\n")) {
-			loops = 2;
-			// there will be two. Do twice
-			day = day.split("\n")[0];
-			start = start.split("\n")[0];
-			end = end.split("\n")[0];
-			day2 = day.split("\n")[1];
-			start2 = start.split("\n")[1];
-			end2 = end.split("\n")[1];
-		}
+		//int loops = 1;
+		//if (day.contains("\n")) {
+		//	loops = 2;
+		//	// there will be two. Do twice
+		//	day = day.split("\n")[0];
+		//	start = start.split("\n")[0];
+		//	end = end.split("\n")[0];
+		//	day2 = day.split("\n")[1];
+		//	start2 = start.split("\n")[1];
+		//	end2 = end.split("\n")[1];
+		//}
 		col = getTimetableColumn(day);
 		startRow = getTimetableRow(start);
 		endRow = getTimetableRow(end);
-		while (loops > 0) {
+
+		//while (loops > 0) {
 			// now can try insert into table
 			for (int row = startRow; row < endRow; row ++) {
+				String s = row + ":" + col;
 				// check if free:
-				if (this.timetableBool[row][col] == 1) {
+				//if (this.timetableBool[row][col] == 1) {
+				//	return false;
+				//}
+
+				if (this.currentTimes.contains(s)) {
 					return false;
 				}
 				// otherwise set to 1
-				this.timetableBool[row][col] = 1;
+				//this.timetableBool[row][col] = 1;
+				// otherwise add
+				this.currentTimes.add(s);
 			}
-			if (loops == 2) {
-				// set col start and end again 
-				col = getTimetableColumn(day2);
-				startRow = getTimetableRow(start2);
-				endRow = getTimetableRow(end2);
-			}
-			loops --;
+			//if (loops == 2) {
+			//	// set col start and end again 
+			//	col = getTimetableColumn(day2);
+			//	startRow = getTimetableRow(start2);
+			//	endRow = getTimetableRow(end2);
+			//}
+			//loops --;
 			
-		}
+		//}
 		return true;
 	}
 	
@@ -231,7 +261,6 @@ public class TimetableGenerator {
 		list.add("FR");
 		list.add("SA");
 		list.add("SU");
-
 		return list.indexOf(day);
 	}
 	public int [] increment(int [] cc) {

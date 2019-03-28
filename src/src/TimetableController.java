@@ -23,9 +23,10 @@ public class TimetableController {
 	@RequestMapping(value = "/exists", method = RequestMethod.GET)
 	public Boolean courseExists(@RequestParam("code") String code,
 								@RequestParam("session") String session,
-								@RequestParam("semester") String semester) {
-		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, semester);
-		timetable.addAll(timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, "Y"));
+								@RequestParam("semester") String semester,
+								@RequestParam("user") String user) {
+		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAndUserAllIgnoreCase(code, session, semester, user);
+		timetable.addAll(timetableRepository.findByCodeAndSessionAndSemesterAndUserAllIgnoreCase(code, session, "Y", user));
 		if(timetable.size() > 0) {
 			return true;
 		}else {
@@ -39,8 +40,9 @@ public class TimetableController {
 		String code = body.get("code");
 		String session = body.get("session");
 		String semester = body.get("semester");
-		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, semester);
-		timetable.addAll(timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(code, session, "Y"));
+		String user = body.get("user");
+		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAndUserAllIgnoreCase(code, session, semester, user);
+		timetable.addAll(timetableRepository.findByCodeAndSessionAndSemesterAndUserAllIgnoreCase(code, session, "Y", user));
 		if(timetable.size() > 0) {
 			Timetable course = timetable.get(0);
 			timetableRepository.deleteById(course.get_id());
@@ -52,19 +54,21 @@ public class TimetableController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Timetable> getTimetable(@RequestParam("session") String session,
-										@RequestParam("semester") String semester) {
-		List<Timetable> timetable = timetableRepository.findBySessionAndSemesterAllIgnoreCase(session, semester);
-		timetable.addAll(timetableRepository.findBySessionAndSemesterAllIgnoreCase(session, "Y"));
+										@RequestParam("semester") String semester,
+										@RequestParam("user") String user) {
+		List<Timetable> timetable = timetableRepository.findBySessionAndSemesterAndUserAllIgnoreCase(session, semester, user);
+		timetable.addAll(timetableRepository.findBySessionAndSemesterAndUserAllIgnoreCase(session, "Y", user));
 		return timetable;
 	}
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public Timetable createCourse(@Valid @RequestBody Timetable timetableCourse) {
-		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAllIgnoreCase(
+		List<Timetable> timetable = timetableRepository.findByCodeAndSessionAndSemesterAndUserAllIgnoreCase(
 				timetableCourse.getCode(), 
 				timetableCourse.getSession(), 
-				timetableCourse.getSemester());
+				timetableCourse.getSemester(),
+				timetableCourse.getUser());
 		if(timetable.size() == 1) {
 			Timetable updatedTimetable = timetable.get(0);
 			updatedTimetable.setCode(timetableCourse.getCode());
