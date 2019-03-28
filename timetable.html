@@ -39,6 +39,15 @@
 				height: 40px;
 				width: 400px;
 			}
+			input[name="add-cart"] {
+				border: 1px solid #0ca6f2;
+				border-radius: 10px;
+				box-shadow: 0 0 10px rgba(149,192,255,.75);
+				font-size: 22px;
+				padding-left: 20px;
+				height: 40px;
+				width: 400px;
+			}
 			input[name="enrol"] {
 				border: 1px solid #0ca6f2;
 				border-radius: 10px;
@@ -132,6 +141,12 @@
 					<option value="F">First</option>
 					<option value="S">Second</option>
 				</select>
+				<label id="cart-courses">0</label>
+				<button id="cart-view">
+					cart
+				</button>
+				<table id="cart" hidden="true"></table>
+				<input type="submit" id="generate" value="Generate">
 				<div id="calendar-upload">
 					<input type="file" id="file">
 					<input type="submit" id="upload" value="Upload">
@@ -149,6 +164,8 @@
 				const $semester = document.querySelector('select[name=\'semester\']');
 				const $generate = document.querySelector('#generate');
 				const $cart = document.querySelector('#cart');
+				const $cartcourses = document.querySelector('#cart-courses');
+				const $view = document.querySelector('#cart-view');
 				
 				const $upload = document.querySelector('#upload'); //upload stuff
 				upload.onclick = function(event){
@@ -254,8 +271,36 @@
 					}
 				}
 				
-				const generatorHandler = function(e){ //handler for the generate button
+				$view.onclick = function(e){ //also to do
 					
+				}
+				
+				$generate.onclick = function(e){ //handler for the generate button
+					var codes = [];
+					var cc = document.getElementsByName('entry');
+					for(var i = 0; i < cc.length; i++){
+						codes.push(cc[i].innerHTML);
+					}
+					data = {
+						codes: codes,
+						session: $session.value,
+						semester: $semester.value
+					}
+			        $.ajax({ 
+			        	url: "http://localhost:8080/courses/generate", 
+			        	type: "POST", 
+			        	data: JSON.stringify(data), 
+			        	dataType: 'json', 
+			        	contentType: 'application/json', 
+			        	success: function(result){ //to do
+			        		console.log(result);
+					        var timetable = document.getElementById("timetable");
+					        reload(); 
+			        	},
+			        	error: function(err){ //something went wrong
+			        		console.log(err);
+			        	}
+			        });
 				}
 				
 				const courseHandler = function(e){ //handler for when a course is clicked from the table
@@ -306,9 +351,46 @@
 						}
 						$.getJSON("http://localhost:8080/timetable/exists", data, function(result){ //returns if a course already exists in the timetable
 							if(result){ //course exists in timetable
-								text += "</table><input type=\"submit\" value=\"Modify course\" name=\"enrol\">";
+								text += "</table>";
+								var cc = document.getElementsByName('entry');
+								var found = false;
+								for(var i = 0; i < cc.length; i++){
+									if(cc[i].innerHTML === course.code){
+										text += "<input type=\"submit\" value=\"Remove from cart\" name=\"add-cart\">";
+										found = true;
+										break;
+									}
+								}
+								if(!found){
+									text += "<input type=\"submit\" value=\"Add to cart\" name=\"add-cart\">";
+								}
+
+								text += "<input type=\"submit\" value=\"Modify course\" name=\"enrol\">";
 								text += "<input type=\"submit\" value=\"Unenrol in course\" name=\"unenrol\"></div>";
 								$courseinfo.innerHTML = text;
+								
+								addCartBtn = document.querySelector('input[name=\'add-cart\']');
+								if(addCartBtn){
+									addCartBtn.onclick = function(){
+										for(var i = 0; i < cc.length; i++){
+											if(cc[i].innerHTML === course.code){
+												addCartBtn.value = "Add to cart";
+												cc[i].parentElement.parentElement.parentNode.removeChild(cc[i].parentElement.parentElement);
+												var count = parseInt($cartcourses.innerHTML, 10) - 1
+												$cartcourses.innerHTML = count;
+												return;
+											}
+										}
+										if(parseInt($cartcourses.innerHTML, 10) > 6){
+											alert("Only 6 courses allowed in your cart.");
+											return;
+										}
+										addCartBtn.value = "Remove from cart";
+										$cart.insertAdjacentHTML('beforeend', '<tr><td name=\"entry\">' + course.code + '</td></tr>');
+										var count = parseInt($cartcourses.innerHTML, 10) + 1
+										$cartcourses.innerHTML = count;
+									};
+								}
 								
 								unenrolBtn = document.querySelector('input[name=\'unenrol\']');
 								if(unenrolBtn){ //button for unenrolling
@@ -334,8 +416,44 @@
 									};
 								}
 							}else{ //course not in timetable
-								text += "</table><input type=\"submit\" value=\"Enrol in course\" name=\"enrol\"></div>"; //just enrol button
+								text += "</table>";
+								var cc = document.getElementsByName('entry');
+								var found = false;
+								for(var i = 0; i < cc.length; i++){
+									if(cc[i].innerHTML === course.code){
+										text += "<input type=\"submit\" value=\"Remove from cart\" name=\"add-cart\">";
+										found = true;
+										break;
+									}
+								}
+								if(!found){
+									text += "<input type=\"submit\" value=\"Add to cart\" name=\"add-cart\">";
+								}
+								text += "<input type=\"submit\" value=\"Enrol in course\" name=\"enrol\"></div>"; //just enrol button
 								$courseinfo.innerHTML = text; //places text into the html making the elements
+								
+								addCartBtn = document.querySelector('input[name=\'add-cart\']');
+								if(addCartBtn){
+									addCartBtn.onclick = function(){
+										for(var i = 0; i < cc.length; i++){
+											if(cc[i].innerHTML === course.code){
+												addCartBtn.value = "Add to cart";
+												cc[i].parentElement.parentElement.parentNode.removeChild(cc[i].parentElement.parentElement);
+												var count = parseInt($cartcourses.innerHTML, 10) - 1
+												$cartcourses.innerHTML = count;
+												return;
+											}
+										}
+										if(parseInt($cartcourses.innerHTML, 10) > 5){
+											alert("Only 6 courses allowed in your cart.");
+											return;
+										}
+										addCartBtn.value = "Remove from cart";
+										$cart.insertAdjacentHTML('beforeend', '<tr><td name=\"entry\">' + course.code + '</td></tr>');
+										var count = parseInt($cartcourses.innerHTML, 10) + 1
+										$cartcourses.innerHTML = count;
+									};
+								}
 							}
 							enrolBtn = document.querySelector('input[name=\'enrol\']');
 							if(enrolBtn){ //adds script to enrol button
@@ -448,10 +566,22 @@
 				
 				$session.oninput = function(){ //i changed the session act like i changed the searchbar (makes results consistent)
 					$searchbar.dispatchEvent(new Event('input'));
+					$cartcourses.innerHTML = "";
+					$cart.innerHTML = "";
+					addCartBtn = document.querySelector('input[name=\'add-cart\']');
+					if(addCartBtn){
+						addCartBtn.value = "Add to cart";
+					}
 					reload();
 				}
 				$semester.oninput = function(){ //same
 					$searchbar.dispatchEvent(new Event('input'));
+					$cartcourses.innerHTML = "";
+					$cart.innerHTML = "";
+					addCartBtn = document.querySelector('input[name=\'add-cart\']');
+					if(addCartBtn){
+						addCartBtn.value = "Add to cart";
+					}
 					reload();
 				}
 				$searchbar.addEventListener('input', typeHandler); //searchbar getting its handler
