@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-<button type="button" id="testLink" >Save</button>
+<button type="button" id="testLink" >Save File</button>
 <textarea rows="50" cols="100" id="textareaCode" placeholder="Enter Text Here"></textarea>
-<button  type="button" onclick="load()">Load</button>
+<button  type="button" onclick="load()">Load File</button>
 
-<p id="demo">yo</p>
 
+<!-- https://stackoverflow.com/questions/33640325/load-text-from-local-txt-file-into-html-textarea-using-javascript -->
 <script>
 window.load = function(){
   var file = document.getElementById("myFile").files[0];
   var reader = new FileReader();
   reader.onload = function (e) {
-  	document.getElementById("demo").innerHTML = "Hello World";
     var textArea = document.getElementById("textareaCode");
     textArea.value = e.target.result;
   };
@@ -23,7 +22,8 @@ window.load = function(){
  <input id="myFile" type="file" onclick="load()"/>
 
  
-<!-- save file js-->
+ 
+<!-- This section was taken from https://www.beginnersbook.in/save-textarea-file-in-txt/-->
 <script>
 
 (function(){
@@ -38,7 +38,6 @@ function load(){
   };
   reader.readAsText(file);
   }
-  
   var saveAs = saveAs || (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob && navigator.msSaveOrOpenBlob.bind(navigator)) || (function(view) {
     "use strict"; if (typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
       return

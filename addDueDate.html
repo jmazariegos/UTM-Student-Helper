@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>	
+</head>
+
+<body>
+
+<h2>Add a Due Date</h2>
+
+
+  <label for="assignmentName">Assignment name: </label>
+  <input id="assignmentName" name="assignmentName"><br>
+
+  <label for="courseCode">Course Code: </label>
+  <input id="courseCode" name="courseCode" ><br>
+
+<label for="description">Description: </label>
+  <input id="description" name="description"><br>
+  
+  <label for="dueDate">Due Date (YYYYMMDD): </label>
+  <input id="dueDate" name="dueDate" ><br>
+  
+  <label for="dueTime">Due Time (HHMM): </label>
+  <input id="dueTime" name="dueTime" ><br>
+  
+  
+  
+  <input onclick="submitDueDate()" type="submit" value="Submit">
+  <p id="demo"></p>
+
+<script>
+    function submitDueDate(){ 
+        //var bob = document.getElementById("description").value;
+        //document.getElementById("demo").innerHTML = bob;
+        
+        //dfkljasjkadjkljkadsfjklfdsafff
+        
+        var newDueDate = {
+			"assignmentName": document.getElementById("assignmentName").value,
+            "courseCode": document.getElementById("courseCode").value,
+			"description": document.getElementById("description").value,
+			"dueDate": document.getElementById("dueDate").value,
+			"dueTime": document.getElementById("dueTime").value
+		};
+        $.ajax({
+							        	url: "http://localhost:8080/duedates/",
+							        	type: "POST",
+							        	data: JSON.stringify(newDueDate),
+							        	dataType: 'json',
+							        	contentType: 'application/json',
+							        	success: function(result){
+							        		console.log(result);
+									        var calender = document.getElementById("calender");
+									        //Reload Page
+							        	},
+							        	error: function(err){
+							        		console.log(err);
+							        	}
+							        });
+       
+    }
+    
+</script>
+ 
+</body>
+</html>

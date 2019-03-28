@@ -69,6 +69,8 @@ public class TimetableGenerator {
 	
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
+		this.allLectures.add(course.getLectures());
+		this.courseCodeMappings.add(course.getCode());
 		if(!course.getTutorials().isEmpty()) {
 			this.allTutorials.add(course.getTutorials());
 			this.allTC.add(course.getCode());

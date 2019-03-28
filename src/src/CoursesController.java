@@ -41,9 +41,16 @@ public class CoursesController {
 		List<Courses> cart = null;
 		for(String code: codes) {
 			if(cart != null) {
-				cart.add(coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester).get(0));
+				Courses course = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester).get(0);
+				if(course == null) {
+					course = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, "Y").get(0);
+				}
+				cart.add(course);
 			}else {
 				cart = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, semester);
+				if(cart.isEmpty()) {
+					cart = coursesRepository.findByCodeStartingWithAndSessionAndSemesterAllIgnoreCase(code, session, "Y");
+				}
 			}
 		}
 		
