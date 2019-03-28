@@ -1481,6 +1481,7 @@ function createHandlers(){
 		if(addCartBtn){
 			addCartBtn.value = "Add to cart";
 		}
+		var timetable = document.getElementById("timetable");
 		reload();
 	}
 	$semester.oninput = function(){ //same
@@ -1492,6 +1493,7 @@ function createHandlers(){
 		if(addCartBtn){
 			addCartBtn.value = "Add to cart";
 		}
+		var timetable = document.getElementById("timetable");
 		reload();
 	}
 	$searchbar.addEventListener('input', typeHandler); //searchbar getting its handler
