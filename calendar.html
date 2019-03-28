@@ -157,7 +157,7 @@
 			}			
 		});
 		
-		<!--parse events-->
+		// <!--parse events-->
 		var url = "http://localhost:8080/events/";
 			
 		$.getJSON(url, function(data) {
@@ -169,7 +169,7 @@
 			var events_list_len = events.length;			
 			
 			
-			<!--parse events' events-->
+			// <!--parse events' events-->
 			for (i=0; i < events_list_len; i++){
 				var eventName = events[i].eventName;
 				var description = events[i].description; //
@@ -209,7 +209,7 @@
 		});
 
 		//dfjklasdfjhadshkflkads
-		<!--parse dueDates-->
+		// <!--parse dueDates-->
 		var url = "http://localhost:8080/duedates/";
 			
 		$.getJSON(url, function(data) {
