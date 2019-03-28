@@ -1051,6 +1051,9 @@ $(function() {
     $("#side-settings").on('click', function() {
         loadAccount();
     });
+        $("#side-logout").on('click', function() {
+        logout();
+    });
 
 
     $('[data-toggle="tooltip"]').tooltip()
