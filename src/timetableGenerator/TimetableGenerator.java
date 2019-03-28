@@ -219,6 +219,7 @@ public class TimetableGenerator {
 				//this.timetableBool[row][col] = 1;
 				// otherwise add
 				this.currentTimes.add(s);
+			}
 			//if (loops == 2) {
 			//	// set col start and end again 
 			//	col = getTimetableColumn(day2);
