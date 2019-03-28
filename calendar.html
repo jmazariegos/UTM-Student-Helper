@@ -158,17 +158,16 @@
 		});
 		
 		<!--parse events-->
-		var url = "./data/events.json";
+		var url = "http://localhost:8080/events/";
 			
 		$.getJSON(url, function(data) {
 			console.log(data); //this writes to the console, and I think we need this request to access data
 			
 			var calendar = document.getElementById("calendar");
 			
-			var events = data['events'];
+			var events = data;
 			var events_list_len = events.length;			
-			var dueDates = data['dueDates'];
-			var dueDates_list_len = dueDates.length;
+			
 			
 			<!--parse events' events-->
 			for (i=0; i < events_list_len; i++){
@@ -206,10 +205,23 @@
 					}  
 				}
 			}
+	
+		});
+
+		//dfjklasdfjhadshkflkads
+		<!--parse dueDates-->
+		var url = "http://localhost:8080/duedates/";
 			
-			<!--parse events' dueDates-->
+		$.getJSON(url, function(data) {
+			console.log(data); //this writes to the console, and I think we need this request to access data
+			
+			var calendar = document.getElementById("calendar");
+						
+			var dueDates = data;
+			var dueDates_list_len = dueDates.length;
+			<!--parse events dueDates-->
 			for (i=0; i < dueDates_list_len; i++){
-				var code = dueDates[i].code;
+				var code = dueDates[i].courseCode;
 				var assignmentName = dueDates[i].assignmentName;
 				var description = dueDates[i].description;
 				var dueDate = dueDates[i].dueDate;
@@ -231,8 +243,9 @@
 						}
 					}  
 				}
-			}	
+			}
 		});
+		///ddfkjlasdfjkadshkfjasd
 		
 		</script>
 		<tr>

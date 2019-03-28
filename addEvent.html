@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"> 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>	
+</head>
+
+<body>
+
+<h2>Add an Event</h2>
+
+
+  <label for="eventName">Event name: </label>
+  <input id="eventName" name="eventName"><br>
+
+<label for="description">Description: </label>
+  <input id="description" name="description"><br>
+  
+  <label for="startDate">Start Date (YYYYMMDD): </label>
+  <input id="startDate" name="startDate" ><br>
+  
+  <label for="endDate">End Date (YYYYMMDD): </label>
+  <input id="endDate" name="endDate" ><br>
+  
+  <label for="startTime">Start Time (HHMM): </label>
+  <input id="startTime" name="startTime" ><br>
+  
+  <label for="endTime">End Time (HHMM): </label>
+  <input id="endTime" name="endTime" ><br>
+  
+  <input onclick="submitEvent()" type="submit" value="Submit">
+  <p id="demo"></p>
+
+<script>
+    function submitEvent(){ 
+        //var bob = document.getElementById("description").value;
+        //document.getElementById("demo").innerHTML = bob;
+        
+        //dfkljasjkadjkljkadsfjklfdsafff
+        
+        var newEvent = {
+			"eventName": document.getElementById("eventName").value,
+			"description": document.getElementById("description").value,
+			"startDate": document.getElementById("startDate").value,
+			"startTime": document.getElementById("startTime").value,
+			"endDate": document.getElementById("endDate").value,
+			"endTime": document.getElementById("endTime").value
+		};
+        $.ajax({
+							        	url: "http://localhost:8080/events/",
+							        	type: "POST",
+							        	data: JSON.stringify(newEvent),
+							        	dataType: 'json',
+							        	contentType: 'application/json',
+							        	success: function(result){
+							        		console.log(result);
+									        var calender = document.getElementById("calender");
+									        //Reload Page
+							        	},
+							        	error: function(err){
+							        		console.log(err);
+							        	}
+							        });
+        //kjhasdfjhkfsjhkfdkhjfahlfdhsfdsa
+        
+    }
+    
+</script>
+ 
+</body>
+</html>
