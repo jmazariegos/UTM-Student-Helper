@@ -8,7 +8,7 @@
 - Iqbal
 - Anmol
 
-Note: All of the stories were started and attempted, however not all were fully completed. This was due to underestimating the time needed and complexity of the user story. 
+Note: All of the stories were started and attempted, however not all were fully completed. This was due to underestimating the time needed and complexity of the user story, as well as our efforts towards transitioning to MongoDB from reading local files. 
 
 ## Sprint Backlog:
 
