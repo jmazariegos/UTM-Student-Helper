@@ -20,6 +20,7 @@ public class TimetableGenerator {
 	private List<Courses [][]> workingTimetable;
 	// fill entry with Map: course: type: code:?
 	private List<String> courseCodeMappings;
+	private List<String> courseClassTypeMappings;
 	private Map<String, String> singleClass;
 	private List <Map<String, Object>> finalList;
 	
@@ -31,6 +32,7 @@ public class TimetableGenerator {
 		this.allTutorials = new ArrayList<>();
 		this.allPracticals = new ArrayList<>();
 		this.courseCodeMappings = new ArrayList<>();
+		this.courseClassTypeMappings = new ArrayList<>();
 		this.allTimes = new ArrayList<>();
 		
 		for (Courses course: courses) {
@@ -38,22 +40,34 @@ public class TimetableGenerator {
 		}
 		// add all to main list
 		this.allTimes.addAll(this.allTutorials);
+		for (int i = 0; i < this.allTutorials.size(); i ++) {
+			this.courseClassTypeMappings.add("TUT");
+		}
 		this.allTimes.addAll(this.allPracticals);
+		for (int i = 0; i < this.allPracticals.size(); i ++) {
+			this.courseClassTypeMappings.add("PRA");
+		}
 		this.allTimes.addAll(this.allLectures);
+		for (int i = 0; i < this.allLectures.size(); i ++) {
+			this.courseClassTypeMappings.add("LEC");
+		}
 	}
 	
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
-		this.allLectures.add(course.getLectures());
-		this.courseCodeMappings.add(course.getCode());
 		if(!course.getTutorials().isEmpty()) {
 			this.allTutorials.add(course.getTutorials());
 			this.courseCodeMappings.add(course.getCode());
+			
 		}
 		if(!course.getPracticals().isEmpty()) {
 			this.allPracticals.add(course.getPracticals());
 			this.courseCodeMappings.add(course.getCode());
+			
 		}
+		this.allLectures.add(course.getLectures());
+		this.courseCodeMappings.add(course.getCode());
+		
 		// have parallel lists: index 0 is for this course, etc
 	}
 	
@@ -137,6 +151,7 @@ public class TimetableGenerator {
  		for (int i = 0; i < cc.length; i ++) {
 			chosen = this.allTimes.get(i).get(cc[i]);
 			chosen.put("code", this.courseCodeMappings.get(i));
+			chosen.put("type", this.courseClassTypeMappings.get(i));
 			finalList.add(chosen);
 		}	 
 	}
