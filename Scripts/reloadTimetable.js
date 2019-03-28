@@ -3,7 +3,8 @@ function reload(){
 	var ttr = {"09:00":2, "10:00":3, "11:00":4, "12:00":5, "13:00":6, "14:00":7, "15:00":8, "16:00":9, "17:00":10, "18:00":11, "19:00":12, "20:00":13, "21:00":14, "22:00":15};
 	data = {
 		"session": document.querySelector('select[name=\'session\']').value,
-		"semester": document.querySelector('select[name=\'semester\']').value
+		"semester": document.querySelector('select[name=\'semester\']').value,
+		"user": user
 	}
 	
 	for(var row = 1; row < 16; row++){ //reset all timeslots so we get no duplicates
