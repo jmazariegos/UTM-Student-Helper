@@ -40,25 +40,21 @@ public class TimetableGenerator {
 		this.allTimes.addAll(this.allTutorials);
 		this.allTimes.addAll(this.allPracticals);
 		this.allTimes.addAll(this.allLectures);
-		
-	}
-	
-	private ArrayList<Object> extractTimings(Courses course){
-		// add all lectures, then tutorial, then practicals
-		return null;
 	}
 	
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
 		this.allLectures.add(course.getLectures());
+		this.courseCodeMappings.add(course.getCode());
 		if(!course.getTutorials().isEmpty()) {
 			this.allTutorials.add(course.getTutorials());
+			this.courseCodeMappings.add(course.getCode());
 		}
 		if(!course.getPracticals().isEmpty()) {
-			this.allTutorials.add(course.getPracticals());
+			this.allPracticals.add(course.getPracticals());
+			this.courseCodeMappings.add(course.getCode());
 		}
 		// have parallel lists: index 0 is for this course, etc
-		this.courseCodeMappings.add(course.getCode());
 	}
 	
 	public boolean tryGenerateTimetable() {
@@ -67,19 +63,19 @@ public class TimetableGenerator {
 		boolean[] fixed = new boolean [numElements];
 		int [] indices = new int [numElements];
 		int [] currentCombination = new int [numElements];
-		int currentSet = numElements - 1;
 		Courses [][] timetable = new Courses[14][5];
 		List<List<Map<String, Object>>> currentSublist;
 		Map<String, Object> currentElement;
 		boolean allDone = false;
 		Map<String, Object> result = null; 
-		
 		int last_unmatched = 0;
 		// initialize all elements to false
 		for (int i = 0; i < numElements; i ++) {
 			fixed[i] = false;
 			indices[i] = 0; // all start at index 1. 
+			currentCombination[i] = 0;
 		}
+
 		while (allDone == false){
 			// check combo, then increment. 
 			if (checkCombo(currentCombination)) {
@@ -116,7 +112,6 @@ public class TimetableGenerator {
 		for (int c : cc) {
 			curElem = this.allTimes.get(ind).get(c);
 			// try slot into timetable
-			System.out.println(curElem.get("timings"));
 			times = (List<List<String>>) curElem.get("timings");
 			for (List<String> session : times) {
 				// note: some have different formats
@@ -228,7 +223,7 @@ public class TimetableGenerator {
 		int ind = cc.length - 1;
 		while (ind >= 0){
 			
-			if (cc[ind] == this.allTimes.get(ind).size()) {
+			if (cc[ind] == this.allTimes.get(ind).size() - 1) {
 				cc[ind] = 0;
 				ind --;
 			}
