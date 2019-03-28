@@ -20,6 +20,7 @@ public class TimetableGenerator {
 	private List<Courses [][]> workingTimetable;
 	// fill entry with Map: course: type: code:?
 	private List<String> courseCodeMappings;
+	private List<String> courseClassTypeMappings;
 	private Map<String, String> singleClass;
 	private List <Map<String, Object>> finalList;
 	
@@ -30,50 +31,65 @@ public class TimetableGenerator {
 		this.allLectures = new ArrayList<>();
 		this.allTutorials = new ArrayList<>();
 		this.allPracticals = new ArrayList<>();
+		this.courseCodeMappings = new ArrayList<>();
+		this.courseClassTypeMappings = new ArrayList<>();
+		this.allTimes = new ArrayList<>();
 		
 		for (Courses course: courses) {
 			addToLists(course);
 		}
 		// add all to main list
 		this.allTimes.addAll(this.allTutorials);
+		for (int i = 0; i < this.allTutorials.size(); i ++) {
+			this.courseClassTypeMappings.add("TUT");
+		}
 		this.allTimes.addAll(this.allPracticals);
+		for (int i = 0; i < this.allPracticals.size(); i ++) {
+			this.courseClassTypeMappings.add("PRA");
+		}
 		this.allTimes.addAll(this.allLectures);
-		
-	}
-	
-	private ArrayList<Object> extractTimings(Courses course){
-		// add all lectures, then tutorial, then practicals
-		return null;
+		for (int i = 0; i < this.allLectures.size(); i ++) {
+			this.courseClassTypeMappings.add("LEC");
+		}
 	}
 	
 	private void addToLists(Courses course) {
 		// get whether lecture, tutorial or practical
 		this.allLectures.add(course.getLectures());
-		this.allTutorials.add(course.getTutorials());
-		this.allPracticals.add(course.getPracticals());
-		// have parallel lists: index 0 is for this course, etc
 		this.courseCodeMappings.add(course.getCode());
+		if(!course.getTutorials().isEmpty()) {
+			this.allTutorials.add(course.getTutorials());
+			this.courseCodeMappings.add(course.getCode());
+			
+		}
+		if(!course.getPracticals().isEmpty()) {
+			this.allPracticals.add(course.getPracticals());
+			this.courseCodeMappings.add(course.getCode());
+			
+		}
+		
+		// have parallel lists: index 0 is for this course, etc
 	}
 	
-	private boolean tryGenerateTimetable() {
+	public boolean tryGenerateTimetable() {
 		// use allTimes to fit things into timetable
 		int numElements = this.courseCodeMappings.size();
 		boolean[] fixed = new boolean [numElements];
 		int [] indices = new int [numElements];
 		int [] currentCombination = new int [numElements];
-		int currentSet = numElements - 1;
 		Courses [][] timetable = new Courses[14][5];
 		List<List<Map<String, Object>>> currentSublist;
 		Map<String, Object> currentElement;
 		boolean allDone = false;
 		Map<String, Object> result = null; 
-		
 		int last_unmatched = 0;
 		// initialize all elements to false
 		for (int i = 0; i < numElements; i ++) {
 			fixed[i] = false;
 			indices[i] = 0; // all start at index 1. 
+			currentCombination[i] = 0;
 		}
+
 		while (allDone == false){
 			// check combo, then increment. 
 			if (checkCombo(currentCombination)) {
@@ -97,7 +113,7 @@ public class TimetableGenerator {
 		// reset timetable
 		this.timetableBool = new int [15][7];
 		Map<String, Object> curElem;
-		String [][] times;
+		List<List<String>> times;
 		String day, start, end;
 		for (int i = 0; i < 15; i ++) {
 			for (int j = 0; j < 7; j ++) {
@@ -110,12 +126,12 @@ public class TimetableGenerator {
 		for (int c : cc) {
 			curElem = this.allTimes.get(ind).get(c);
 			// try slot into timetable
-			times = (String[][]) curElem.get("timings");
-			for (String [] session : times) {
+			times = (List<List<String>>) curElem.get("timings");
+			for (List<String> session : times) {
 				// note: some have different formats
-				day = session[0];
-				start = session[1];
-				end = session[2];
+				day = session.get(0);
+				start = session.get(1);
+				end = session.get(2);
 
 				if (insertIntoTable(day, start, end) == false) {
 					return false;
@@ -135,6 +151,7 @@ public class TimetableGenerator {
  		for (int i = 0; i < cc.length; i ++) {
 			chosen = this.allTimes.get(i).get(cc[i]);
 			chosen.put("code", this.courseCodeMappings.get(i));
+			chosen.put("type", this.courseClassTypeMappings.get(i));
 			finalList.add(chosen);
 		}	 
 	}
@@ -221,7 +238,7 @@ public class TimetableGenerator {
 		int ind = cc.length - 1;
 		while (ind >= 0){
 			
-			if (cc[ind] == this.allTimes.get(ind).size()) {
+			if (cc[ind] == this.allTimes.get(ind).size() - 1) {
 				cc[ind] = 0;
 				ind --;
 			}
