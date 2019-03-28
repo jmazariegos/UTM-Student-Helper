@@ -45,6 +45,7 @@ let names = {
 
 var PATH = "./Website/assets";
 var user = "";
+var cart = [];
 
 // For  the user to login
 function login() {
@@ -295,8 +296,6 @@ function loadTimetable() {
     $("#navbar").show();
 
     // Additonal calls 
-    var timetable = document.getElementById("timetable");
-    reload();
 	var searchbar = document.querySelector('#searchbar');
 	searchbar.value = "";
 	var table = document.querySelector('#courses');
@@ -307,10 +306,11 @@ function loadTimetable() {
 	session.value = "fall/winter";
 	var semester = document.querySelector('select[name=\'semester\']');
 	semester.value = "F"
-	var cart = document.querySelector('#cart');
-	cart.innerHTML = "";
+	cart = [];
 	var cartcourses = document.querySelector('#cart-courses');
 	cartcourses.innerHTML = "0";
+    var timetable = document.getElementById("timetable");
+    reload();
 
 }
 
@@ -1007,7 +1007,6 @@ function createHandlers(){
 	const $session = document.querySelector('select[name=\'session\']');
 	const $semester = document.querySelector('select[name=\'semester\']');
 	const $generate = document.querySelector('#generate');
-	const $cart = document.querySelector('#cart');
 	const $cartcourses = document.querySelector('#cart-courses');
 	const $view = document.querySelector('#cart-view');
 	
@@ -1127,7 +1126,7 @@ function createHandlers(){
 			codes.push(cc[i].innerHTML);
 		}
 		data = {
-			codes: codes,
+			codes: cart,
 			session: $session.value,
 			semester: $semester.value
 		}
@@ -1260,10 +1259,9 @@ function createHandlers(){
 			$.getJSON("http://localhost:8080/timetable/exists", exists, function(result){ //returns if a course already exists in the timetable
 				if(result){ //course exists in timetable
 					text += "</table>";
-					var cc = document.getElementsByName('entry');
 					var found = false;
-					for(var i = 0; i < cc.length; i++){
-						if(cc[i].innerHTML === course.code){
+					for(var i = 0; i < cart.length; i++){
+						if(cart[i] === course.code){
 							text += "<input type=\"submit\" value=\"Remove from cart\" name=\"add-cart\">";
 							found = true;
 							break;
@@ -1280,10 +1278,10 @@ function createHandlers(){
 					addCartBtn = document.querySelector('input[name=\'add-cart\']');
 					if(addCartBtn){
 						addCartBtn.onclick = function(){
-							for(var i = 0; i < cc.length; i++){
-								if(cc[i].innerHTML === course.code){
+							for(var i = 0; i < cart.length; i++){
+								if(cart[i] === course.code){
 									addCartBtn.value = "Add to cart";
-									cc[i].parentElement.parentElement.parentNode.removeChild(cc[i].parentElement.parentElement);
+									cart.splice(i, 1);
 									var count = parseInt($cartcourses.innerHTML, 10) - 1
 									$cartcourses.innerHTML = count;
 									return;
@@ -1294,7 +1292,7 @@ function createHandlers(){
 								return;
 							}
 							addCartBtn.value = "Remove from cart";
-							$cart.insertAdjacentHTML('beforeend', '<tr><td name=\"entry\">' + course.code + '</td></tr>');
+							cart.push(course.code);
 							var count = parseInt($cartcourses.innerHTML, 10) + 1
 							$cartcourses.innerHTML = count;
 						};
@@ -1325,10 +1323,9 @@ function createHandlers(){
 					}
 				}else{ //course not in timetable
 					text += "</table>";
-					var cc = document.getElementsByName('entry');
 					var found = false;
-					for(var i = 0; i < cc.length; i++){
-						if(cc[i].innerHTML === course.code){
+					for(var i = 0; i < cart.length; i++){
+						if(cart[i] === course.code){
 							text += "<input type=\"submit\" value=\"Remove from cart\" name=\"add-cart\">";
 							found = true;
 							break;
@@ -1343,10 +1340,10 @@ function createHandlers(){
 					addCartBtn = document.querySelector('input[name=\'add-cart\']');
 					if(addCartBtn){
 						addCartBtn.onclick = function(){
-							for(var i = 0; i < cc.length; i++){
-								if(cc[i].innerHTML === course.code){
+							for(var i = 0; i < cart.length; i++){
+								if(cart[i] === course.code){
 									addCartBtn.value = "Add to cart";
-									cc[i].parentElement.parentElement.parentNode.removeChild(cc[i].parentElement.parentElement);
+									cart.splice(i, 1);
 									var count = parseInt($cartcourses.innerHTML, 10) - 1
 									$cartcourses.innerHTML = count;
 									return;
@@ -1357,7 +1354,7 @@ function createHandlers(){
 								return;
 							}
 							addCartBtn.value = "Remove from cart";
-							$cart.insertAdjacentHTML('beforeend', '<tr><td name=\"entry\">' + course.code + '</td></tr>');
+							cart.push(course.code);
 							var count = parseInt($cartcourses.innerHTML, 10) + 1
 							$cartcourses.innerHTML = count;
 						};
@@ -1478,7 +1475,8 @@ function createHandlers(){
 	$session.oninput = function(){ //i changed the session act like i changed the searchbar (makes results consistent)
 		$searchbar.dispatchEvent(new Event('input'));
 		$cartcourses.innerHTML = "0";
-		$cart.innerHTML = "";
+		$courseinfo.innerHTML = "";
+		cart = [];
 		addCartBtn = document.querySelector('input[name=\'add-cart\']');
 		if(addCartBtn){
 			addCartBtn.value = "Add to cart";
@@ -1488,7 +1486,8 @@ function createHandlers(){
 	$semester.oninput = function(){ //same
 		$searchbar.dispatchEvent(new Event('input'));
 		$cartcourses.innerHTML = "0";
-		$cart.innerHTML = "";
+		$courseinfo.innerHTML = "";
+		cart = [];
 		addCartBtn = document.querySelector('input[name=\'add-cart\']');
 		if(addCartBtn){
 			addCartBtn.value = "Add to cart";

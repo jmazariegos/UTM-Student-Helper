@@ -332,7 +332,6 @@
 				}
 				var timetable = document.getElementById("timetable");
 				timetable.innerHTML = text;
-		        reload();
 			</script>
 		</div>
 		<div id="search-container" class="inline">
@@ -351,9 +350,7 @@
 					<option value="S">Second</option>
 				</select>
 				<label id="cart-courses">0</label>
-				<button id="cart-view">
-					cart
-				</button>
+				<input type="submit" id="cart-view" value="View Cart">
 				<table id="cart" hidden="true"></table>
 				<input type="submit" id="generate" value="Generate">
 				<div id="calendar-upload">
