@@ -320,10 +320,8 @@ function loadMap() {
     deactiveAll();
     $("#side-map").addClass("active");
     $("#navbar").show();
-
     // Additonal calls 
     loadMain();
-
 }
 
 // Loads the Settings screen
@@ -1049,6 +1047,9 @@ $(function() {
 
     $("#side-settings").on('click', function() {
         loadAccount();
+    });
+    $("#side-logout").on('click', function() {
+        logout();
     });
 
 
