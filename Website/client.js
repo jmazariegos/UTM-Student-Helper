@@ -1022,26 +1022,16 @@ function createHandlers(){
 		    reader.onload = function (e) {
 		    	var lines = reader.result.split('\n');
 		    	var courses = {};
-		    	var read = false;
 		      	for(var i = 0; i < lines.length; i++){
-		      		if(lines[i].includes("END:VEVENT")){
-		      			read = false;
-		      		}
-		      		if(read){
-		      			if(lines[i].includes("SUMMARY:")){
-		      				var summary = lines[i].substring(8);
-		      				var list = summary.split(' ');
-		      				if(!courses[list[0]]){
-		      					courses[list[0]] = [];
-		      				}
-		      				courses[list[0]].push(list[1]);
-		      			}
-		      		}
-		      		if(lines[i].includes("BEGIN:VEVENT")){
-		      			read = true;
-		      		}
+	      			if(lines[i].includes("SUMMARY:")){
+	      				var summary = lines[i].substring(8);
+	      				var list = summary.split(' ');
+	      				if(!courses[list[0]]){
+	      					courses[list[0]] = [];
+	      				}
+	      				courses[list[0]].push(list[1]);
+	      			}
 		      	}
-		      	console.log(courses);
 		      	for(var course in courses){
 		      		get = {
 		      			"code": course.substring(0,6),
@@ -1049,11 +1039,11 @@ function createHandlers(){
 		      			"semester":	$semester.value      				
 		      		};
 		      		$.getJSON("http://localhost:8080/courses/", get, function(list){
+		      			console.log(data);
 		      			var data = list[0];
 		      			if(!data){
 		      				return;
 		      			}
-		      			console.log(data);
 		      			var post = {
 				            "code": data.code,
 				            "session": data.session,
@@ -1101,6 +1091,8 @@ function createHandlers(){
 				        	contentType: 'application/json',
 				        	success: function(result){
 				        		console.log(result);
+				        		var timetable = document.getElementById("timetable");
+						        reload();
 				        	},
 				        	error: function(err){
 				        		console.log(err);
@@ -1108,8 +1100,6 @@ function createHandlers(){
 				        });
 		      		});
 		      	}
-        		var timetable = document.getElementById("timetable");
-        		reload();
 		    };
 		    reader.readAsText(input.files[0]);
 		}
@@ -1120,11 +1110,6 @@ function createHandlers(){
 	}
 	
 	$generate.onclick = function(e){ //handler for the generate button
-		var codes = [];
-		var cc = document.getElementsByName('entry');
-		for(var i = 0; i < cc.length; i++){
-			codes.push(cc[i].innerHTML);
-		}
 		data = {
 			codes: cart,
 			session: $session.value,
@@ -1188,6 +1173,8 @@ function createHandlers(){
 				        	contentType: 'application/json',
 				        	success: function(result){
 				        		console.log(result);
+				        		var timetable = document.getElementById("timetable");
+						        reload();
 				        	},
 				        	error: function(err){
 				        		console.log(err);
@@ -1195,8 +1182,6 @@ function createHandlers(){
 				        });
         			});
         		}
-		        var timetable = document.getElementById("timetable");
-		        reload(); 
         	},
         	error: function(err){ //something went wrong
         		console.log(err);
