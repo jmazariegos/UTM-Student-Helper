@@ -10,7 +10,7 @@
         	text-align: center;
         }
         th{
-        	backgroundorder: 1px solid white;	
+        	background: 1px solid white;	
         	padding: 5px 20px 5px 20px;
         	background-color: #0fa3b1;
         }
@@ -81,11 +81,7 @@
 		background-color: #ded9e2;
 		border-collapse: collapse; 
 	}
-	#mapTitle{
-		text-align: center;  
-		font-family: 'Lobster', cursive;
 
-	}
 	#map{
 		width: 90%;
 		padding: 10px;
@@ -193,10 +189,7 @@
 	#quote h1{
 		font-size: 350%;
 		text-align: center;
-/*		font-family: 'Lobster', cursive;
-*/
-/*		color: #f5bb00;
-*/	}
+	}
 	strong{
 				font-family: 'Lobster', cursive;
 
@@ -218,7 +211,7 @@
 		margin-left: auto;
 		margin-right: auto;
 		border: 2px solid grey;
-		width: 70%;
+		width: 90%;
 
 		background-color: #d5e9ff;
 
@@ -230,7 +223,6 @@
 		padding-right: 1%;
 		margin-left: 1%;
 		margin-right: 1%;
-		width: 2%;
 	}
 
 
@@ -301,6 +293,54 @@
 			}
 			.class:hover .classinfo, .events:hover .eventsinfo, .dueDates:hover .dueDateinfo{
 				display: block;
+			}
+
+			#calender-button-container{
+				width: 90%;
+				padding: 2%;
+				margin:2%;
+			}
+
+			/*Time table*/
+			#leftSide{
+				float:left;
+				width: 28%;
+				padding: 1%;
+
+			}
+			#Friendsleft{
+				float:left;
+				width: 28%;
+				padding: 1%;
+			}
+
+			#Friendsright{
+				float:right;
+				width: 68%;
+				padding: 1%;
+
+			}
+			#course-container table{
+				width:80%;
+				background:;
+			}
+
+
+			#course-container td{
+				width: 40%;
+				margin: 1%
+				padding: 2%;
+
+			}
+			#course-container{
+				float:right;
+				width: 68%;
+				padding: 1%;
+
+			}
+			.Title{
+						text-align: center;  
+		font-family: 'Lobster', cursive;
 			}
 
 

@@ -251,6 +251,11 @@ function deactiveAll() {
 // Loads the Home screen
 function loadHome() {
     hideall();
+
+    var top = document.getElementById("Welcome");
+
+    top.innerHTML=("Weclome Home " + user);
+    
     $("#home").show();
     $("#sidebar").show();
     deactiveAll();
@@ -527,7 +532,7 @@ function highlightday() {
 function loadMain() {
     // Create the title
     var title = document.getElementById("mapTitle");
-    title.innerHTML = "MAP OF UTM";
+    title.innerHTML = "Map Of UTM";
 
     var pic = document.getElementById("mapImg");
     pic.src = PATH + "/campus-map.jpg";
@@ -1776,9 +1781,7 @@ $(function() {
             var page = getCookie("user");
             if (page != "") {
                 user = page;
-                $('#sidebar').show()
-                $("#side-home").addClass("active");
-                $('#home').show();
+                loadHome();
                 makeCalander() 
                 loadFriends();
                 loadBlocked();
