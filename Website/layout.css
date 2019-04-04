@@ -26,6 +26,13 @@
         	margin: 10px;
 	      	height: 45px;*/
 }
+	h1{
+		font-size: 350%;
+		text-align: center;
+		font-family: 'Lobster', cursive;
+
+/*		color: #f5bb00;
+*/	}
 
 
 	#buttons{
@@ -44,6 +51,9 @@
 		border-bottom: 1px solid black;
 		padding: 0 15px 0 15px;
 		margin-left: 5%;
+
+		border: 1px solid grey;
+
 
 	}
 	#foodTable thead{
@@ -239,19 +249,19 @@
 	calendar css
 	
 	*/
-			#calendar h2, th{
+			.calendar h2, th{
 				text-align: center;
 			}
-			#calendar th{
+			.calendar th{
 			  border: 1px solid white;	
 			  padding: 10px 40px 10px 40px;
 			  background-color: lightblue;
 			}
-			#calendar{
+			.calendar{
 			  margin-left: auto;
 			  margin-right: auto;
 			}
-			#calendar td{
+			.calendar td{
 			  border: 1px solid white;
 			  text-align: left;
 			  font-size: 20px;

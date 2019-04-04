@@ -57,13 +57,16 @@
             <div id="in">
                <h2>Login:</h2>
                <br>
+
+                       <form class="form-inline md-form mr-auto mb-4">         
+               <br>
                <table>
                   <tr>
                      <td>
                         E-Mail:
                      </td>
                      <td>
-                        <input id="lemail" type="Email" required><br>
+                        <input id="lemail" type="Email" required class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Email">
                      </td>
                   </tr>
                   <tr>
@@ -71,10 +74,11 @@
                         Password:
                      </td>
                      <td>
-                        <input id="lpass" type="password" required><br>
+                        <input id="lpass" type="password" required class="form-control mr-sm-2" type="text" placeholder="Password" aria-label="Password"><br>
                      </td>
                   </tr>
                </table>
+               </form>
                <br>
                <button id="loginButton" type="submit" class="btn btn-default">Login<br></button><br>
                <br>
@@ -196,8 +200,8 @@
          <div class="row py-3">
             <!-- Calender Body -->
             <div class="col offset-2" id="main">
-               <h2>Time Table</h2>
-               <table id="timetable1">
+               <H1> < MARCH > </H1>
+               <table class="calendar">
                   <tr>
                      <th>Sunday</th>
                      <th>Monday</th>
@@ -208,11 +212,11 @@
                      <th>Saturday</th>
                   </tr>
                   <tr>
+                     <td>24</td>
+                     <td>25</td>
+                     <td>26</td>
                      <td>27</td>
                      <td>28</td>
-                     <td>29</td>
-                     <td>30</td>
-                     <td>31</td>
                      <td>1</td>
                      <td>2</td>
                   </tr>
@@ -249,8 +253,8 @@
                      <td>26</td>
                      <td>27</td>
                      <td>28</td>
-                     <td>1</td>
-                     <td>2</td>
+                     <td>29</td>
+                     <td>30</td>
                   </tr>
                </table>
                <!-- Side Buttons -->
@@ -277,11 +281,163 @@
       <!-- Account page
          ----------------------------------------------------------
          -->
-      <div class="account" class="beside"></div>
+      <div id="account" class="beside"></div>
       <!-- Note page
          ----------------------------------------------------------
          -->
-      <div class="note" class="beside"></div>
+      <div id="note" class="beside">
+         <button type="button" id="testLink" >Save File</button>
+<textarea rows="50" cols="100" id="textareaCode" placeholder="Enter Text Here"></textarea>
+<button  type="button" onclick="load()">Load File</button>
+
+
+<!-- https://stackoverflow.com/questions/33640325/load-text-from-local-txt-file-into-html-textarea-using-javascript -->
+<script>
+window.load = function(){
+  var file = document.getElementById("myFile").files[0];
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var textArea = document.getElementById("textareaCode");
+    textArea.value = e.target.result;
+  };
+  reader.readAsText(file);
+  };
+ </script>
+ 
+ <input id="myFile" type="file" onclick="load()"/>
+
+ 
+ 
+<!-- This section was taken from https://www.beginnersbook.in/save-textarea-file-in-txt/-->
+<script>
+
+(function(){
+
+function load(){
+  var file = document.getElementById("myFile").files[0];
+  var reader = new FileReader();
+  reader.onload = function (e) {
+   document.getElementById("demo").innerHTML = "Hello World";
+    var textArea = document.getElementById("textareaCode");
+    textArea.value = e.target.result;
+  };
+  reader.readAsText(file);
+  }
+  var saveAs = saveAs || (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob && navigator.msSaveOrOpenBlob.bind(navigator)) || (function(view) {
+    "use strict"; if (typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
+      return
+    }
+    var doc = view.document, get_URL = function() {
+      return view.URL || view.webkitURL || view
+    }, save_link = doc.createElementNS("http://www.w3.org/1999/xhtml", "a"), can_use_save_link=!view.externalHost && "download"in save_link, click = function(node) {
+      var event = doc.createEvent("MouseEvents"); event.initMouseEvent("click", true, false, view, 0, 0, 0, 0, 0, false, false, false, false, 0, null); node.dispatchEvent(event)}, webkit_req_fs = view.webkitRequestFileSystem, req_fs = view.requestFileSystem || webkit_req_fs || view.mozRequestFileSystem, throw_outside = function(ex) {
+      (view.setImmediate || view.setTimeout)(function() {
+        throw ex
+      }, 0)}, force_saveable_type = "application/octet-stream", fs_min_size = 0, deletion_queue = [], process_deletion_queue = function() {
+      var i = deletion_queue.length; while (i--) {
+        var file = deletion_queue[i]; if (typeof file === "string") {
+          get_URL().revokeObjectURL(file)} else {
+          file.remove()}}deletion_queue.length = 0;
+    }, dispatch = function(filesaver, event_types, event) {
+      event_types = [].concat(event_types); var i = event_types.length; while (i--) {
+        var listener = filesaver["on"+event_types[i]]; if (typeof listener === "function") {
+          try {
+            listener.call(filesaver, event || filesaver)}catch(ex) {
+            throw_outside(ex)}}}}, FileSaver = function(blob, name) {
+      var filesaver = this, type = blob.type, blob_changed = false, object_url, target_view, get_object_url = function() {
+        var object_url = get_URL().createObjectURL(blob); deletion_queue.push(object_url); return object_url
+      }, dispatch_all = function() {
+        dispatch(filesaver, "writestart progress write writeend".split(" "))}, fs_error = function() {
+        if (blob_changed||!object_url) {
+          object_url = get_object_url(blob)}if (target_view) {
+          target_view.location.href = object_url
+        } else {
+          window.open(object_url, "_blank")}
+        filesaver.readyState = filesaver.DONE; dispatch_all()}, abortable = function(func) {
+        return function() {
+          if (filesaver.readyState !== filesaver.DONE) {
+            return func.apply(this, arguments)}}}, create_if_not_found = {
+        create: true, exclusive: false
+      }, slice; filesaver.readyState = filesaver.INIT;
+      if (!name) {
+        name = "download"
+      }if (can_use_save_link) {
+        object_url = get_object_url(blob); save_link.href = object_url; save_link.download = name; click(save_link); filesaver.readyState = filesaver.DONE; dispatch_all(); return
+      }
+      if (view.chrome && type && type !== force_saveable_type) {
+        slice = blob.slice || blob.webkitSlice; blob = slice.call(blob, 0, blob.size, force_saveable_type); blob_changed = true
+      }if (webkit_req_fs && name !== "download") {
+        name += ".download"
+      }if (type === force_saveable_type || webkit_req_fs) {
+        target_view = view
+      }if (!req_fs) {
+        fs_error(); return
+      }fs_min_size += blob.size; req_fs(view.TEMPORARY, fs_min_size, abortable(function(fs) {
+          fs.root.getDirectory("saved", create_if_not_found, abortable(function(dir) {
+            var save = function() {
+              dir.getFile(name, create_if_not_found, abortable(function(file) {
+                file.createWriter(abortable(function(writer) {
+                  writer.onwriteend = function(event) {
+                    target_view.location.href = file.toURL(); deletion_queue.push(file); filesaver.readyState = filesaver.DONE; dispatch(filesaver, "writeend", event)}; writer.onerror = function() {
+                    var error = writer.error; if (error.code !== error.ABORT_ERR) {
+                      fs_error()}
+                  }; "writestart progress write abort".split(" ").forEach(function(event) {
+                      writer["on"+event] = filesaver["on"+event]}); writer.write(blob); filesaver.abort = function() {
+                    writer.abort(); filesaver.readyState = filesaver.DONE
+                  }; filesaver.readyState = filesaver.WRITING
+                }), fs_error)}), fs_error)}; dir.getFile(name, {
+                create: false
+              }, abortable(function(file) {
+                  file.remove(); save()}), abortable(function(ex) {
+                  if (ex.code === ex.NOT_FOUND_ERR) {
+                    save()} else {
+                    fs_error()}}))}), fs_error)}), fs_error)}, FS_proto = FileSaver.prototype, saveAs = function(blob, name) {
+      return new FileSaver(blob, name)}; FS_proto.abort = function() {
+      var filesaver = this; filesaver.readyState = filesaver.DONE; dispatch(filesaver, "abort")}; FS_proto.readyState = FS_proto.INIT = 0; FS_proto.WRITING = 1; FS_proto.DONE = 2; FS_proto.error = FS_proto.onwritestart = FS_proto.onprogress = FS_proto.onwrite = FS_proto.onabort = FS_proto.onerror = FS_proto.onwriteend = null;
+    view.addEventListener("unload", process_deletion_queue, false); saveAs.unload = function() {
+      process_deletion_queue(); view.removeEventListener("unload", process_deletion_queue, false)}; return saveAs
+  }(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this.content)); if (typeof module !== "undefined" && module !== null) {
+    module.exports = saveAs
+  } else if ((typeof define !== "undefined" && define !== null) && (define.amd != null)) {
+    define([], function() {
+      return saveAs
+    })}String.prototype.endsWithAny = function() {
+    var strArray = Array.prototype.slice.call(arguments), $this = this.toLowerCase().toString(); for (var i = 0; i < strArray.length; i += 1) {
+      if ($this.indexOf(strArray[i], $this.length-strArray[i].length) !== -1) {
+        return true
+      }}return false
+  }; var saveTextAs = saveTextAs || (function(textContent, fileName, charset) {
+      fileName = fileName || 'download.txt'; charset = charset || 'utf-8'; textContent = (textContent || '').replace(/\r?\n/g, "\r\n"); if (saveAs && Blob) {
+        var blob = new Blob([textContent], {
+          type: "text/plain;charset="+charset
+        }); saveAs(blob, fileName); return true
+      } else {
+        var saveTxtWindow = window.frames.saveTxtWindow; if (!saveTxtWindow) {
+          saveTxtWindow = document.createElement('iframe'); saveTxtWindow.id = 'saveTxtWindow'; saveTxtWindow.style.display = 'none'; document.body.insertBefore(saveTxtWindow, null); saveTxtWindow = window.frames.saveTxtWindow; if (!saveTxtWindow) {
+            saveTxtWindow = window.open('', '_temp', 'width=100,height=100'); if (!saveTxtWindow) {
+              window.alert('Sorry, download file could not be created.'); return false
+            }}}var doc = saveTxtWindow.document; doc.open('text/html', 'replace'); doc.charset = charset; if (fileName.endsWithAny('.htm', '.html')) {
+          doc.close(); doc.body.innerHTML = '\r\n'+textContent+'\r\n'
+        } else {
+          if (!fileName.endsWithAny('.txt')) {
+            fileName += '.txt'
+          }doc.write(textContent); doc.close()}var retValue = doc.execCommand('SaveAs', null, fileName); saveTxtWindow.close(); return retValue
+      }});
+
+  /*----*/
+
+  var area = document.getElementById('textareaCode');
+  var link = document.getElementById('testLink');
+
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    saveTextAs(area.value, 'code.txt');
+  }, false);
+})();
+</script> 
+
+
+      </div>
       <!-- Friends page
          ----------------------------------------------------------
          -->
@@ -369,182 +525,9 @@
       <!-- Calender Page page ---------------------------------------------------------- -->
       <div id="cal" class="beside">
          <div id="calender-div">
-            <table id="calendar">
-               <script> 
-                  //request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/calendar.json', true);
-                  //xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
-                  //document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
-                  
-                  <!--parse timeTable-->
-                  var url = "./data/timeTable.json";
-                     
-                  $.getJSON(url, function(courses) {
-                     console.log(courses); //this writes to the console, and I think we need this request to access data
-                     
-                     var days = {"SU":0, "MO":1, "TU":2, "WE":3, "TH":4, "FR":5, "SA":6};
-                     var calendar = document.getElementById("calendar");
-                     
-                     var course_list_len = courses.length;
-                     
-                     for (key in courses){ //go through each course
-                     
-                        var code = courses[key].code;
-                        var ses = courses[key].session;
-                        var name = courses[key].name;
-                        var description = courses[key].description;
-                        
-                        var lec = courses[key].lecture; //0 since we only have once tuple in the list of lectures
-                        var section = lec.section;
-                        var time = lec.timings;
-                  
-                        for(j=0; j < time.length; j++) { //go through each lecture
-                           var d = time[j][0];
-                           var day_index = days[d];
-                           var start = time[j][1];
-                           var end = time[j][2];
-                           for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
-                              for (var m = 1, col; col = row.cells[m]; m++) { //1 because no classes on sunday
-                                 if (m == day_index){                                           
-                                    var new_node = "<div class=\"class\"><b>Lecture: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-                                    col.insertAdjacentHTML('beforeend', new_node);                       
-                                 }
-                              }  
-                           }
-                        }
-                        
-                        var tutorials = courses[key].tutorial;
-                        time = tutorials.timings;
-                        section = tutorials.section;
-                        if (time){
-                           for(j=0; j < time.length; j++) { //go through each tutorial
-                              var d = time[j][0]; 
-                              var day_index = days[d];
-                              var start = time[j][1];
-                              var end = time[j][2];
-                              for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
-                                 for (var m = 1, col; col = row.cells[m]; m++) {
-                                    if (m == day_index){                                           
-                                       var new_node = "<div class=\"class\"><b>Tutorial: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-                                       col.insertAdjacentHTML('beforeend', new_node);                       
-                                    }
-                                 }  
-                              }
-                           }
-                        }
-                        var practical = courses[key].practical;
-                        
-                        time = practical.timings;
-                        section = practical.section;
-                        
-                        for(j=0; j < time.length; j++) { //go through each practical
-                           var d = time[j][0]; 
-                           var day_index = days[d];
-                           var start = time[j][1];
-                           var end = time[j][2];
-                           for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
-                              for (var m = 0, col; col = row.cells[m]; m++) {
-                                 if (m == day_index){                                           
-                                    var new_node = "<div class=\"class\"><b>Practical: </b>"+code+"<br/>"+start+"-"+end+"<\div><br/><div class=\"classinfo\"><b>Name</b>: "+name+"<br/><b>Session</b>: "+section+"<br/><b>Info</b>: "+description+"<\div>";
-                                    col.insertAdjacentHTML('beforeend', new_node);                       
-                                 }
-                              }  
-                           }
-                        }
-                        
-                     }        
-                  });
-                  
-                  // <!--parse events-->
-                  var url = "http://localhost:8080/events/";
-                     
-                  $.getJSON(url, function(data) {
-                     console.log(data); //this writes to the console, and I think we need this request to access data
-                     
-                     var calendar = document.getElementById("calendar");
-                     
-                     var events = data;
-                     var events_list_len = events.length;         
-                     
-                     
-                     // <!--parse events' events-->
-                     for (i=0; i < events_list_len; i++){
-                        var eventName = events[i].eventName;
-                        var description = events[i].description; //
-                        var startDate = events[i].startDate;
-                        var startTime = events[i].startTime;
-                        var endDate = events[i].endDate;
-                        var endTime = events[i].endTime;
-                        
-                        //here we will add ":"
-                        //note to do am/pm stuff it would be startTime = (parseInt(startTime)-1200).toString(); etc
-                        startTime = startTime.slice(0,2)+":"+startTime.slice(2); //because of our time format, it will always be 4 digits
-                        endTime = endTime.slice(0,2)+":"+endTime.slice(2); 
-                        
-                        //warning: hardcoding it to work for february only. for multi months, needs more check.
-                        var startDateNum = startDate.substring(6, 8);
-                        var endDateNum = endDate.substring(6, 8);
-                        
-                        for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
-                           for (var m = 0, col; col = row.cells[m]; m++) {
-                              var td_value = col.innerHTML.substring(0, 2);
-                              if (td_value.substring(1,2) == "<" || td_value.length == 1) { //the single digit dates with stuff happening gave me a "<"
-                                 td_value = "0"+td_value.substring(0,1);
-                              }
-                              var td_value_int = parseInt(td_value);
-                              var startDateNum_Int = parseInt(startDateNum);
-                              var endDateNum_Int = parseInt(endDateNum);
-                              if (td_value_int >= startDateNum_Int && td_value_int <= endDateNum_Int){ //in case an event is longer than a day  
-                                 startDate = startDate.substring(0,4)+"/"+startDate.substring(4,6)+"/"+startDate.substring(6, 8);
-                                 endDate = endDate.substring(0,4)+"/"+endDate.substring(4,6)+"/"+endDate.substring(6, 8);
-                                 var new_node = "<div class=\"events\"><b>Event: </b>"+eventName+"<br/>"+startTime+"-"+endTime+"<\div><br/><div class=\"eventsinfo\"><b>Date</b>: "+startDate+"-"+endDate+"<br/><b>Info</b>: "+description+"<\div>";
-                                 col.insertAdjacentHTML('beforeend', new_node);                       
-                              }
-                           }  
-                        }
-                     }
-                  
-                  });
-                  
-                  //dfjklasdfjhadshkflkads
-                  // <!--parse dueDates-->
-                  var url = "http://localhost:8080/duedates/";
-                     
-                  $.getJSON(url, function(data) {
-                     console.log(data); //this writes to the console, and I think we need this request to access data
-                     
-                     var calendar = document.getElementById("calendar");
-                              
-                     var dueDates = data;
-                     var dueDates_list_len = dueDates.length;
-                     <!--parse events dueDates-->
-                     for (i=0; i < dueDates_list_len; i++){
-                        var code = dueDates[i].courseCode;
-                        var assignmentName = dueDates[i].assignmentName;
-                        var description = dueDates[i].description;
-                        var dueDate = dueDates[i].dueDate;
-                        var dueTime = dueDates[i].dueTime;
-                        
-                        dueTime = dueTime.slice(0,2)+":"+dueTime.slice(2);
-                        var dueDateNum = dueDate.substring(6, 8);
-                        
-                        for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of table headers is 0
-                           for (var m = 0, col; col = row.cells[m]; m++) {
-                              var td_value = col.innerHTML.substring(0, 2);
-                              if (td_value.substring(1,2) == "<" || td_value.length == 1) { //the single digit dates with stuff happening gave me a "<"
-                                 td_value = "0"+td_value.substring(0,1);
-                              }
-                              if (td_value == dueDateNum){
-                                 dueDate = dueDate.substring(0,4)+"/"+dueDate.substring(4,6)+"/"+dueDate.substring(6, 8);
-                                 var new_node = "<div class=\"dueDates\"><b>Course: </b>"+code+"<br/> <b>Deadline</b>: "+dueTime+"<\div><br/><div class=\"dueDateinfo\"><b>Date</b>: "+dueDate+"<br/><b>Assignment</b>: "+assignmentName+"<br/><b>Info</b>: "+description+"<\div>";
-                                 col.insertAdjacentHTML('beforeend', new_node);                       
-                              }
-                           }  
-                        }
-                     }
-                  });
-                  ///ddfkjlasdfjkadshkfjasd
-                  
-               </script>
+                           <H1> < MARCH > </H1>
+
+            <table class="calendar">
                <tr>
                   <th>Sunday</th>
                   <th>Monday</th>
@@ -555,58 +538,61 @@
                   <th>Saturday</th>
                </tr>
                <tr>
-                  <td>27</td>
-                  <td>28</td>
-                  <td>29</td>
-                  <td>30</td>
-                  <td>31</td>
-                  <td>1</td>
-                  <td>2</td>
-               </tr>
-               <tr>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
-                  <td>6</td>
-                  <td>7</td>
-                  <td>8</td>
-                  <td>9</td>
-               </tr>
-               <tr>
-                  <td>10</td>
-                  <td>11</td>
-                  <td>12</td>
-                  <td>13</td>
-                  <td>14</td>
-                  <td>15</td>
-                  <td>16</td>
-               </tr>
-               <tr>
-                  <td>17</td>
-                  <td>18</td>
-                  <td>19</td>
-                  <td>20</td>
-                  <td>21</td>
-                  <td>22</td>
-                  <td>23</td>
-               </tr>
-               <tr>
-                  <td>24</td>
-                  <td>25</td>
-                  <td>26</td>
-                  <td>27</td>
-                  <td>28</td>
-                  <td>1</td>
-                  <td>2</td>
-               </tr>
+                     <td>24</td>
+                     <td>25</td>
+                     <td>26</td>
+                     <td>27</td>
+                     <td>28</td>
+                     <td>1</td>
+                     <td>2</td>
+                  </tr>
+                  <tr>
+                     <td>3</td>
+                     <td>4</td>
+                     <td>5</td>
+                     <td>6</td>
+                     <td>7</td>
+                     <td>8</td>
+                     <td>9</td>
+                  </tr>
+                  <tr>
+                     <td>10</td>
+                     <td>11</td>
+                     <td>12</td>
+                     <td>13</td>
+                     <td>14</td>
+                     <td>15</td>
+                     <td>16</td>
+                  </tr>
+                  <tr>
+                     <td>17</td>
+                     <td>18</td>
+                     <td>19</td>
+                     <td>20</td>
+                     <td>21</td>
+                     <td>22</td>
+                     <td>23</td>
+                  </tr>
+                  <tr>
+                     <td>24</td>
+                     <td>25</td>
+                     <td>26</td>
+                     <td>27</td>
+                     <td>28</td>
+                     <td>29</td>
+                     <td>30</td>
+                  </tr>
             </table>
          </div>
          <div id="addEvent">
             <h2>Add an Event</h2>
+            <form class="form-inline md-form mr-auto mb-4">
+
+                        <input id="lemail" type="Email" required>
             <label for="eventName">Event name: </label>
-            <input id="eventName" name="eventName"><br>
+            <input id="eventName" name="eventName" class="form-control mr-sm-2" placeholder="Enter a name" aria-label="eventName"><br>
             <label for="description">Description: </label>
-            <input id="description" name="description"><br>
+            <input id="description" name="description" class="form-control mr-sm-2" placeholder="Email" aria-label="Email"><br>
             <label for="startDate">Start Date (YYYYMMDD): </label>
             <input id="startDate" name="startDate" ><br>
             <label for="endDate">End Date (YYYYMMDD): </label>
@@ -616,42 +602,8 @@
             <label for="endTime">End Time (HHMM): </label>
             <input id="endTime" name="endTime" ><br>
             <input onclick="submitEvent()" type="submit" value="Submit">
+            </form>
             <p id="demo"></p>
-            <script>
-               function submitEvent(){ 
-                   //var bob = document.getElementById("description").value;
-                   //document.getElementById("demo").innerHTML = bob;
-                   
-                   //dfkljasjkadjkljkadsfjklfdsafff
-                   
-                   var newEvent = {
-                    "eventName": document.getElementById("eventName").value,
-                    "description": document.getElementById("description").value,
-                    "startDate": document.getElementById("startDate").value,
-                    "startTime": document.getElementById("startTime").value,
-                    "endDate": document.getElementById("endDate").value,
-                    "endTime": document.getElementById("endTime").value
-                 };
-                   $.ajax({
-                                         url: "http://localhost:8080/events/",
-                                         type: "POST",
-                                         data: JSON.stringify(newEvent),
-                                         dataType: 'json',
-                                         contentType: 'application/json',
-                                         success: function(result){
-                                            console.log(result);
-                                              var calender = document.getElementById("calender");
-                                              //Reload Page
-                                         },
-                                         error: function(err){
-                                            console.log(err);
-                                         }
-                                        });
-                   //kjhasdfjhkfsjhkfdkhjfahlfdhsfdsa
-                   
-               }
-               
-            </script>
          </div>
          <div id="addDueDate">
             <h2>Add a Due Date</h2>
@@ -666,40 +618,7 @@
             <label for="dueTime">Due Time (HHMM): </label>
             <input id="dueTime" name="dueTime" ><br>
             <input onclick="submitDueDate()" type="submit" value="Submit">
-            <p id="demo"></p>
-            <script>
-               function submitDueDate(){ 
-                   //var bob = document.getElementById("description").value;
-                   //document.getElementById("demo").innerHTML = bob;
-                   
-                   //dfkljasjkadjkljkadsfjklfdsafff
-                   
-                   var newDueDate = {
-                    "assignmentName": document.getElementById("assignmentName").value,
-                       "courseCode": document.getElementById("courseCode").value,
-                    "description": document.getElementById("description").value,
-                    "dueDate": document.getElementById("dueDate").value,
-                    "dueTime": document.getElementById("dueTime").value
-                 };
-                   $.ajax({
-                                         url: "http://localhost:8080/duedates/",
-                                         type: "POST",
-                                         data: JSON.stringify(newDueDate),
-                                         dataType: 'json',
-                                         contentType: 'application/json',
-                                         success: function(result){
-                                            console.log(result);
-                                              var calender = document.getElementById("calender");
-                                              //Reload Page
-                                         },
-                                         error: function(err){
-                                            console.log(err);
-                                         }
-                                        });
-                  
-               }
-               
-            </script>            
+            <p id="demo"></p>           
          </div>
       </div>
    </body>
