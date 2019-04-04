@@ -27,10 +27,12 @@
 	h1{
 		font-size: 350%;
 		text-align: center;
-		font-family: 'Lobster', cursive;
 
 /*		color: #f5bb00;
 */	}
+	#quote span{
+		font-family: 'Lobster', cursive;
+	}
 
 
 	#buttons{
@@ -191,11 +193,13 @@
 	#quote h1{
 		font-size: 350%;
 		text-align: center;
-		font-family: 'Lobster', cursive;
-
+/*		font-family: 'Lobster', cursive;
+*/
 /*		color: #f5bb00;
 */	}
 	strong{
+				font-family: 'Lobster', cursive;
+
 		color: #c20114
 	}
 

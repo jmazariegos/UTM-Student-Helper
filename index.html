@@ -49,9 +49,9 @@
          <!-- Login stuff  -->
          <div id="cont">
             <div id="quote">
-               <h1>Let us share Our Work and Our Schedules.<br>
-                  This is not <strong>YOUR UTM</strong> nor <strong>MY UTM.</strong><br>
-                  THIS IS <Strong>OUR UTM.</Strong>
+               <h1>Let us share our work and our schedules.<br>
+                  This is not <strong>Your UTM</strong> nor <strong>My UTM.</strong><br>
+                  <span>This is</span> <Strong>Our UTM.</Strong>
                </h1>
             </div>
             <div id="in">
@@ -519,13 +519,13 @@ function load(){
 			<div id="search-results-container">
 				<table id="courses"></table>
 			</div>
-			<script>createHandlers();</script>
 		</div>
       </div>
       <!-- Calender Page page ---------------------------------------------------------- -->
       <div id="cal" class="beside">
          <div id="calender-div">
-                           <H1> < MARCH > </H1>
+             <div id="calender-container">
+            <H1> < MARCH > </H1>
 
             <table class="calendar">
                <tr>
@@ -584,42 +584,53 @@ function load(){
                   </tr>
             </table>
          </div>
+         <table id="calender-button-container">
+            <tr id="calendar-row">
+               <td>
          <div id="addEvent">
             <h2>Add an Event</h2>
             <form class="form-inline md-form mr-auto mb-4">
+            <label for="eventName">Event name: </label><br>
+            <input id="eventName" name="eventName" class="form-control mr-sm-2" placeholder="Enter an event name" aria-label="eventName"><br>
+            <label for="description">Description: </label><br>
+            <input id="description" name="description" class="form-control mr-sm-2" placeholder="Description of event" aria-label="Description of event"><br>
+            <label for="startDate">Start Date (YYYYMMDD): </label><br>
+            <input id="startDate" name="startDate" type="date"><br> 
+            <!-- Find Date input -->
+            <label for="endDate">End Date (YYYYMMDD): </label><br>
+            <input id="endDate" name="endDate" type="date"><br>
 
-                        <input id="lemail" type="Email" required>
-            <label for="eventName">Event name: </label>
-            <input id="eventName" name="eventName" class="form-control mr-sm-2" placeholder="Enter a name" aria-label="eventName"><br>
-            <label for="description">Description: </label>
-            <input id="description" name="description" class="form-control mr-sm-2" placeholder="Email" aria-label="Email"><br>
-            <label for="startDate">Start Date (YYYYMMDD): </label>
-            <input id="startDate" name="startDate" ><br>
-            <label for="endDate">End Date (YYYYMMDD): </label>
-            <input id="endDate" name="endDate" ><br>
-            <label for="startTime">Start Time (HHMM): </label>
-            <input id="startTime" name="startTime" ><br>
-            <label for="endTime">End Time (HHMM): </label>
-            <input id="endTime" name="endTime" ><br>
+            <!-- Find time input -->
+            <label for="startTime">Start Time (HHMM): </label><br>
+            <input id="startTime" name="startTime" type="time" value="13:30"><br>
+            <label for="endTime">End Time (HHMM): </label><br>
+            <input id="endTime" name="endTime" type="time" value="13:30" ><br>
             <input onclick="submitEvent()" type="submit" value="Submit">
             </form>
             <p id="demo"></p>
          </div>
+      </td>
+                     <td>
+
          <div id="addDueDate">
             <h2>Add a Due Date</h2>
-            <label for="assignmentName">Assignment name: </label>
-            <input id="assignmentName" name="assignmentName"><br>
-            <label for="courseCode">Course Code: </label>
-            <input id="courseCode" name="courseCode" ><br>
-            <label for="description">Description: </label>
-            <input id="description" name="description"><br>
-            <label for="dueDate">Due Date (YYYYMMDD): </label>
-            <input id="dueDate" name="dueDate" ><br>
-            <label for="dueTime">Due Time (HHMM): </label>
-            <input id="dueTime" name="dueTime" ><br>
+            <label for="assignmentName">Assignment name: </label><br>
+            <input id="assignmentName" name="assignmentName" class="form-control mr-sm-2" placeholder="Assignment Name" aria-label="eventName"><br>
+            <label for="courseCode">Course Code: </label><br>
+            <input id="courseCode" name="courseCode" class="form-control mr-sm-2" placeholder="Course Code" aria-label="eventName"><br>
+            <label for="description">Description: </label><br>
+            <input id="description" name="description" class="form-control mr-sm-2" placeholder="Description of event" aria-label="Description of event"><br>
+            <label for="dueDate">Due Date (YYYYMMDD): </label><br>
+            <input id="dueDate" type="date" name="dueDate" ><br>
+            <label for="dueTime">Due Time (HHMM): </label><br>
+            <input id="dueTime" name="dueTime" type="time" value="13:30"><br>
             <input onclick="submitDueDate()" type="submit" value="Submit">
             <p id="demo"></p>           
          </div>
+      </td>
+   </tr>
+</table>
+      </div>
       </div>
    </body>
 </html>
