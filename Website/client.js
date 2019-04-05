@@ -85,7 +85,6 @@ function login() {
             if (pullResults['msg'] === "login: successful") {
                 loadHome();
                 setUser(id);
-                makeCalander();
             } else {
                 $("#lpass").val("")
                 $(page).show();
@@ -263,6 +262,8 @@ function loadHome() {
     $("#navbar").show();
 
     // Additonal calls 
+    clearCalendar();
+    makeCalander();
 }
 
 // Loads the Home screen
@@ -274,7 +275,8 @@ function loadCalendar() {
     $("#side-calendar").addClass("active");
     $("#navbar").show();
     // Additonal calls  
-
+    clearCalendar();
+    makeCalander();
 
 }
 
@@ -1038,14 +1040,34 @@ function createHandlers() {
                         courses[list[0]].push(list[1]);
                     }
                 }
+                var clear = {
+                	user: user,
+                	session: $session.value,
+                	semester: $semester.value
+                };
+                $.ajax({ //request to add course to timetable (refer to above ajax)
+                    url: "http://localhost:8080/timetable/clear",
+                    type: "DELETE",
+                    data: JSON.stringify(clear),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(result) {
+                        console.log(result);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
                 for (var course in courses) {
-                    get = {
-                        "code": course.substring(0, 6),
-                        "session": $session.value,
-                        "semester": $semester.value
+                	const sections = courses[course];
+                    var get = {
+                        code: course.substring(0, 6),
+                        session: $session.value,
+                        semester: $semester.value
                     };
                     $.getJSON("http://localhost:8080/courses/", get, function(list) {
-                        console.log(data);
+                        console.log(list);
+                        console.log(get);
                         var data = list[0];
                         if (!data) {
                             return;
@@ -1061,32 +1083,32 @@ function createHandlers() {
                             "tutorial": {},
                             "practical": {}
                         }
-                        for (var i = 0; i < courses[course].length; i++) {
-                            var section;
-                            if (courses[course][i].includes("LEC")) {
-                                section = data.lectures;
-                                for (var j = 0; j < section.length; j++) {
-                                    if (courses[course][i].includes(section[j].section)) {
-                                        post.lecture = section[j];
+                        for (var i = 0; i < sections.length; i++) {
+                            var section = sections[i];
+                            if (section.includes("LEC")) {
+                                var lectures = data.lectures;
+                                for (var j = 0; j < lectures.length; j++) {
+                                    if (section.includes(lectures[j].section)) {
+                                        post.lecture = lectures[j];
                                     }
                                 }
-                            } else if (courses[course][i].includes("TUT")) {
-                                section = data.tutorials;
-                                for (var j = 0; j < section.length; j++) {
-                                    if (courses[course][i].includes(section[j].section)) {
-                                        post.tutorial = section[j];
+                            } else if (section.includes("TUT")) {
+                                var tutorials = data.tutorials;
+                                for (var j = 0; j < tutorials.length; j++) {
+                                    if (section.includes(tutorials[j].section)) {
+                                        post.tutorial = tutorials[j];
                                     }
                                 }
-                            } else if (courses[course][i].includes("PRA")) {
-                                section = data.practicals;
-                                for (var j = 0; j < section.length; j++) {
-                                    if (courses[course][i].includes(section[j].section)) {
-                                        post.practical = section[j];
+                            } else if (section.includes("PRA")) {
+                                var practicals = data.practicals;
+                                for (var j = 0; j < practicals.length; j++) {
+                                    if (section.includes(practicals[j].section)) {
+                                        post.practical = practicals[j];
                                     }
                                 }
                             }
                         }
-                        if (post.lecture === {}) { //doesnt work?
+                        if ($.isEmptyObject(post.lecture)) { //doesnt work?
                             return;
                         }
                         $.ajax({ //request to add course to timetable (refer to above ajax)
@@ -1097,8 +1119,6 @@ function createHandlers() {
                             contentType: 'application/json',
                             success: function(result) {
                                 console.log(result);
-                                var timetable = document.getElementById("timetable");
-                                reload();
                             },
                             error: function(err) {
                                 console.log(err);
@@ -1106,6 +1126,10 @@ function createHandlers() {
                         });
                     });
                 }
+                setTimeout(function(){
+                	var timetable = document.getElementById("timetable");
+                	reload();
+                }, 2000);
             };
             reader.readAsText(input.files[0]);
         }
@@ -1116,6 +1140,27 @@ function createHandlers() {
     }
 
     $generate.onclick = function(e) { //handler for the generate button
+    	if(cart.length === 0){
+    		return;
+    	}
+        var clear = {
+        	user: user,
+        	session: $session.value,
+        	semester: $semester.value
+        };
+        $.ajax({ //request to add course to timetable (refer to above ajax)
+            url: "http://localhost:8080/timetable/clear",
+            type: "DELETE",
+            data: JSON.stringify(clear),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(result) {
+                console.log(result);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
         data = {
             codes: cart,
             session: $session.value,
@@ -1179,8 +1224,6 @@ function createHandlers() {
                             contentType: 'application/json',
                             success: function(result) {
                                 console.log(result);
-                                var timetable = document.getElementById("timetable");
-                                reload();
                             },
                             error: function(err) {
                                 console.log(err);
@@ -1188,6 +1231,10 @@ function createHandlers() {
                         });
                     });
                 }
+                setTimeout(function(){
+                	var timetable = document.getElementById("timetable");
+                	reload();
+                }, 2000);
             },
             error: function(err) { //something went wrong
                 console.log(err);
@@ -1491,14 +1538,30 @@ function createHandlers() {
     $searchbar.addEventListener('propertyChange', typeHandler); //same here
 }
 
+function clearCalendar(){
+	var allEvents = document.querySelectorAll(".events");
+    allEvents.forEach(function(e){
+    	e.parentNode.removeChild(e);
+    });
+    
+    var allClasses = document.querySelectorAll(".class");
+    allClasses.forEach(function(e){
+    	e.parentNode.removeChild(e);
+    });
+}
+
 function makeCalander() {
     //request.open('GET', 'https://github.com/jessly5/301tsv/blob/master/calendar.json', true);
     //xmlhttp https://www.w3schools.com/js/tryit.asp?filename=tryjson_http
     //document.getElementById("course-list").innerHTML = JSON.stringify($courses[0].code);
 
-    var url = "./data/timeTable.json";
-
-    $.getJSON(url, function(courses) {
+	data = {
+		session: "fall/winter",
+		semester: "S",
+		user: user
+	};
+	
+    $.getJSON("http://localhost:8080/timetable/", data, function(courses) {
         console.log(courses); //this writes to the console, and I think we need this request to access data
 
         var days = {
@@ -1510,15 +1573,14 @@ function makeCalander() {
             "FR": 5,
             "SA": 6
         };
-        var allCalendar = document.getElementsByClassName("calendar");
+        var allCalendar = document.querySelectorAll(".calendar");
 
-        for (var tenp = 0; tenp < allCalendar.length; tenp++) {
+        allCalendar.forEach(function(e){
 
-            var calendar = allCalendar[tenp]
+            var calendar = e;
             var course_list_len = courses.length;
 
-            for (key in courses) { //go through each course
-
+            for (var key = 0; key < course_list_len; key++) { //go through each course
                 var code = courses[key].code;
                 var ses = courses[key].session;
                 var name = courses[key].name;
@@ -1566,24 +1628,25 @@ function makeCalander() {
 
                 time = practical.timings;
                 section = practical.section;
-
-                for (j = 0; j < time.length; j++) { //go through each practical
-                    var d = time[j][0];
-                    var day_index = days[d];
-                    var start = time[j][1];
-                    var end = time[j][2];
-                    for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
-                        for (var m = 0, col; col = row.cells[m]; m++) {
-                            if (m == day_index) {
-                                var new_node = "<div class=\"class\"><b>Practical: </b>" + code + "<br/>" + start + "-" + end + "<\div><br/><div class=\"classinfo\"><b>Name</b>: " + name + "<br/><b>Session</b>: " + section + "<br/><b>Info</b>: " + description + "<\div>";
-                                col.insertAdjacentHTML('beforeend', new_node);
-                            }
-                        }
-                    }
+                if(time){
+	                for (j = 0; j < time.length; j++) { //go through each practical
+	                    var d = time[j][0];
+	                    var day_index = days[d];
+	                    var start = time[j][1];
+	                    var end = time[j][2];
+	                    for (var k = 1, row; row = calendar.rows[k]; k++) { //1 because row of date names is 0
+	                        for (var m = 0, col; col = row.cells[m]; m++) {
+	                            if (m == day_index) {
+	                                var new_node = "<div class=\"class\"><b>Practical: </b>" + code + "<br/>" + start + "-" + end + "<\div><br/><div class=\"classinfo\"><b>Name</b>: " + name + "<br/><b>Session</b>: " + section + "<br/><b>Info</b>: " + description + "<\div>";
+	                                col.insertAdjacentHTML('beforeend', new_node);
+	                            }
+	                        }
+	                    }
+	                }
                 }
 
             }
-        }
+        });
     });
 
     // <!--parse events-->
@@ -1716,8 +1779,8 @@ function makeCalander() {
                         contentType: 'application/json',
                         success: function(result){
                         console.log(result);
-                            var calender = document.getElementById("calender");
                             //Reload Page
+                        	clearCalendar();
                             makeCalander();
                         },
                         error: function(err){
@@ -1753,9 +1816,9 @@ function makeCalander() {
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function(result){
-                    console.log(result);
-                        var calender = document.getElementById("calender");
+                    	console.log(result);
                         //Reload Page
+                    	clearCalendar();
                         makeCalander();
                     },
                     error: function(err){
@@ -1782,7 +1845,6 @@ $(function() {
             if (page != "") {
                 user = page;
                 loadHome();
-                makeCalander() 
                 loadFriends();
                 loadBlocked();
                 loadRequests();
