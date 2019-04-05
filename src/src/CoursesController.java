@@ -1,5 +1,6 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,8 @@ public class CoursesController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/generate", method = RequestMethod.POST)
 	public /*List<Map<String, Object>>*/ Object generateTimetable(@RequestBody Map<String, Object> body) {
-		List<String> codes = (List<String>) body.get("codes");
+		@SuppressWarnings("unchecked")
+		ArrayList<String> codes = (ArrayList<String>) body.get("codes");
 		String session = (String) body.get("session");
 		String semester = (String) body.get("semester");
 		List<Courses> cart = null;

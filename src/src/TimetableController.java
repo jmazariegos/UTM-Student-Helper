@@ -50,6 +50,19 @@ public class TimetableController {
 		}
 		return null;
 	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/clear", method = RequestMethod.DELETE)
+	public void deleteAllCourse(@RequestBody Map<String, String> body) {
+		String session = body.get("session");
+		String semester = body.get("semester");
+		String user = body.get("user");
+		List<Timetable> timetable = timetableRepository.findBySessionAndSemesterAndUserAllIgnoreCase(session, semester, user);
+		timetable.addAll(timetableRepository.findBySessionAndSemesterAndUserAllIgnoreCase(session, "Y", user));
+		for(Timetable course: timetable) {
+			timetableRepository.deleteById(course.get_id());
+		}
+	}
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
